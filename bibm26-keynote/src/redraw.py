@@ -113,7 +113,7 @@ def chain_sample(order, n=35, seed=29):
     return out[:n]
 
 def knob_orders():
-    conds = [('order 0', FE['shuffled']), ('order 1', FE['order1']), ('order 4', chain_sample(4)), ('real', FE['melody'])]
+    conds = [('order 0', FE['shuffled']), ('order 1', FE['order1']), ('order 4', chain_sample(4)), ('the real piece', FE['melody'])]
     pred = [0.15, 0.5, 0.8, 0.88]
     W, H, L = 1000, 440, 140
     sx = lambda i: L + 90 + i * 210
@@ -158,7 +158,7 @@ def turned():
     rows = [('Koelsch 2000', 'one chord in a sequence', 'odd chord vs regular chord'),
             ('Di Liberto 2020', 'the listener model', 'how many bars it remembers'),
             ('Kern 2022', 'the music model', 'how many notes of context it sees'),
-            ('Generators', 'the music itself', 'any property, whole pieces')]
+            ('Generators', 'the music itself', 'chosen properties, whole pieces')]
     W, H = 1150, 400
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
     s.append(T(0, 24, 'who', 20, INK2)); s.append(T(260, 24, 'what was turned', 20, INK2)); s.append(T(640, 24, 'which knob', 20, INK2))
