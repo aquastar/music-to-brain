@@ -53,10 +53,24 @@ def dl_memory():
     return ''.join(s)
 
 def denk_acc():
-    # Denk, Takagi et al. 2025 Fig 1a, identification accuracy, medians over 5 scanned listeners, APPROX
-    return hbars([('generated, judged in MuLan space', 0.85, True), ('generated, judged in a low level space', 0.66, False), ('perfect decoder, MuLan space', 1.0, False)],
-                 W=1100, label_w=430, vmax=1.0, ref=0.5, ref_label='chance', fmt='{:.0%}', H_row=74,
-                 title='how often the generated clip is closer to the heard clip than to another clip')
+    # Denk, Takagi et al. 2025 Fig 1a, identification accuracy of generated clips (MusicLM), medians over 5 scanned listeners,
+    # with the oracle ceiling of each space as a gray tick, APPROX
+    rows = [('judged in the music embedding (MuLan)', 0.85, 1.0, True), ('judged in a low level audio space', 0.66, 0.79, False)]
+    W, L = 1100, 470; x0, x1 = L, W - 90
+    sx = lambda v: x0 + (v - 0.4) / 0.6 * (x1 - x0)
+    H = 300
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    s.append(T(0, 22, 'how often the generated clip is closer to the heard clip than to another clip', 20, INK2))
+    for i, (lab, v, ceil, hi) in enumerate(rows):
+        y = 60 + i * 100
+        s.append(T(0, y + 30, lab, 24))
+        s.append(('<g data-accent="1">' if hi else '<g>') + f'<rect x="{x0}" y="{y+6}" width="{sx(v)-x0:.1f}" height="34" fill="{ACC if hi else AXIS}"/>' + T(sx(v) + 10, y + 30, f'{v:.0%}', 23) + '</g>')
+        s.append(f'<line x1="{sx(ceil):.1f}" y1="{y-2}" x2="{sx(ceil):.1f}" y2="{y+48}" stroke="{INK2}" stroke-width="2"/>')
+        s.append(T(sx(ceil), y + 72, f'best possible {ceil:.0%}', 18, INK2, 'middle'))
+    s.append(f'<line x1="{sx(0.5):.1f}" y1="44" x2="{sx(0.5):.1f}" y2="{H-20}" stroke="{INK2}" stroke-dasharray="5 5"/>')
+    s.append(T(sx(0.5), H - 2, 'chance 50%', 18, INK2, 'middle'))
+    s.append('</svg>')
+    return ''.join(s)
 
 def nh_schematic():
     # Norman-Haignere et al. 2022 Fig 2A as a schematic: which sound categories drive three components
@@ -174,7 +188,7 @@ def mischler_curves():
     for v in (0, 0.5, 1): s.append(T(L - 10, sy(v) + 6, f'{v:g}', 18, INK2, 'end'))
     for i in (0, 4, 8, 12): s.append(T(sx(i), sy(0) + 26, str(i), 18, INK2, 'middle'))
     s.append(T((L + W - 120) / 2, H - 10, 'model layer', 20, INK2, 'middle'))
-    s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (LINE, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(early))))
+    s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (LANG, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(early))))
     s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (MUS, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(late))))
     s.append(T(sx(12) + 8, sy(late[-1]) + 6, 'far sites', 20, INK)); s.append(T(sx(12) + 8, sy(early[-1]) + 6, 'primary', 20, INK2)); s.append(T(sx(12) + 8, sy(early[-1]) + 28, 'cortex', 20, INK2))
     s.append(T(L + 10, 14, 'fit, normalized', 18, INK2))
