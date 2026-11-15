@@ -120,7 +120,7 @@ def knob_orders():
     sy = lambda v: 50 + (1 - v) * 220
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
     s.append(f'<line x1="{L}" y1="{sy(0)}" x2="{W-40}" y2="{sy(0)}" stroke="{AXIS}"/><line x1="{L}" y1="{sy(0)}" x2="{L}" y2="40" stroke="{AXIS}"/>')
-    s.append(T(L - 12, 60, 'surprise', 20, INK2, 'end')); s.append(T(L - 12, 84, 'response', 20, INK2, 'end'))
+    s.append(T(L - 12, 60, 'how strongly', 18, INK2, 'end')); s.append(T(L - 12, 82, 'EEG tracks', 18, INK2, 'end')); s.append(T(L - 12, 104, 'surprise', 18, INK2, 'end'))
     s.append(T(L + 16, 46, 'PREDICTION, NO DATA YET', 17, INK2, 'start', 'letter-spacing="2"'))
     g = '<g data-accent="1">' + f'<path d="M{sx(0)},{sy(pred[0])} ' + ' '.join(f'L{sx(i)},{sy(v)}' for i, v in enumerate(pred)) + f'" fill="none" stroke="{ACC}" stroke-width="2.5" stroke-dasharray="7 6"/>'
     for i, v in enumerate(pred):

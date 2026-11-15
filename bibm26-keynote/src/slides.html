@@ -81,7 +81,7 @@
   <span class="mark">The map</span>
   <h2>Four ways the field studies music and the brain, and a missing fifth</h2>
   {{MAP:all}}
-  <aside class="notes">Say in one line: EEG and MEG give the when, fMRI the where, intracranial both (backup slide). This map returns before every study. Arrows 1 and 2 are Act 2. Arrow 3 is Act 3. Arrow 4 is Act 4. Arrow 5, dashed, is the gap and Act 5.</aside>
+  <aside class="notes">Say in one line: EEG and MEG give the when, fMRI the where, intracranial both (backup slide). The map returns once more before the turn to the dial. Arrows 1 and 2 are Act 2. Arrow 3 is Act 3. Arrow 4 is Act 4. Arrow 5, dashed, is the gap and Act 5.</aside>
 </section>
 
 <section data-sec="50">
@@ -281,7 +281,7 @@
   </div>
   <p class="tldr" style="margin-top:28px">Same prompt, same seed. Only the melody we feed in changes, so predictability can become a setting in real sounding music.</p>
   <div class="ref"><a href="https://arxiv.org/abs/2306.05284">Copet et al., Simple and controllable music generation (MusicGen), NeurIPS 2023</a></div>
-  <aside class="notes">Generated for this talk with MusicGen melody on a laptop CPU: prompt "gentle solo piano, classical, warm room", seed 11, conditioned on the three Für Elise versions from the dial slide. Scripts: src/melody.py and src/gen.py. Play four seconds of each. This is the dial only a generator can turn: the predictability of the notes is set by the order, the generator makes it sound like music.</aside>
+  <aside class="notes">Generated for this talk with MusicGen melody on a laptop CPU: prompt "gentle solo piano, classical, warm room", seed 11, conditioned on the three Für Elise versions from the dial slide. Scripts: src/melody.py and src/gen.py, numbers from src/melody_check.py (melody_check.json). Play four seconds of each. This is the dial only a generator can turn: the predictability of the notes is set by the order, the generator makes it sound like music.</aside>
 </section>
 
 <section data-sec="75">
@@ -295,7 +295,7 @@
 
 <section data-sec="40">
   <span class="mark">5 Music you can experiment on · Running example</span>
-  <h2>Prediction: turn the dial, and the brain's surprise response follows</h2>
+  <h2>Prediction: the more natural the order, the more closely EEG should track each note's surprise</h2>
   {{FIG:knob_orders}}
   <aside class="notes">Surprise here comes from a listener model (as in Kern) computed on each stimulus, not from the generator. If the curve is flat after controlling intervals and onsets, surprise was a proxy for something else. Either outcome is informative.</aside>
 </section>
