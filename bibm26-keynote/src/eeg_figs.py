@@ -76,7 +76,7 @@ def topo_svg(times=(0.0, 0.1, 0.2, 0.3), size=74, gap=10, grid=22):
         for c, (a, b) in zip(D['ch'], pos):
             px, py = cx + a / R * r, cy - b / R * r
             o.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{size/55 if c in hl else size/110:.1f}" fill="{INK if c in hl else INK2}"/>')
-        o.append(f'<text x="{cx}" y="{size+26}" font-size="15" fill="{INK2}" text-anchor="middle">{"+" if tt else ""}{tt:g} s</text>')
+        o.append(f'<text x="{cx}" y="{size+26}" font-size="17" fill="{INK2}" text-anchor="middle">{"+" if tt else ""}{tt:g} s</text>')
     o.append('</svg>')
     return ''.join(o)
 

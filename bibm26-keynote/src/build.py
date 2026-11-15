@@ -37,11 +37,22 @@ BOXES = [  # x, y, w, h, title, sub, fill
     (960, 130, 170, 100, 'Patients', 'therapy outcomes', GROUP),
 ]
 
-MAPN = [0]
-def field_map(at):
-    MAPN[0] += 1; u = MAPN[0]
-    s = [f'<svg class="fig map" viewBox="0 0 1152 470" data-id="fieldmap">',
-         '<defs>' + arrowhead(f'mh-on{u}', ACC) + arrowhead(f'mh-off{u}', AXIS) + '</defs>']
+import math as _m
+def _head(d, col):
+    # explicit arrowhead from the last control point to the end point of a path
+    nums = [float(v) for v in re.findall(r'-?\d+\.?\d*', d)]
+    x1, y1, x0, y0 = nums[-2], nums[-1], nums[-4], nums[-3]
+    ang = _m.atan2(y1 - y0, x1 - x0); L, Wd = 13, 6
+    bx, by = x1 - L * _m.cos(ang), y1 - L * _m.sin(ang)
+    px, py = -_m.sin(ang) * Wd, _m.cos(ang) * Wd
+    return f'<path d="M{x1:.1f},{y1:.1f} L{bx+px:.1f},{by+py:.1f} L{bx-px:.1f},{by-py:.1f} z" fill="{col}"/>'
+
+def field_map(spec):
+    at, _, landmark = spec.partition('|')
+    dy = 40 if landmark else 0
+    s = [f'<svg class="fig map" viewBox="0 {-dy} 1152 {470+dy}" data-id="fieldmap">']
+    if landmark:
+        s.append(T(0, -12, landmark, 24, INK2))
     for x, y, w, h, t, sub, fill in BOXES:
         s.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="3" fill="{fill}"/>')
         s.append(T(x + 20, y + 44, t, 28))
@@ -51,8 +62,8 @@ def field_map(at):
         gap = (k == 'control' and at != 'control')
         col = ACC if on else AXIS
         dash = ' stroke-dasharray="6 6"' if gap else ''
-        mk = f'mh-on{u}' if on else f'mh-off{u}'
-        s.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{2.5 if on else 1.5}"{dash} marker-end="url(#{mk})"/>')
+        grp = '<g data-accent="1">' if on else '<g>'
+        s.append(grp + f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{2.5 if on else 1.5}"{dash}/>' + _head(d, col) + '</g>')
         anchor = 'middle' if k in ('encode', 'decode') else 'start'
         s.append(T(lx, ly, lab[0], 22 if on else 20, INK if (on or at == 'all') else INK2, anchor, 'font-weight="600"' if on else ''))
         s.append(T(lx, ly + 24, lab[1], 18, INK if on else INK2, anchor))
@@ -73,12 +84,13 @@ def fe_surprise(n=18):
         x = x0 + i * dx
         y = 40 + (hi - midi(m)) * 7
         s.append(f'<circle cx="{x}" cy="{y}" r="7" fill="{MUS}" data-id="fe{i}"/>')
-        s.append(T(x, 200, m.replace('#', '&#9839;'), 15, INK2, 'middle'))
+        s.append(T(x, 200, m.replace('#', '&#9839;'), 17, INK2, 'middle'))
         if v is not None:
             h = v * 60
-            s.append(f'<rect class="fragment" data-fragment-index="1" x="{x-12}" y="{380-h}" width="24" height="{max(h,1.5)}" fill="{ACC if v >= 2 else AXIS}"/>')
+            top = v == max(x_ for x_ in sur if x_ is not None)
+            s.append(f'<rect class="fragment" data-fragment-index="1" x="{x-12}" y="{380-h}" width="24" height="{max(h,1.5)}" fill="{ACC if top else (MUS if v >= 2 else AXIS)}"/>')
     s.append(f'<line x1="20" y1="380" x2="{x0+(n-1)*dx+30}" y2="380" stroke="{AXIS}"/>')
-    s.append(f'<g class="fragment" data-fragment-index="1">{T(20, 236, "surprise of each note given the one before (bits)", 18, INK2)}</g>')
+    s.append(f'<g class="fragment" data-fragment-index="1">{T(20, 236, "surprise of each note given the one before (bits)", 19, INK2)}</g>')
     s.append('</svg>')
     return ''.join(s)
 
@@ -115,31 +127,31 @@ FOREST = [
     ('Anxiety', 0.15, -0.09, 0.39, 'low to very low', 'unclear'),
     ('Cognition', 0.19, -0.02, 0.41, 'low to very low', 'unclear'),
 ]
-def forest(rows, preview=False):
+def forest(rows, preview=False, foot=''):
     W = 1152; X0, X1, V0, V1 = 420, 860, -0.4, 0.8
     sx = lambda v: X0 + (v - V0) / (V1 - V0) * (X1 - X0)
-    rh = 62 if not preview else 84
-    H = 70 + rh * len(rows) + 50
+    rh = 70 if not preview else 140
+    H = 80 + rh * len(rows) + (50 if foot else 10)
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}">']
-    s.append(f'<line x1="{sx(0)}" y1="30" x2="{sx(0)}" y2="{H-50}" stroke="{AXIS}"/>')
-    s.append(T(sx(0) - 10, H - 18, 'music worse', 17, INK2, 'end'))
-    s.append(T(sx(0) + 10, H - 18, 'music better', 17, INK2))
-    if not preview:
-        s.append(T(900, 40, 'certainty', 17, INK2))
+    s.append(f'<line x1="{sx(0)}" y1="44" x2="{sx(0)}" y2="{80 + rh*len(rows) - rh//2}" stroke="{AXIS}"/>')
+    s.append(T(sx(0) - 10, 30, 'music worse', 18, INK2, 'end'))
+    s.append(T(sx(0) + 10, 30, 'music better', 18, INK2))
+    s.append(T(900, 30, 'outcome' if preview else 'certainty', 18, INK2))
     for i, (name, m, lo, hi, cert, verdict) in enumerate(rows):
-        y = 70 + i * rh
+        y = 80 + i * rh
         clear = lo > 0
-        col = ACC if clear else LINE
-        s.append(T(0, y + 7, name, 24 if preview else 22))
-        s.append(f'<line x1="{sx(lo):.1f}" y1="{y}" x2="{sx(hi):.1f}" y2="{y}" stroke="{col}" stroke-width="2.5"/>')
+        star = clear and cert == 'moderate'
+        col = ACC if star else (INK2 if clear else LINE)
+        g = '<g data-accent="1">' if star else '<g>'
+        s.append(T(0, y + 8, name, 26 if preview else 23))
+        s.append(g + f'<line x1="{sx(lo):.1f}" y1="{y}" x2="{sx(hi):.1f}" y2="{y}" stroke="{col}" stroke-width="2.5"/>')
         if clear:
-            s.append(f'<circle cx="{sx(m):.1f}" cy="{y}" r="8" fill="{col}"/>')
+            s.append(f'<circle cx="{sx(m):.1f}" cy="{y}" r="8" fill="{col}"/></g>')
         else:
-            s.append(f'<circle cx="{sx(m):.1f}" cy="{y}" r="7" fill="#FBFAF7" stroke="{col}" stroke-width="2"/>')
-        if preview:
-            s.append(T(900, y + 7, verdict, 22, INK2))
-        else:
-            s.append(T(900, y + 7, cert, 20, INK2))
+            s.append(f'<circle cx="{sx(m):.1f}" cy="{y}" r="7" fill="#FBFAF7" stroke="{col}" stroke-width="2"/></g>')
+        s.append(T(900, y + 8, verdict if preview else cert, 24 if preview else 21, INK2))
+    if foot:
+        s.append(T(0, H - 14, foot, 21, INK2))
     s.append('</svg>')
     return ''.join(s)
 
@@ -151,9 +163,12 @@ def old_svg(key):
     for sec in re.findall(r'<section.*?</section>', ORIG, flags=re.S):
         h = re.search(r'<h2[^>]*>(.*?)</h2>', sec, flags=re.S)
         if h and key in h.group(1):
-            m = re.search(r'<svg class="fig".*?</svg>', sec, flags=re.S)
+            m = re.search(r'<svg class="fig"[^>]*>(.*?)</svg>', sec, flags=re.S)
             assert m, key
-            return m.group(0)
+            inner = m.group(1)
+            if key.startswith('Music releases dopamine'):
+                inner = re.sub(r'font-size="(\d+)"', lambda q: f'font-size="{int(q.group(1)) + 3}"', inner)
+            return m.group(0).split('>', 1)[0] + '><g data-accent="1">' + inner + '</g></svg>'
     raise KeyError(key)
 
 import glob
@@ -187,10 +202,10 @@ def build():
     src = re.sub(r'\{\{PEOPLE:([^}]+)\}\}', lambda m: people(m.group(1)), src)
     src = re.sub(r'\{\{PHOTO:([^}]+)\}\}', lambda m: photo(m.group(1)), src)
     src = re.sub(r'\{\{OLD:([^}]+)\}\}', lambda m: old_svg(m.group(1)), src)
-    src = re.sub(r'\{\{MAP:(\w+)\}\}', lambda m: field_map(m.group(1)), src)
+    src = re.sub(r'\{\{MAP:([^}]+)\}\}', lambda m: field_map(m.group(1)), src)
     src = src.replace('{{FE_SURPRISE}}', fe_surprise())
     src = re.sub(r'\{\{FE_STRIP:(\w+)(?::(\w+))?(?::(\d+))?\}\}', lambda m: fe_strip(m.group(1), m.group(2), w=int(m.group(3) or 1100), h=90 if m.group(3) else 120, r=5 if m.group(3) else 6), src)
-    src = src.replace('{{FOREST_FULL}}', forest(FOREST))
+    src = src.replace('{{FOREST_FULL}}', forest(FOREST, foot='Four weeks after treatment ends, no outcome shows a clear effect.'))
     src = src.replace('{{FOREST_PREVIEW}}', forest(PREVIEW_ROWS, preview=True))
     src = src.replace('{{COVER_MELODY}}', cover_melody())
     import redraw
@@ -236,7 +251,7 @@ def build():
         return f'<section{a}>{body}</section>'
     src = re.sub(r'<section([^>]*)>(.*?)</section>', stamp, src, flags=re.S)
     open(os.path.join(ROOT, 'index.html'), 'w').write(src)
-    print(f'ledger: {t} s = {t/60:.1f} min (budget 2050 s)', 'OVER BUDGET' if t > 2050 else 'ok', '| act starts (min):', acts)
+    print(f'ledger: {t} s = {t/60:.1f} min (budget 2200 s)', 'OVER BUDGET' if t > 2200 else 'ok', '| act starts (min):', acts)
     if over: print('gate:', '; '.join(over))
     if MISSING: print('missing images:', ', '.join(sorted(set(MISSING))))
     print('slides:', src.count('<section'), ' style violations:', bad or 'none')

@@ -20,13 +20,16 @@ def pr(x, y):
     mx, my = sum(x) / len(x), sum(y) / len(y)
     sxy = sum((a - mx) * (b - my) for a, b in zip(x, y)); sxx = sum((a - mx) ** 2 for a in x); syy = sum((b - my) ** 2 for b in y)
     return sxy / math.sqrt(sxx * syy)
+NULL = []
 def perm(x, y, r, n=2000, seed=12345):
     rng = random.Random(seed); yy = list(y); k = 0
     for _ in range(n):
-        rng.shuffle(yy); k += abs(pr(x, yy)) >= abs(r)
+        rng.shuffle(yy); v = pr(x, yy); k += abs(v) >= abs(r)
+        if not NULL or len(NULL) < n: NULL.append(round(v, 4))
     return k
 x, xt, y = [p[0] for p in pts], [p[1] for p in pts], [p[2] for p in pts]
 r1, r2 = pr(x, y), pr(xt, y)
 out = {'n_notes': len(pts), 'songs': [s['title'] for s in D['songs']], 'r_musicgen': round(r1, 3), 'perm_musicgen_of_2000': perm(x, y, r1),
        'r_random_model': round(r2, 3), 'perm_random_of_2000': perm(xt, y, r2)}
+out['null_r'] = NULL[:2000]
 json.dump(out, open(os.path.join(HERE, 'eeg_pernote.json'), 'w'), indent=1); print(out)
