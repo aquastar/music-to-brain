@@ -43,3 +43,6 @@ html,body{background:var(--bg)}
 .reveal section.cover .who span{color:var(--ink2)}
 .reveal .fragment.fade-in{transition-duration:250ms}
 .reveal iframe.embed{border:0;background:var(--bg);display:block}
+.reveal button.play{font-family:"et-book",Georgia,serif;font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:#1F1E1B;
+  background:#EFEBE5;border:0;border-radius:3px;padding:6px 14px;cursor:pointer;margin-right:10px;vertical-align:3px}
+.reveal button.play:hover{background:#FAD6BA}
