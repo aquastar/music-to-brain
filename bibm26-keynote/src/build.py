@@ -203,6 +203,18 @@ def build():
     vis = re.sub(r'<[^>]+>', ' ', vis)
     vis = re.sub(r'&[#\w]+;', ' ', vis)
     bad = [c for c in ('—', '–', ';') if c in vis]
+    # time ledger: data-sec per slide, backup excluded, budget 2250 s
+    t = 0; acts = {}; over = []
+    for m in re.finditer(r'<section([^>]*)>(.*?)</section>', src, flags=re.S):
+        a, body = m.group(1), m.group(2)
+        if 'data-backup' in a: continue
+        sec = re.search(r'data-sec="(\d+)"', a)
+        if not sec: over.append('slide without data-sec'); continue
+        mk = re.search(r'<span class="mark">(\d)', body)
+        if mk and mk.group(1) not in acts: acts[mk.group(1)] = round(t / 60, 1)
+        if 'class="thesis"' in body and 'stimulus' in body: acts['thesis'] = round(t / 60, 1)
+        t += int(sec.group(1))
+    print(f'ledger: {t} s = {t/60:.1f} min (budget 2250 s)', 'OVER BUDGET' if t > 2250 else 'ok', '| act starts (min):', acts, *over)
     if MISSING: print('missing images:', ', '.join(sorted(set(MISSING))))
     print('slides:', src.count('<section'), ' style violations:', bad or 'none')
 

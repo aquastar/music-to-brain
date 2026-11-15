@@ -9,7 +9,7 @@ D = json.loads(re.search(r'<script[^>]*id="data"[^>]*>(.*?)</script>', _t, re.S)
 INK, INK2, AXIS, ACC, LINE, TEAL = '#1F1E1B', '#5F5D50', '#ACA39A', '#F76902', '#7C878E', '#009CBD'
 CL = D['cluster']
 
-def erp_svg(W=760, H=400):
+def erp_svg(W=700, H=380):
     L, R, T, B = 70, 20, 30, 60
     t = D['lags']; hi, lo, se = D['k_hi'], D['k_lo'], D['k_se']
     ymin = min(min(lo), min(h - s for h, s in zip(hi, se))) - 0.16
@@ -53,13 +53,13 @@ def _col(v, lim):
     c = b if x > 0 else a; x = abs(x)
     return '#%02x%02x%02x' % tuple(int(n[k] + (c[k] - n[k]) * x) for k in range(3))
 
-def topo_svg(times=(0.0, 0.1, 0.2, 0.3), size=150, gap=40, grid=26):
+def topo_svg(times=(0.0, 0.1, 0.2, 0.3), size=74, gap=10, grid=22):
     t = D['lags']; ks = D['k_surp']; pos = D['pos']
     R = max(math.hypot(*p) for p in pos) * 1.08
     idx = [min(range(len(t)), key=lambda k: abs(t[k] - tt)) for tt in times]
     lim = max(abs(v) for i in idx for v in ks[i])
     W = len(times) * size + (len(times) - 1) * gap
-    o = [f'<svg viewBox="0 0 {W} {size+40}" width="{W}" height="{size+40}" style="display:block">']
+    o = [f'<svg viewBox="0 0 {W} {size+34}" width="{W}" height="{size+34}" style="display:block">']
     hl = set(D['highlight'])
     for n, (i, tt) in enumerate(zip(idx, times)):
         ox = n * (size + gap); cx = ox + size / 2; cy = size / 2; r = size / 2 - 6
@@ -75,8 +75,8 @@ def topo_svg(times=(0.0, 0.1, 0.2, 0.3), size=150, gap=40, grid=26):
         o.append(f'<path d="M{cx-7},{cy-r+1} L{cx},{cy-r-9} L{cx+7},{cy-r+1}" fill="none" stroke="{AXIS}"/>')
         for c, (a, b) in zip(D['ch'], pos):
             px, py = cx + a / R * r, cy - b / R * r
-            o.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{3 if c in hl else 1.6}" fill="{INK if c in hl else INK2}"/>')
-        o.append(f'<text x="{cx}" y="{size+30}" font-size="18" fill="{INK2}" text-anchor="middle">{"+" if tt else ""}{tt:g} s</text>')
+            o.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="{size/55 if c in hl else size/110:.1f}" fill="{INK if c in hl else INK2}"/>')
+        o.append(f'<text x="{cx}" y="{size+26}" font-size="15" fill="{INK2}" text-anchor="middle">{"+" if tt else ""}{tt:g} s</text>')
     o.append('</svg>')
     return ''.join(o)
 

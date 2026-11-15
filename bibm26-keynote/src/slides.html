@@ -10,8 +10,7 @@
 <body>
 <div class="reveal"><div class="slides">
 
-<!-- ======================================================= OPENING -->
-<section class="cover" data-background-color="#FBFAF7">
+<section data-sec="20" class="cover" data-background-color="#FBFAF7">
   <h1>Music You Can <span>Experiment</span> On</h1>
   <p class="sub">From watching the musical brain to testing it</p>
   {{COVER_MELODY}}
@@ -19,7 +18,7 @@
   <aside class="notes">The dots are the opening of Für Elise, our running example. Say nothing about methods yet. Go straight to the next slide.</aside>
 </section>
 
-<section>
+<section data-sec="75">
   <span class="mark">The question</span>
   <h2>A woman who no longer knows her children can still sing every verse of a hymn</h2>
   <div class="fp">
@@ -34,7 +33,7 @@
   <aside class="notes">Tell the story in two sentences. Then pose the question and leave it open. The answer arrives in Act 4 (we cannot, because the stimulus is not controllable) and Act 5 (generative models make it controllable). The photo returns on the last slide.</aside>
 </section>
 
-<section>
+<section data-sec="55">
   <span class="mark">Preview 1 of 4 · What we can see</span>
   <h2>From electrodes on the cortex, a rock song can be played back</h2>
   <div class="fp">
@@ -43,14 +42,14 @@
       <p class="key">Heard vs decoded</p>
       <div class="audio-row"><button class="play" data-audio="../shared/audio/bellier_original.mp3">play</button><span>heard</span></div>
       <div class="audio-row"><button class="play" data-audio="../shared/audio/bellier_nonlinear.mp3">play</button><span>decoded from the brain</span></div>
-      <p class="tldr" style="margin-top:18px">Rhythm and melody contour survive. Words barely do.</p>
+      <p class="tldr" style="margin-top:18px">Rhythm and melody contour survive. Words are hard to make out.</p>
     </div>
   </div>
   <div class="ref"><a href="https://doi.org/10.1371/journal.pbio.3002176">Bellier et al., Music can be reconstructed from human auditory cortex activity using nonlinear decoding models, PLoS Biol 2023</a></div>
   <aside class="notes">Play both, about 10 seconds each. Top: spectrogram of what the patients heard. Bottom: what a decoder recovered from intracranial recordings. Do not explain the method here, that comes in Act 2.</aside>
 </section>
 
-<section>
+<section data-sec="50">
   <span class="mark">Preview 2 of 4 · Seeing is not understanding</span>
   <h2>The best music model looks hundreds of notes back. The brain fits best at about eight</h2>
   <div class="fp">
@@ -65,40 +64,41 @@
   <aside class="notes">Horizontal axis: how many previous notes the Music Transformer may use. The model keeps getting better at music up to 400 notes. Its fit to the brain peaks around 8 and falls. A better model is not automatically a more brain like model.</aside>
 </section>
 
-<section>
+<section data-sec="25">
   <span class="mark">Preview 3 of 4 · The clinic</span>
-  <h2>In dementia, music lifts mood. It does not measurably restore memory</h2>
-  {{FOREST_PREVIEW}}
+  <h2>In dementia, music lifts mood a little. Memory shows no clear gain</h2>
+  <div class="cols" style="margin-top:30px">
+    <div><p class="big">0.23</p><p class="ink2" style="font-size:22px">effect size for depressive symptoms, moderate certainty</p></div>
+    <div><p class="big" style="border-bottom-color:#ACA39A">0.19</p><p class="ink2" style="font-size:22px">effect size for cognition, interval crosses zero, low to very low certainty</p></div>
+  </div>
   <div class="ref"><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen et al., Music based therapeutic interventions for people with dementia, Cochrane 2025</a></div>
-  <aside class="notes">Standardized mean differences with 95 percent intervals, music versus usual care, end of treatment. Filled orange dot: the interval excludes zero. Hollow: it does not. 30 trials, 1,720 people.</aside>
+  <aside class="notes">Standardized mean differences, music versus usual care at the end of treatment. 30 trials, 1,720 people. The full picture comes in Act 4.</aside>
 </section>
 
-<section>
+<section data-sec="30">
   <span class="mark">Preview 4 of 4 · Music you can experiment on</span>
-  <h2>Same notes, same sound, one setting changed</h2>
+  <h2>Same notes, same sound. Which one is Beethoven?</h2>
   <div style="margin-top:6px">
-    <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_shuffled.mp3">play</button><span>order 0: the notes of Für Elise, shuffled</span></div>
-    <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_order1.mp3">play</button><span>order 1: each note depends on the one before</span></div>
-    <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_real.mp3">play</button><span>the real opening</span></div>
+    <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_order1.mp3">play</button><span>version A</span></div>
+    <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_real.mp3">play</button><span>version B</span></div>
     {{FE_STRIP:prevreal}}
   </div>
-  <p class="key" style="margin-top:16px">A stimulus you can dial, write down and repeat</p>
-  <aside class="notes">Play each for five seconds. This is the whole talk in one slide: the only thing that changes is how far back each note looks. The strip shows the real melody. Act 5 returns here.</aside>
+  <p class="key" style="margin-top:16px">One setting separates them, and it can be written down</p>
+  <aside class="notes">Play A then B, five seconds each. Ask the room which is Beethoven (B). A is a first order chain built from the same notes: each note depends only on the one before. The full knob comes in Act 5.</aside>
 </section>
 
-<section>
+<section data-sec="45">
   <span class="mark">Three findings</span>
   <h2>Where this talk lands</h2>
   <ol class="forecast">
     <li>We can now read music out of the brain, and AI models of music predict the brain.</li>
     <li class="fragment">Almost all of it is correlation, and in the clinic music helps only modestly.</li>
-    <li class="fragment">Both have one cause: <b>we cannot vary the music</b>. Generative models can.</li>
+    <li class="fragment">A missing piece is shared: <b>we rarely vary the music itself</b>. Generative models can.</li>
   </ol>
   <aside class="notes">Read them slowly. Finding 3 is the thesis, stated fully only in Act 4. These three lines return as the contributions on the last slide.</aside>
 </section>
 
-<!-- ======================================================= ACT 1 WHY MUSIC -->
-<section>
+<section data-sec="60">
   <span class="mark">1 Why music</span>
   <h2>The regions that hold long known music are among the last that Alzheimer's reaches</h2>
   {{OLD:In Alzheimer's disease}}
@@ -106,7 +106,7 @@
   <aside class="notes">This is the anatomy behind the hymn. Caveat for Q and A: amyloid in these regions is not lower, the regions are reached late, not spared forever.</aside>
 </section>
 
-<section>
+<section data-sec="50">
   <span class="mark">1 Why music</span>
   <h2>Listening to music recruits nearly every large system in the brain</h2>
   <div class="fp">
@@ -117,7 +117,7 @@
   <aside class="notes">One stimulus, many readouts: perception, movement, reward, memory, emotion. That is why music is a good probe. Sixty seconds.</aside>
 </section>
 
-<section>
+<section data-sec="50">
   <span class="mark">1 Why music</span>
   <h2>Music releases dopamine twice: once while we wait, once when it arrives</h2>
   <div class="fp">
@@ -128,7 +128,7 @@
   <aside class="notes">PET gives the chemistry, fMRI the timing, same listeners, same music. Last line plants a seed: expectation is part of the reward, and a generator can shape expectation.</aside>
 </section>
 
-<section>
+<section data-sec="35">
   <span class="mark">1 Why music</span>
   <h2>A steady beat can help a person with Parkinson's walk</h2>
   <div class="fp">
@@ -136,43 +136,29 @@
     <div class="p">
       <p class="key">The beat reaches the motor system directly</p>
       <p class="tldr">Patients step to the pulse. Clinicians call it rhythmic auditory stimulation.</p>
-      <p class="ink2" style="font-size:22px">Remember this one. It comes back in the clinic.</p>
+      <p class="ink2" style="font-size:22px">Remember this one. It comes back in the clinic. Beat and meter even show up in EEG as peaks at the beat frequency.</p>
     </div>
   </div>
   <div class="ref"><a href="https://doi.org/10.3389/fneur.2022.940419">Ye et al., Front Neurol 2022</a></div>
   <aside class="notes">Plant for Act 4: the best understood music therapy is the one where the stimulus has a knob, the tempo.</aside>
 </section>
 
-<section>
+<section data-sec="15">
   <span class="mark">1 Why music</span>
   <p class="thesis">We know music reaches deep into the brain.<br><span class="ink2">Do we know why?</span></p>
   <aside class="notes">Pause. Do not answer. Then show the map.</aside>
 </section>
 
-<section data-auto-animate>
+<section data-sec="60" data-auto-animate>
   <span class="mark">The map</span>
   <h2>Four arrows the field works on, and a fifth that is mostly empty</h2>
   {{MAP:all}}
-  <aside class="notes">This map returns before every study. Arrows 1 and 2 are Act 2. Arrow 3 is Act 3. Arrow 4 is Act 4. Arrow 5, dashed, is the gap and Act 5.</aside>
+  <aside class="notes">Say in one line: EEG and MEG give the when, fMRI the where, intracranial both (backup slide on recording methods). This map returns before every study. Arrows 1 and 2 are Act 2. Arrow 3 is Act 3. Arrow 4 is Act 4. Arrow 5, dashed, is the gap and Act 5.</aside>
 </section>
 
-<!-- ======================================================= ACT 2 WHAT WE CAN SEE -->
-<section>
+<section data-sec="60">
   <span class="mark">2 What we can see</span>
-  <h2>Every recording method trades time against space</h2>
-  <div class="photos">
-    <figure>{{PHOTO:eeg_cap|EEG cap}}<figcaption>EEG<span>milliseconds, centimeters</span></figcaption></figure>
-    <figure>{{PHOTO:meg_system|MEG system}}<figcaption>MEG<span>milliseconds, better localization</span></figcaption></figure>
-    <figure>{{PHOTO:mri_scanner|MRI scanner}}<figcaption>fMRI<span>seconds, millimeters</span></figcaption></figure>
-    <figure>{{PHOTO:ecog_grid_illustration|ECoG grid}}<figcaption>Intracranial<span>both, only in surgery patients</span></figcaption></figure>
-  </div>
-  <p style="font-size:26px;margin-top:22px">Music changes in milliseconds. Ask <i>where</i> with fMRI, <i>when</i> with EEG.</p>
-  <aside class="notes">The audience knows these tools. The point is only that music forces the choice. Intracranial recordings give both, rarely.</aside>
-</section>
-
-<section>
-  <span class="mark">2 What we can see</span>
-  <h2>Auditory cortex holds a population that answers only to song</h2>
+  <h2>Auditory cortex holds a population that responds selectively to song</h2>
   <div class="fp">
     <div class="f"><img src="../shared/figs/papers/nh2022_components.png" style="width:780px"></div>
     <div class="p">
@@ -185,21 +171,21 @@
   <aside class="notes">Rows are the 165 sounds, red means strong response. C1 and C15 prefer speech, C10 music, C11 song. Seen with ECoG, confirmed with fMRI, not explained by acoustic features. Norman-Haignere is at the University of Rochester, a neighbor of RIT.</aside>
 </section>
 
-<section data-auto-animate>
+<section data-sec="20" data-auto-animate>
   <span class="mark">The map</span>
   <h2>Arrow 1: predict the brain from the music</h2>
   {{MAP:encode}}
   <aside class="notes">Encoding models. Feed features of the music in, predict EEG out. The test is always the gain over an acoustic baseline.</aside>
 </section>
 
-<section>
+<section data-sec="60">
   <span class="mark">2 What we can see · Running example</span>
   <h2>Listening is prediction: each note of Für Elise confirms or breaks an expectation</h2>
   {{FE_SURPRISE}}
   <aside class="notes">Our running example. Top: the first 18 notes, height is pitch. Fragment: surprise of each note given the previous one, counted on this excerpt. The E, D sharp trill is predictable. The turn to G sharp and the leaps are surprising, orange above 2 bits. Question for the room: does the brain track this curve?</aside>
 </section>
 
-<section>
+<section data-sec="55">
   <span class="mark">2 What we can see · Encode</span>
   <h2>Di Liberto's test: does EEG need surprise, beyond the sound itself?</h2>
   <div class="fp">
@@ -214,7 +200,7 @@
   <aside class="notes">TRF: a linear filter from stimulus features to each EEG channel over time lags. Surprise came from IDyOM, a variable order Markov model of melody. 20 participants, EEG, plus ECoG patients.</aside>
 </section>
 
-<section>
+<section data-sec="50">
   <span class="mark">2 What we can see · Encode</span>
   <h2>Surprise adds a small, reliable gain on top of acoustics</h2>
   <div class="fp">
@@ -229,7 +215,7 @@
   <aside class="notes">Prediction correlations are small in absolute terms, this is normal for continuous EEG. The point is the reliable difference.</aside>
 </section>
 
-<section>
+<section data-sec="45">
   <span class="mark">2 What we can see · Encode</span>
   <h2>The gain grows when the listener model remembers more of the past</h2>
   <div class="fp">
@@ -241,12 +227,12 @@
     </div>
   </div>
   <div class="ref"><a href="https://doi.org/10.7554/eLife.51784">Di Liberto et al., eLife 2020</a></div>
-  <aside class="notes">Setup for Act 5. Here memory length is a property of the analysis model. In Act 5 we make memory length a property of the stimulus.</aside>
+  <aside class="notes">Memory here is how many bars of the current piece the IDyOM short term model may learn from. Keep it as a control result, not as Markov order.</aside>
 </section>
 
-<section>
+<section data-sec="30">
   <span class="mark">2 What we can see · Encode</span>
-  <h2>The limit: surprise could only be measured, never set</h2>
+  <h2>The limit: in natural music, surprise can be measured but not set</h2>
   <div class="cols">
     <div><p>The pieces were fixed recordings. Surprise rose and fell with them, together with loudness, tempo and timbre.</p></div>
     <div><p class="ink2" style="font-size:24px">To separate surprise from everything else that changes with it, you would need music where only surprise moves.</p></div>
@@ -254,7 +240,361 @@
   <aside class="notes">First small crack. Say it lightly and move on.</aside>
 </section>
 
-<section>
+<section data-sec="15" data-auto-animate>
+  <span class="mark">The map</span>
+  <h2>Arrow 2: play the music back from the brain</h2>
+  {{MAP:decode}}
+  <aside class="notes">Decoding. Two studies, one invasive, one not.</aside>
+</section>
+
+<section data-sec="45">
+  <span class="mark">2 What we can see · Decode</span>
+  <h2>Twenty nine epilepsy patients listened to a Pink Floyd song with electrodes on the cortex</h2>
+  <div class="fp">
+    <div class="f"><img src="../shared/figs/papers/bellier_xray.png" style="width:380px"></div>
+    <div class="p">
+      <p class="key">A rare window: ECoG during surgery planning</p>
+      <p class="tldr">The grids were there for clinical reasons. Listening was the experiment.</p>
+      <ul><li>2,668 electrodes in total, 347 tracked the song</li><li>Most over the superior temporal gyrus, right side mattered most</li><li>One song, three minutes, passive listening</li></ul>
+      {{PEOPLE:knight|Robert Knight|UC Berkeley, senior author}}
+    </div>
+  </div>
+  <div class="ref"><a href="https://doi.org/10.1371/journal.pbio.3002176">Bellier et al., PLoS Biol 2023</a></div>
+  <aside class="notes">Another Brick in the Wall, Part 1.</aside>
+</section>
+
+<section data-sec="55">
+  <span class="mark">2 What we can see · Decode</span>
+  <h2>About 40 electrodes give 80 percent of the best result, about a minute of data gives 90</h2>
+  <div class="fp">
+    <div class="f"><img src="../shared/figs/papers/bellier_howmuch.png" style="width:760px"></div>
+    <div class="p">
+      <p class="key">Small data, steep curves</p>
+      <p class="tldr">Left: electrodes. Right: seconds of training data.</p>
+      <p class="tldr">The limit: one song, and electrodes inside the skull.</p>
+      <div class="audio-row"><button class="play" data-audio="../shared/audio/bellier_linear.mp3">play</button><span>linear decoder</span></div>
+    </div>
+  </div>
+  <div class="ref"><a href="https://doi.org/10.1371/journal.pbio.3002176">Bellier et al., PLoS Biol 2023</a></div>
+  <aside class="notes">43 electrodes give 80 percent of the best accuracy. 37 seconds of data give 80 percent, 69 seconds give 90 percent (the red mark). For this audience: coverage matters more than recording length. Then the limit: every patient heard the same song, so this decoder cannot tell us what it would do with another. Transition: can a non invasive scan do it across many songs?</aside>
+</section>
+
+<section data-sec="60">
+  <span class="mark">2 What we can see · Decode</span>
+  <h2>From fMRI, a music generator makes a clip that is picked out against another clip 85 percent of the time</h2>
+  <img src="../shared/figs/denk2023_fig1.png" style="width:1000px;display:block">
+  <div class="fp" style="margin-top:14px">
+    <div class="f"><img src="../shared/figs/papers/denk_accuracy.png" style="width:270px"></div>
+    <div class="p">
+      <p class="key">Chance is 50 percent</p>
+      <p class="tldr">Five listeners, 540 clips. fMRI is mapped to a 128 number music embedding, a text to music model turns it into sound.</p>
+      <p class="tldr">Genre, instruments and mood carry over. Melody and timing do not.</p>
+    </div>
+  </div>
+  <div class="ref"><a href="https://doi.org/10.1038/s41467-025-66731-7">Denk, Takagi et al., Text to music generation models capture musical semantic representations in the human brain, Nat Commun 2025</a></div>
+  <aside class="notes">Identification: is the generated clip closer to the true clip than to a random other clip, judged in the MuLan embedding space. 0.5 is chance. Green boxes, right group: generated by MusicLM. Remember the 128 numbers, they return in Act 3.</aside>
+</section>
+
+<section data-sec="20" data-auto-animate>
+  <span class="mark">The map</span>
+  <h2>Arrow 3: does a model of music resemble the brain?</h2>
+  {{MAP:compare}}
+  <aside class="notes">Alignment studies. Same encoding machinery, but the features now come from inside an AI model.</aside>
+</section>
+
+<section data-sec="55">
+  <span class="mark">2 What we can see · Compare</span>
+  <h2>Deeper layers of a music transformer match brain sites farther from primary cortex</h2>
+  <div class="fp">
+    <div class="f"><img src="../shared/figs/papers/mischler_layers.png" style="width:260px"><img src="../shared/figs/papers/mischler_brain.png" style="width:440px;margin-top:8px"></div>
+    <div class="p">
+      <p class="key">Layer depth follows cortical hierarchy</p>
+      <p class="tldr">Three groups of electrodes. Blue prefers early layers and sits in primary auditory cortex. Yellow peaks in middle to late layers. Magenta prefers late layers and sits farthest out.</p>
+      {{PEOPLE:mesgarani|Nima Mesgarani|Columbia}}
+    </div>
+  </div>
+  <div class="ref"><a href="https://doi.org/10.1038/s41467-025-63961-7">Mischler, Li, Bickel, Mehta, Mesgarani, Nat Commun 2025</a></div>
+  <aside class="notes">Bach pieces, 20 EEG listeners and 6 iEEG patients. The first time a generative music model, not a hand built feature set, is the encoding model. Expertise changes how strongly context is encoded.</aside>
+</section>
+
+<section data-sec="25">
+  <span class="mark">2 What we can see</span>
+  <h2>Every one of these studies shares one design</h2>
+  {{OLD:Every one of these studies shares}}
+  <aside class="notes">In these studies the music is fixed. The second crack. Say it lightly and move on.</aside>
+</section>
+
+<section data-sec="45">
+  <span class="mark">3 Seeing is not understanding</span>
+  <h2>In a reconstruction, the brain supplies 128 numbers. The generator supplies the rest</h2>
+  {{OLD:Most of what we hear}}
+  <div class="ref"><a href="https://doi.org/10.1038/s41467-025-66731-7">Denk, Takagi et al., Nat Commun 2025</a><span class="sep"></span><a href="https://arxiv.org/abs/2301.11325">Agostinelli et al. 2023</a></div>
+  <aside class="notes">MusicLM was trained on about 280 thousand hours of music. The brain supplies 128 numbers. Not a criticism of the paper, which says this itself. It is a criticism of reading reconstruction as understanding.</aside>
+</section>
+
+<section data-sec="60">
+  <span class="mark">3 Seeing is not understanding · Compare</span>
+  <h2>Better audio models fit auditory cortex better, yet past about eight notes a better music model fits the brain worse</h2>
+  <div class="fp">
+    <div class="f"><img src="../shared/figs/papers/pepino_scatter.png" style="width:520px"><p class="cap">each dot one audio model, right is better at tasks, preprint</p></div>
+    <div class="p">
+      <p class="big">r = 0.90</p>
+      <p class="ink2" style="font-size:22px">task performance vs fit to auditory cortex fMRI, 36 models</p>
+      <p class="tldr" style="margin-top:22px">Recall the preview: a Music Transformer's surprise fits MEG best with under ten notes of context, while its music prediction keeps improving.</p>
+      <p class="key" style="font-size:24px">Correlation with the brain does not say what the brain computes</p>
+    </div>
+  </div>
+  <div class="ref"><a href="https://arxiv.org/abs/2511.16849">Pepino et al. 2025</a><span class="sep"></span><a href="https://doi.org/10.7554/eLife.80935">Kern et al. 2022</a></div>
+  <aside class="notes">Pepino, Fig 6 and p. 12: r = 0.90 and 0.89 on two fMRI datasets, and r = 0.71 and 0.70 after excluding the weakest models (DCASE2020, MetricGAN, DeepSpeech, SepFormer). Kern: 35 MEG and 20 EEG listeners, neural surprise reflects mostly contexts of fewer than ten notes. Both are true at once, so alignment is a filter, not a mechanism. Keep the under ten notes number in mind for Act 5.</aside>
+</section>
+
+<section data-sec="70">
+  <span class="mark">3 Seeing is not understanding · My own data</span>
+  <h2>In my analysis of 29 listeners, surprising notes give a larger frontocentral response at 0.16 s <span class="status prog">In progress</span></h2>
+  <div class="fp">
+    <div class="f">{{EEG_ERP}}</div>
+    <div class="p">
+      <p class="key">MusicGen surprise, public EEG</p>
+      <p class="tldr">Surprise for every note from a music generator, EEG from an open dataset of people hearing familiar songs.</p>
+      <p class="tldr">Orange: notes one SD more surprising. Gray: one SD less.</p>
+      <p class="cap" style="margin-top:14px">extra response per SD of surprise, seen from above</p>
+      {{EEG_TOPO}}
+      <p class="cap"><a href="https://aquastar.github.io/music-to-brain/eeg-demo" style="color:#5F5D50">live demo: aquastar.github.io/music-to-brain/eeg-demo</a></p>
+    </div>
+  </div>
+  <div class="ref"><a href="https://openneuro.org/datasets/ds005876">OpenNeuro ds005876</a><span class="sep"></span>Chen, unpublished analysis</div>
+  <aside class="notes">Regression over all songs and all 29 listeners, separating overlapping note responses. Cluster permutation p = 0.0028, 11 frontocentral channels, 0.09 to 0.34 s, peak 0.16 s, a P2 like window. Scalp maps: extra response per one SD more surprise. If time allows, switch to the demo for 20 seconds: step to the next surprising note at quarter speed. Fallback is a screen recording.</aside>
+</section>
+
+<section data-sec="45">
+  <span class="mark">3 Seeing is not understanding · My own data</span>
+  <h2>Note by note, the link is weak, and an untrained model does as well</h2>
+  <div class="cols" style="margin-top:20px">
+    <div><p class="big">r = 0.08</p><p class="ink2" style="font-size:22px">surprise vs response, single notes, 105 notes, not significant (783 of 2000 shuffles reach it)</p></div>
+    <div><p class="big" style="border-bottom-color:#ACA39A">r = 0.15</p><p class="ink2" style="font-size:22px">same test with an untrained random model</p></div>
+  </div>
+  <p style="font-size:27px;margin-top:40px">The songs were fixed, so surprise rode along with everything else in them. Music decoding as a whole rests on a handful of listeners and very few songs.</p>
+  <aside class="notes">Honest limit of my own result. Single note responses are noisy: a new note every 0.2 to 0.4 s, about 18 listeners per song. The group effect is real, the per note mapping is not established, and a random model control is not beaten per note. Datasets: fMRI music reconstructions use 5 listeners, Bellier one song, public music EEG sets 10 to 20 listeners (NMED-T 20, OpenMIIR 10). This is the last crack before the clinic.</aside>
+</section>
+
+<section data-sec="20">
+  <span class="mark">3 Seeing is not understanding</span>
+  <p class="thesis">Everything so far is a correlation.<br><span class="ink2">To test a cause, something has to be changed.</span></p>
+  <aside class="notes">Third crack. Then turn to the clinic, where people do change things.</aside>
+</section>
+
+<section data-sec="20" data-auto-animate>
+  <span class="mark">The map</span>
+  <h2>Arrow 4: does music help patients?</h2>
+  {{MAP:treat}}
+  <aside class="notes">The clinic is where music is actually changed and given to people. What does the evidence say?</aside>
+</section>
+
+<section data-sec="50">
+  <span class="mark">4 The clinic</span>
+  <h2>Music therapy helps, but modestly, briefly and with limited certainty</h2>
+  <svg class="fig" viewBox="0 0 1152 430">
+    <g font-size="20" fill="#5F5D50"><text x="420" y="30">very low</text><text x="620" y="30">low</text><text x="820" y="30">moderate</text><text x="1020" y="30">high</text></g>
+    <g stroke="#D7D2CB"><line x1="450" y1="45" x2="450" y2="405"/><line x1="640" y1="45" x2="640" y2="405"/><line x1="850" y1="45" x2="850" y2="405"/><line x1="1040" y1="45" x2="1040" y2="405"/></g>
+    <g font-size="22" fill="#1F1E1B">
+      <text x="0" y="80">Dementia, depressive symptoms</text><circle cx="850" cy="73" r="8" fill="#7D55C7"/>
+      <text x="0" y="135">Depression, self reported</text><circle cx="850" cy="128" r="8" fill="#7D55C7"/>
+      <text x="0" y="190">Autism, global improvement</text><circle cx="850" cy="183" r="8" fill="#7D55C7"/>
+      <text x="0" y="245">Insomnia, subjective sleep</text><circle cx="850" cy="238" r="8" fill="#7D55C7"/>
+      <text x="0" y="300">Stroke, gait cadence</text><circle cx="640" cy="293" r="8" fill="#7D55C7"/>
+      <text x="0" y="355">Dementia, cognition</text><circle cx="450" cy="348" r="8" fill="none" stroke="#7D55C7" stroke-width="2"/>
+    </g>
+  </svg>
+  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen 2025</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004381.pub4">Geretsegger 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD010459.pub3">Jespersen 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD006787.pub3">Magee 2017</a></div>
+  <aside class="notes">GRADE certainty from Cochrane reviews. No outcome reaches high certainty.</aside>
+</section>
+
+<section data-sec="50">
+  <span class="mark">4 The clinic</span>
+  <h2>In dementia, mood improves slightly and behavior may improve. Agitation does not, cognition is unclear</h2>
+  {{FOREST_FULL}}
+  <p class="ink2" style="font-size:20px;margin-top:-10px">Four weeks after treatment ends, no outcome shows a clear effect. In insomnia, self rated sleep improves, objective sleep shows no clear gain.</p>
+  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen et al., Music based therapeutic interventions for people with dementia, Cochrane 2025</a></div>
+  <aside class="notes">Music versus usual care at the end of treatment, standardized mean differences with 95 percent intervals. Depression SMD 0.23, moderate certainty. Behavior 0.31, low. Agitation 0.05, moderate certainty of no effect. Cognition 0.19, interval crosses zero, low to very low. This tempers Act 1: musical memory is preserved, but music therapy does not restore memory.</aside>
+</section>
+
+<section data-sec="50">
+  <span class="mark">4 The clinic</span>
+  <h2>The best understood music therapy is the one with a knob</h2>
+  <div class="fp">
+    <div class="f" style="width:300px">{{PEOPLE:thaut|Michael Thaut|U Toronto, rhythmic auditory stimulation}}</div>
+    <div class="p">
+      <p class="big">+10.8 steps per minute</p>
+      <p class="ink2" style="font-size:22px">gait cadence after stroke with rhythmic auditory stimulation, 7 trials, low certainty</p>
+      <p class="ink2" style="font-size:22px">In Parkinson's, 18 trials: stride length and walking speed improve, cadence does not.</p>
+      <p class="tldr" style="margin-top:20px">The beat is a parameter. It can be set, written down and repeated.</p>
+    </div>
+  </div>
+  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD006787.pub3">Magee et al. 2017</a><span class="sep"></span><a href="https://doi.org/10.3389/fneur.2022.940419">Ye et al. 2022</a></div>
+  <aside class="notes">Payoff of the Act 1 plant. Magee 2017: +10.77 steps per minute after stroke, 7 trials, 223 people, low quality. Ye 2022: in Parkinson's, stride length, velocity and UPDRS III improve across 18 RCTs, no significant effect on cadence. The mechanism is clearest where the stimulus is a parameter.</aside>
+</section>
+
+<section data-sec="45">
+  <span class="mark">4 The clinic</span>
+  <h2>Across reviews, the same complaint: nobody can say exactly what the intervention was</h2>
+  <div class="cols">
+    <div><p>Which music? How loud, how fast, how familiar? Live or recorded? Chosen by whom?</p>
+    <p class="ink2" style="font-size:24px">Cochrane reviews keep asking trials to describe the intervention so it can be compared and repeated.</p></div>
+    <div><p style="font-size:28px">The therapist and the group matter. The music is the part we could specify, and rarely do.</p></div>
+  </div>
+  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers et al. 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen et al. 2025</a></div>
+  <aside class="notes">Backup has the music lessons meta analysis (Sala and Gobet 2020) if asked about transfer. Real recorded music confounds everything at once: tempo, timbre, familiarity, lyrics, emotion. You cannot vary one and hold the others.</aside>
+</section>
+
+<section data-sec="30">
+  <span class="mark">4 The clinic</span>
+  <p class="thesis">The bottleneck is not the measurement.<br>It is the <em>stimulus</em>.</p>
+  <p class="ink2" style="font-size:26px;margin-top:20px">Not the only missing piece, but the one we can now fix.</p>
+  <aside class="notes">The turn of the talk, about minute 27 of 35 by the ledger. One breath: we cannot vary real music one factor at a time, so research stays correlational and therapy stays unreportable. Every crack from Acts 2 and 3 is this one. Finding 3 from the forecast.</aside>
+</section>
+
+<section data-sec="25" data-auto-animate>
+  <span class="mark">The map</span>
+  <h2>Arrow 5: set the music, one knob at a time</h2>
+  {{MAP:control}}
+  <aside class="notes">The dashed arrow becomes solid. Models were used in arrows 2 and 3 to explain the brain. Here they are used to make the stimulus.</aside>
+</section>
+
+<section data-sec="50">
+  <span class="mark">5 Music you can experiment on</span>
+  <h2>Expectation has been manipulated before, with odd chords and oddballs. Generators add natural music with many knobs</h2>
+  <div class="fp">
+    <div class="f" style="width:560px">
+      <p style="font-size:24px;margin:0">Already done in EEG</p>
+      <ul><li>Irregular chords evoke an early right anterior negativity (ERAN)</li><li>Deviant notes evoke a mismatch negativity, smaller when the melody is uncertain</li></ul>
+    </div>
+    <div class="p">
+      <p class="key">What a generator adds</p>
+      <ul><li>Whole pieces that sound like music, not test sequences</li><li>Many properties set at will: predictability, style, tempo</li><li>New pieces for every listener, with the settings written down</li></ul>
+      {{PEOPLE:koelsch|Stefan Koelsch|ERAN, 2000}}
+    </div>
+  </div>
+  <div class="ref"><a href="https://doi.org/10.1162/089892900562183">Koelsch et al. 2000</a><span class="sep"></span><a href="https://doi.org/10.1016/j.cortex.2019.06.010">Quiroga-Martinez et al. 2019</a></div>
+  <aside class="notes">Answer the EEG audience before they ask. Koelsch 2000, J Cogn Neurosci: ERAN to irregular chords in nonmusicians. Quiroga-Martinez 2019, Cortex: MMN to deviants is reduced in high uncertainty melodies. Those designs control expectation with short, artificial sequences. The new thing is naturalistic, parametric control at scale. Controlled stimuli complement naturalistic listening, they do not replace it.</aside>
+</section>
+
+<section data-sec="75">
+  <span class="mark">5 Music you can experiment on · Running example</span>
+  <h2>The simplest knob: how many notes back each next note depends on <span class="status prog">In progress</span></h2>
+  <div class="cols">
+    <div style="flex:0 0 640px"><iframe class="embed" data-src="../shared/fe-chain.html?autoplay=1" width="640" height="360" title="Für Elise Markov chain"></iframe></div>
+    <div>
+      <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_shuffled.mp3">play</button><span>order 0, shuffled</span></div>
+      <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_order1.mp3">play</button><span>order 1, walk the graph</span></div>
+      <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_real.mp3">play</button><span>Beethoven</span></div>
+      <p class="tldr" style="margin-top:18px">Same notes and rhythm. Intervals and contour change too, so surprise is computed for each stimulus and used as the regressor.</p>
+    </div>
+  </div>
+  <div class="ref">Chen et al., Markov graph analysis, in preparation</div>
+  <aside class="notes">The graph is Für Elise: each note points to the notes that follow it. Order 0 shuffles, order 1 walks this graph, higher orders approach the piece. Kern found the brain's surprise uses fewer than ten notes of context, so orders 1 to 8 span exactly the range the brain uses. The order 1 sample was made with seed 29 by src/fur_elise.py. A controlling three steps: report the generator settings, compute surprise per stimulus with a listener model, include onsets, envelope and interval size as nuisance regressors. Backup slide: six traditions from one transition table.</aside>
+</section>
+
+<section data-sec="40">
+  <span class="mark">5 Music you can experiment on · Running example</span>
+  <h2>A testable prediction: the surprise response should grow as the order rises toward the brain's range</h2>
+  <svg class="fig" viewBox="0 0 1152 360">
+    <line x1="120" y1="290" x2="760" y2="290" stroke="#ACA39A"/><line x1="120" y1="290" x2="120" y2="40" stroke="#ACA39A"/>
+    <text x="440" y="330" font-size="20" fill="#5F5D50" text-anchor="middle">order of the stimulus</text>
+    <g font-size="19" fill="#5F5D50" text-anchor="middle"><text x="200" y="314">0</text><text x="360" y="314">1</text><text x="520" y="314">2</text><text x="680" y="314">real</text></g>
+    <text x="100" y="60" font-size="19" fill="#5F5D50" text-anchor="end">EEG gain</text><text x="100" y="82" font-size="19" fill="#5F5D50" text-anchor="end">from surprise</text>
+    <path d="M200,270 L360,170 L520,130 L680,115" fill="none" stroke="#F76902" stroke-width="2.5" stroke-dasharray="7 6"/>
+    <g fill="#FBFAF7" stroke="#F76902" stroke-width="2"><circle cx="200" cy="270" r="7"/><circle cx="360" cy="170" r="7"/><circle cx="520" cy="130" r="7"/><circle cx="680" cy="115" r="7"/></g>
+    <text x="820" y="80" class="illus">Prediction, no data yet</text>
+    <text x="820" y="130" font-size="22" fill="#1F1E1B">If the curve is flat,</text><text x="820" y="158" font-size="22" fill="#1F1E1B">surprise was a proxy</text><text x="820" y="186" font-size="22" fill="#1F1E1B">for something else.</text>
+  </svg>
+  <aside class="notes">Surprise here comes from a listener model (as in Kern) computed on each stimulus, not from the generator. If the curve is flat after controlling intervals and onsets, surprise was a proxy for something else. Either outcome is informative.</aside>
+</section>
+
+<section data-sec="50">
+  <span class="mark">5 Music you can experiment on</span>
+  <h2>The catch: higher orders are classified as the style more often, but copy longer spans <span class="status prog">In progress</span></h2>
+  <div class="fp">
+    <div class="f"><img src="../shared/figs/generation_style_vs_copy.png" style="width:600px"></div>
+    <div class="p">
+      <p class="key">A knob has a range</p>
+      <p class="tldr">Vertical: how often Markov judges classify a generated melody as its style. Horizontal: longest span copied from training.</p>
+      <p class="tldr">The star, real held out melodies, scores lower than most generated ones, so these judges reward Markov likeness, not style. A listening test is next.</p>
+    </div>
+  </div>
+  <div class="ref">Chen et al., in preparation</div>
+  <aside class="notes">48 note melodies, 600 per cell. Star: real held out excerpts. Familiarity is a confound in music studies, so copying matters.</aside>
+</section>
+
+<section data-sec="50">
+  <span class="mark">5 Music you can experiment on</span>
+  <h2>Richer knobs live inside large music generators <span class="status rev">Under review</span></h2>
+  {{OLD:Steering a style inside}}
+  <div class="ref">Co authored work under review, MusicGen small and medium<span class="sep"></span><a href="https://arxiv.org/abs/2306.05284">Copet et al. 2023</a></div>
+  <aside class="notes">A style is a thin set of trajectories, not a direction. For brain experiments: removal gives a clean control condition, addition does not yet.</aside>
+</section>
+
+<section data-sec="40">
+  <span class="mark">5 Music you can experiment on</span>
+  <h2>What to measure: alignment that survives an acoustic baseline <span class="status open">Planned</span></h2>
+  {{OLD:What to measure}}
+  <aside class="notes">The brain alignment scorer. Bars are illustrative. Replace with pilot numbers if any exist by December.</aside>
+</section>
+
+<section data-sec="55">
+  <span class="mark">5 Music you can experiment on</span>
+  <h2>One study a biosignal lab could run within a year <span class="status open">Planned</span></h2>
+  <div class="fp">
+    <div class="p" style="max-width:640px">
+      <ul style="margin-top:0">
+        <li><b>Stimuli:</b> order 0, order 1, order 4 and real excerpts, 20 s each, same notes and timbre, settings logged</li>
+        <li><b>Listeners:</b> about 24 young and 24 older adults, within subject, 64 channel EEG, about 40 min of listening</li>
+        <li><b>Outcome:</b> gain of surprise over envelope, onsets and interval size in a TRF, frontocentral 0.1 to 0.35 s</li>
+      </ul>
+    </div>
+    <div class="p">
+      <p class="key">Group size from a pilot</p>
+      <p class="tldr">My public data analysis is the pilot. The decision rule is set before recording: the gain must rise with order in both groups.</p>
+      <p class="tldr">Year 2: the same protocol in a hearing loss or dementia cohort.</p>
+    </div>
+  </div>
+  <aside class="notes">Concrete enough for an EEG lab to say yes. The pilot (ds005876, 29 listeners) gives the effect window and size. Group size about 24 per group will be fixed from that pilot, not presented as a power result. Older adults first, because clinical evidence is weakest there, and hearing aid users later because compression changes the acoustic baseline.</aside>
+</section>
+
+<section data-sec="60">
+  <span class="mark">Close</span>
+  <h2>She still sings the hymn. If we could change one thing in it and watch her brain answer, what would we learn?</h2>
+  <div class="fp">
+    <div class="f" style="width:360px">{{PHOTO:older_adults_choir|Older adults singing together}}</div>
+    <div class="p">
+      <p style="font-size:24px;margin:0 0 8px 0">Music can be read out of the brain, and music models predict it.</p>
+      <p style="font-size:24px;margin:0 0 8px 0">It is still correlation, and clinical effects are modest.</p>
+      <p style="font-size:24px;margin:0 0 18px 0">Generative models make the stimulus a variable.</p>
+      <p class="key" style="font-size:24px">Looking for: one EEG lab, 48 listeners, the protocol on the previous slide</p>
+    </div>
+  </div>
+  <aside class="notes">Return to the opening image and question. Three lines, then the ask with numbers. Stop. No thank you slide.</aside>
+</section>
+
+<!-- ================= BACKUP -->
+<section data-backup="1">
+  <span class="mark">Backup</span>
+  <p class="thesis">Backup slides</p>
+</section>
+
+<section data-backup="1">
+  <span class="mark">2 What we can see</span>
+  <h2>Every recording method trades time against space</h2>
+  <div class="photos">
+    <figure>{{PHOTO:eeg_cap|EEG cap}}<figcaption>EEG<span>milliseconds, centimeters</span></figcaption></figure>
+    <figure>{{PHOTO:meg_system|MEG system}}<figcaption>MEG<span>milliseconds, better localization</span></figcaption></figure>
+    <figure>{{PHOTO:mri_scanner|MRI scanner}}<figcaption>fMRI<span>seconds, millimeters</span></figcaption></figure>
+    <figure>{{PHOTO:ecog_grid_illustration|ECoG grid}}<figcaption>Intracranial<span>both, only in surgery patients</span></figcaption></figure>
+  </div>
+  <p style="font-size:26px;margin-top:22px">Music changes in milliseconds. Ask <i>where</i> with fMRI, <i>when</i> with EEG.</p>
+  <aside class="notes">The audience knows these tools. The point is only that music forces the choice. Intracranial recordings give both, rarely.</aside>
+</section>
+
+<section data-backup="1">
   <span class="mark">2 What we can see · Encode</span>
   <h2>The cortex locks to the beat, even when the meter is only imagined</h2>
   <div class="fp">
@@ -269,7 +609,7 @@
   <aside class="notes">Frequency tagging of steady state evoked potentials. Blue: beat only. Red: binary meter imagery. Green: ternary. This links to rhythmic auditory stimulation in Act 4.</aside>
 </section>
 
-<section>
+<section data-backup="1">
   <span class="mark">2 What we can see · Running example</span>
   <h2>A tiny graph of note transitions already captures a musical tradition <span class="status prog">In progress</span></h2>
   <div class="cols">
@@ -283,7 +623,7 @@
   <aside class="notes">Watch the ball walk the chain while the melody plays. A listener's expectation is built on graphs like this one, learned over a lifetime.</aside>
 </section>
 
-<section>
+<section data-backup="1">
   <span class="mark">2 What we can see</span>
   <h2>Remembering a single note already tells six traditions apart <span class="status prog">In progress</span></h2>
   <div class="fp">
@@ -298,30 +638,7 @@
   <aside class="notes">992 pieces, six styles, five fold cross validation. Blue: likelihood classifier. Orange: table features with logistic regression. Check 70.2 against the latest run before the talk (an older note said 70.9).</aside>
 </section>
 
-<section data-auto-animate>
-  <span class="mark">The map</span>
-  <h2>Arrow 2: play the music back from the brain</h2>
-  {{MAP:decode}}
-  <aside class="notes">Decoding. Two studies, one invasive, one not.</aside>
-</section>
-
-<section>
-  <span class="mark">2 What we can see · Decode</span>
-  <h2>Twenty nine epilepsy patients listened to a Pink Floyd song with electrodes on the cortex</h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/bellier_xray.png" style="width:380px"></div>
-    <div class="p">
-      <p class="key">A rare window: ECoG during surgery planning</p>
-      <p class="tldr">The grids were there for clinical reasons. Listening was the experiment.</p>
-      <ul><li>2,668 electrodes in total</li><li>One song, three minutes, passive listening</li></ul>
-      {{PEOPLE:knight|Robert Knight|UC Berkeley, senior author}}
-    </div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1371/journal.pbio.3002176">Bellier et al., PLoS Biol 2023</a></div>
-  <aside class="notes">Another Brick in the Wall, Part 1.</aside>
-</section>
-
-<section>
+<section data-backup="1">
   <span class="mark">2 What we can see · Decode</span>
   <h2>Learn a map from electrode activity to the song's spectrogram, then turn it into sound</h2>
   <svg class="fig" viewBox="0 0 1152 330">
@@ -341,7 +658,7 @@
   <aside class="notes">The spectrogram to audio step uses phase estimation. Nothing here is a generative prior, which matters for the comparison with the fMRI study next.</aside>
 </section>
 
-<section>
+<section data-backup="1">
   <span class="mark">2 What we can see · Decode</span>
   <h2>347 electrodes carried the music, most over the superior temporal gyrus</h2>
   <div class="fp">
@@ -356,22 +673,7 @@
   <aside class="notes">Dot size is prediction accuracy. The rhythm subregion responded to the guitar's 16th notes.</aside>
 </section>
 
-<section>
-  <span class="mark">2 What we can see · Decode</span>
-  <h2>About 40 electrodes and one minute of data reach 80 percent of the best result</h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/bellier_howmuch.png" style="width:760px"></div>
-    <div class="p">
-      <p class="key">Small data, steep curves</p>
-      <p class="tldr">Left: electrodes. Right: seconds of training data.</p>
-      <div class="audio-row"><button class="play" data-audio="../shared/audio/bellier_linear.mp3">play</button><span>linear decoder</span></div>
-    </div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1371/journal.pbio.3002176">Bellier et al., PLoS Biol 2023</a></div>
-  <aside class="notes">43 electrodes give 80 percent of the best accuracy, 69 seconds of data give 90 percent. For a biosignal audience: the bottleneck is coverage, not data length. Compare the linear decoder to the nonlinear one from the preview.</aside>
-</section>
-
-<section>
+<section data-backup="1">
   <span class="mark">2 What we can see · Decode</span>
   <h2>The limit: one song, and electrodes inside the skull</h2>
   <div class="cols">
@@ -381,156 +683,7 @@
   <aside class="notes">Transition to Denk and Takagi.</aside>
 </section>
 
-<section>
-  <span class="mark">2 What we can see · Decode</span>
-  <h2>From fMRI, a music generator can regenerate what was heard</h2>
-  <img src="../shared/figs/denk2023_fig1.png" style="width:1150px;display:block">
-  <div class="fp" style="margin-top:22px">
-    <div class="p">
-      <p class="key">Five listeners, 540 clips, ten genres</p>
-      <p class="tldr">fMRI is mapped to a 128 number music embedding. A text to music model turns the embedding into sound.</p>
-    </div>
-    <div class="f"></div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1038/s41467-025-66731-7">Denk, Takagi et al., Text to music generation models capture musical semantic representations in the human brain, Nat Commun 2025</a></div>
-  <aside class="notes">Remember the 128 numbers. They return in Act 3.</aside>
-</section>
-
-<section>
-  <span class="mark">2 What we can see · Decode</span>
-  <h2>The generated clip matches the heard one in genre and mood about 85 percent of the time</h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/denk_accuracy.png" style="width:440px"></div>
-    <div class="p">
-      <p class="key">Chance is 50 percent</p>
-      <p class="tldr">Right group: identification judged in a music embedding space. Green: generated by MusicLM. Dotted line: the best any decoder could do.</p>
-      <p class="tldr" style="margin-top:18px">Melody and timing do not match.</p>
-    </div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1038/s41467-025-66731-7">Denk, Takagi et al., Nat Commun 2025</a></div>
-  <aside class="notes">Identification: is the generated clip closer to the true clip than to a random other clip. 0.5 is chance. Error bars over five subjects. Semantic match, not note match.</aside>
-</section>
-
-<section data-auto-animate>
-  <span class="mark">The map</span>
-  <h2>Arrow 3: does a model of music resemble the brain?</h2>
-  {{MAP:compare}}
-  <aside class="notes">Alignment studies. Same encoding machinery, but the features now come from inside an AI model.</aside>
-</section>
-
-<section>
-  <span class="mark">2 What we can see · Compare</span>
-  <h2>Deeper layers of a music transformer match brain sites farther from primary cortex</h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/mischler_layers.png" style="width:250px"><img src="../shared/figs/papers/mischler_brain.png" style="width:500px;margin-top:8px"></div>
-    <div class="p">
-      <p class="key">Layer depth follows cortical hierarchy</p>
-      <p class="tldr">Teal sites prefer early layers and sit near primary auditory cortex. Purple sites prefer late layers and sit farther out.</p>
-      {{PEOPLE:mesgarani|Nima Mesgarani|Columbia}}
-    </div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1038/s41467-025-63961-7">Mischler, Li, Bickel, Mehta, Mesgarani, Nat Commun 2025</a></div>
-  <aside class="notes">Bach pieces, 20 EEG listeners and 6 iEEG patients. The first time a generative music model, not a hand built feature set, is the encoding model. Expertise changes how strongly context is encoded.</aside>
-</section>
-
-<section>
-  <span class="mark">2 What we can see</span>
-  <h2>Every one of these studies shares one design</h2>
-  {{OLD:Every one of these studies shares}}
-  <aside class="notes">The second crack. Say it lightly and move on.</aside>
-</section>
-
-<!-- ======================================================= ACT 3 SEEING IS NOT UNDERSTANDING -->
-<section>
-  <span class="mark">3 Seeing is not understanding</span>
-  <h2>Most of what we hear in a reconstruction comes from the generator, not the brain</h2>
-  {{OLD:Most of what we hear}}
-  <div class="ref"><a href="https://doi.org/10.1038/s41467-025-66731-7">Denk, Takagi et al., Nat Commun 2025</a><span class="sep"></span><a href="https://arxiv.org/abs/2301.11325">Agostinelli et al. 2023</a></div>
-  <aside class="notes">MusicLM was trained on about 280 thousand hours of music. The brain supplies 128 numbers. Not a criticism of the paper, which says this itself. It is a criticism of reading reconstruction as understanding.</aside>
-</section>
-
-<section>
-  <span class="mark">3 Seeing is not understanding · Compare</span>
-  <h2>Better audio models look more like auditory cortex, without being trained to</h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/pepino_scatter.png" style="width:560px"><p class="cap">horizontal: overall task performance (right is better)</p></div>
-    <div class="p">
-      <p class="big">r = 0.90</p>
-      <p class="ink2" style="font-size:22px">task performance vs fit to auditory cortex fMRI, 36 models</p>
-      <p class="tldr" style="margin-top:18px">Still 0.71 after removing the weakest models. Alignment appears early in pretraining.</p>
-    </div>
-  </div>
-  <div class="ref"><a href="https://arxiv.org/abs/2511.16849">Pepino et al., Better audio representations are more brain like, arXiv 2025</a></div>
-  <aside class="notes">Each dot is one audio model. Vertical axis: voxel regression R squared on the NH2015 dataset. Same picture on a second dataset.</aside>
-</section>
-
-<section>
-  <span class="mark">3 Seeing is not understanding · Compare</span>
-  <h2>But the most brain like model is not the best model of music</h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/kern_pipeline.png" style="width:640px"></div>
-    <div class="p">
-      <p class="key">35 MEG and 20 EEG listeners</p>
-      <p class="tldr">Three listener models compete: a rule based one, IDyOM, and a Music Transformer. Each gives a surprise curve, like our Für Elise curve.</p>
-      <p class="tldr">Recall the preview: the brain's fit peaks at about 8 notes of context.</p>
-    </div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.7554/eLife.80935">Kern et al., eLife 2022</a></div>
-  <aside class="notes">Pepino says better models are more brain like overall. Kern shows the relationship bends: past a short context, a better music model fits the brain worse. So correlation with the brain does not tell us what the brain computes.</aside>
-</section>
-
-<section>
-  <span class="mark">3 Seeing is not understanding</span>
-  <h2>Decoders are trained one listener at a time, on a handful of listeners</h2>
-  <div class="cols">
-    <div><p class="big">5 listeners</p><p class="ink2" style="font-size:22px">behind the fMRI music reconstructions</p>
-    <p class="big" style="margin-top:22px">10 to 20</p><p class="ink2" style="font-size:22px">listeners in typical public music EEG datasets</p></div>
-    <div><p style="font-size:26px">Vision decoding now shares models across people. Music decoding mostly does not.</p>
-    <p class="ink2" style="font-size:22px">Few public datasets ship the audio, so models cannot be compared on the same stimuli.</p></div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1016/j.dib.2021.107675">Nakai et al. 2022</a><span class="sep"></span><a href="https://purl.stanford.edu/jn859kj8079">Losorelli et al. 2017</a><span class="sep"></span><a href="https://github.com/sstober/openmiir">Stober et al. 2015</a></div>
-  <aside class="notes">NMED-T: 20 listeners, audio not distributed. OpenMIIR: 10 listeners, perception and imagery. Music genre fMRI: 5 listeners, 540 clips. This is a data gap the biosignal community can close.</aside>
-</section>
-
-<section>
-  <span class="mark">3 Seeing is not understanding</span>
-  <h2>Agreement between two systems does not mean they compute alike</h2>
-  {{OLD:Agreement between two systems}}
-  <aside class="notes">Expect agreement from this audience. Biosignal people know correlation is not causation better than anyone.</aside>
-</section>
-
-<section>
-  <span class="mark">3 Seeing is not understanding</span>
-  <p class="thesis">Everything so far is a correlation.<br><span class="ink2">To test a cause, something has to be changed.</span></p>
-  <aside class="notes">Third crack. Then turn to the clinic, where people do change things.</aside>
-</section>
-
-<!-- ======================================================= ACT 4 THE CLINIC -->
-<section data-auto-animate>
-  <span class="mark">The map</span>
-  <h2>Arrow 4: does music help patients?</h2>
-  {{MAP:treat}}
-  <aside class="notes">The clinic is where music is actually changed and given to people. What does the evidence say?</aside>
-</section>
-
-<section>
-  <span class="mark">4 The clinic</span>
-  <h2>Music therapy helps, but modestly, briefly and with limited certainty</h2>
-  {{OLD:Music therapy helps}}
-  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen 2025</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004381.pub4">Geretsegger 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD010459.pub3">Jespersen 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD006787.pub3">Magee 2017</a></div>
-  <aside class="notes">GRADE certainty from Cochrane reviews. No outcome reaches high certainty.</aside>
-</section>
-
-<section>
-  <span class="mark">4 The clinic</span>
-  <h2>In dementia, mood and behavior move. Agitation and cognition do not</h2>
-  {{FOREST_FULL}}
-  <p class="ink2" style="font-size:20px;margin-top:-10px">Four weeks after treatment ends, no outcome shows a clear effect.</p>
-  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen et al., Music based therapeutic interventions for people with dementia, Cochrane 2025</a></div>
-  <aside class="notes">Music versus usual care at the end of treatment, standardized mean differences with 95 percent intervals. Depression SMD 0.23, moderate certainty. Behavior 0.31, low. Agitation 0.05, moderate certainty of no effect. Cognition 0.19, interval crosses zero, low to very low. This tempers Act 1: musical memory is preserved, but music therapy does not restore memory.</aside>
-</section>
-
-<section>
+<section data-backup="1">
   <span class="mark">4 The clinic</span>
   <h2>Feelings improve. Measured function often does not</h2>
   {{OLD:Feelings improve}}
@@ -538,7 +691,7 @@
   <aside class="notes">Insomnia: three trials with objective measures showed no clear gain. Dementia: moderate certainty of no effect on agitation.</aside>
 </section>
 
-<section>
+<section data-backup="1">
   <span class="mark">4 The clinic</span>
   <h2>Music lessons do not make children smarter, once the controls are fair</h2>
   <div class="fp">
@@ -549,159 +702,11 @@
   <aside class="notes">54 studies. Near transfer to musical skill is real, far transfer to IQ or school grades is not supported. A reanalysis disputes the exclusion choices and finds a small positive effect. A methods lesson, not an attack on music education.</aside>
 </section>
 
-<section>
-  <span class="mark">4 The clinic</span>
-  <h2>The best understood music therapy is the one with a knob</h2>
-  <div class="fp">
-    <div class="f" style="width:300px">{{PEOPLE:thaut|Michael Thaut|U Toronto, rhythmic auditory stimulation}}</div>
-    <div class="p">
-      <p class="big">+10.8 steps per minute</p>
-      <p class="ink2" style="font-size:22px">gait cadence after stroke with rhythmic auditory stimulation, 7 trials, low certainty</p>
-      <p class="tldr" style="margin-top:20px">The beat is a parameter. It can be set, written down and repeated. Music with a strong beat beat a bare metronome.</p>
-    </div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD006787.pub3">Magee et al. 2017</a><span class="sep"></span><a href="https://doi.org/10.3389/fneur.2022.940419">Ye et al. 2022</a></div>
-  <aside class="notes">Payoff of the Act 1 plant. Same story in Parkinson's gait across 18 RCTs. The mechanism is clearest exactly where the stimulus is controllable.</aside>
-</section>
-
-<section>
-  <span class="mark">4 The clinic</span>
-  <h2>Across reviews, the same complaint: nobody can say exactly what the intervention was</h2>
-  <div class="cols">
-    <div><p>Which music? How loud, how fast, how familiar? Live or recorded? Chosen by whom?</p>
-    <p class="ink2" style="font-size:24px">Cochrane reviews keep asking trials to describe the intervention so it can be compared and repeated.</p></div>
-    <div><p style="font-size:30px">A drug has a dose.<br>A music intervention has a playlist.</p></div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers et al. 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen et al. 2025</a></div>
-  <aside class="notes">Real recorded music confounds everything at once: tempo, timbre, familiarity, lyrics, emotion. You cannot vary one and hold the others.</aside>
-</section>
-
-<section>
-  <span class="mark">4 The clinic</span>
-  <p class="thesis">The bottleneck is not the measurement.<br>It is the <em>stimulus</em>.</p>
-  <aside class="notes">The turn of the talk, two thirds in. One breath: we cannot vary real music one factor at a time, so research stays correlational and therapy stays unreportable. Every crack from Acts 2 and 3 is this one. Finding 3 from the forecast.</aside>
-</section>
-
-<!-- ======================================================= ACT 5 MUSIC YOU CAN EXPERIMENT ON -->
-<section data-auto-animate>
-  <span class="mark">The map</span>
-  <h2>Arrow 5: set the music, one knob at a time</h2>
-  {{MAP:control}}
-  <aside class="notes">The dashed arrow becomes solid. Models were used in arrows 2 and 3 to explain the brain. Here they are used to make the stimulus.</aside>
-</section>
-
-<section>
-  <span class="mark">5 Music you can experiment on</span>
-  <h2>A generative model turns music into a variable</h2>
-  {{OLD:A generative model turns music}}
-  <aside class="notes">Same four boxes as the shared design slide, but the first one now moves. Ecological validity objection: controlled stimuli complement naturalistic listening, they do not replace it.</aside>
-</section>
-
-<section>
+<section data-backup="1">
   <span class="mark">5 Music you can experiment on</span>
   <h2>A controllable stimulus buys three things that recorded music cannot</h2>
   {{OLD:A controllable stimulus buys}}
   <aside class="notes">Map each box to a crack from earlier. Then show that the knobs exist, starting from the simplest one.</aside>
-</section>
-
-<section>
-  <span class="mark">5 Music you can experiment on · Running example</span>
-  <h2>The simplest knob: how many notes back each next note depends on</h2>
-  <div style="display:grid;grid-template-columns:250px 1fr;row-gap:6px;align-items:center">
-    <div><p style="margin:0">order 0</p><p class="cap" style="margin:0">shuffle the notes, ignore the past</p></div>{{FE_STRIP:k0:shuffled:900}}
-    <div><p style="margin:0">order 1</p><p class="cap" style="margin:0">walk the Für Elise graph</p></div>{{FE_STRIP:k1:order1:900}}
-    <div><p style="margin:0">real</p><p class="cap" style="margin:0">Beethoven's opening</p></div>{{FE_STRIP:k2:melody:900}}
-  </div>
-  <p style="font-size:26px;margin-top:16px">Same notes, same rhythm, same timbre. Only predictability moves.</p>
-  <aside class="notes">Recall Di Liberto: the EEG gain grew with the memory of the listener model. Here memory becomes a property of the music itself.</aside>
-</section>
-
-<section>
-  <span class="mark">5 Music you can experiment on · Running example</span>
-  <h2>Hear the knob turn</h2>
-  <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_shuffled.mp3">play</button><span>order 0</span></div>
-  <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_order1.mp3">play</button><span>order 1</span></div>
-  <div class="audio-row"><button class="play" data-audio="../shared/audio/fe_real.mp3">play</button><span>the real piece</span></div>
-  <div class="audio-row" style="margin-top:22px"><button class="play" data-audio="../shared/audio/bach_order1.mp3">play</button><span>Bach corpus, order 1 chain</span></div>
-  <div class="audio-row"><button class="play" data-audio="../shared/audio/bach_real.mp3">play</button><span>Bach, real</span></div>
-  <p class="tldr" style="margin-top:20px">Each version comes with its settings. That is the dose you can write in a methods section.</p>
-  <aside class="notes">Play order 0 and order 1 for five seconds each, then the real piece. Bach pair if time allows. Für Elise chain sample uses seed 29, generated by src/fur_elise.py.</aside>
-</section>
-
-<section>
-  <span class="mark">5 Music you can experiment on · Running example</span>
-  <h2>A testable prediction: EEG tracking of surprise should rise with the order</h2>
-  <svg class="fig" viewBox="0 0 1152 360">
-    <line x1="120" y1="290" x2="760" y2="290" stroke="#ACA39A"/><line x1="120" y1="290" x2="120" y2="40" stroke="#ACA39A"/>
-    <text x="440" y="330" font-size="20" fill="#5F5D50" text-anchor="middle">order of the stimulus</text>
-    <g font-size="19" fill="#5F5D50" text-anchor="middle"><text x="200" y="314">0</text><text x="360" y="314">1</text><text x="520" y="314">2</text><text x="680" y="314">real</text></g>
-    <text x="100" y="60" font-size="19" fill="#5F5D50" text-anchor="end">EEG gain</text><text x="100" y="82" font-size="19" fill="#5F5D50" text-anchor="end">from surprise</text>
-    <path d="M200,270 L360,170 L520,130 L680,115" fill="none" stroke="#F76902" stroke-width="2.5" stroke-dasharray="7 6"/>
-    <g fill="#FBFAF7" stroke="#F76902" stroke-width="2"><circle cx="200" cy="270" r="7"/><circle cx="360" cy="170" r="7"/><circle cx="520" cy="130" r="7"/><circle cx="680" cy="115" r="7"/></g>
-    <text x="820" y="80" class="illus">Prediction, no data yet</text>
-    <text x="820" y="130" font-size="22" fill="#1F1E1B">If the curve is flat,</text><text x="820" y="158" font-size="22" fill="#1F1E1B">surprise was a proxy</text><text x="820" y="186" font-size="22" fill="#1F1E1B">for something else.</text>
-  </svg>
-  <aside class="notes">This turns Di Liberto's correlation into an intervention. Either outcome is informative.</aside>
-</section>
-
-<section>
-  <span class="mark">5 Music you can experiment on</span>
-  <h2>The catch: higher order chains sound more like the style, and start to copy <span class="status prog">In progress</span></h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/generation_style_vs_copy.png" style="width:600px"></div>
-    <div class="p">
-      <p class="key">A knob has a range</p>
-      <p class="tldr">Up and to the right: more convincing style, but longer spans copied verbatim from training.</p>
-      <p class="tldr">For a stimulus that is new to the listener, stay left.</p>
-    </div>
-  </div>
-  <div class="ref">Chen et al., in preparation</div>
-  <aside class="notes">48 note melodies, 600 per cell. Star: real held out excerpts. Familiarity is a confound in music studies, so copying matters.</aside>
-</section>
-
-<section>
-  <span class="mark">5 Music you can experiment on</span>
-  <h2>Richer knobs live inside large music generators <span class="status rev">Under review</span></h2>
-  {{OLD:Steering a style inside}}
-  <div class="ref">Co authored work under review, MusicGen small and medium<span class="sep"></span><a href="https://arxiv.org/abs/2306.05284">Copet et al. 2023</a></div>
-  <aside class="notes">A style is a thin set of trajectories, not a direction. For brain experiments: removal gives a clean control condition, addition does not yet.</aside>
-</section>
-
-<section>
-  <span class="mark">5 Music you can experiment on</span>
-  <h2>What to measure: alignment that survives an acoustic baseline <span class="status open">Planned</span></h2>
-  {{OLD:What to measure}}
-  <aside class="notes">The brain alignment scorer. Bars are illustrative. Replace with pilot numbers if any exist by December.</aside>
-</section>
-
-<section>
-  <span class="mark">5 Music you can experiment on</span>
-  <h2>One study a biosignal lab could run within a year <span class="status open">Planned</span></h2>
-  <ol style="font-size:26px">
-    <li>Generate pairs that differ in one property only: predictability, style, tempo.</li>
-    <li class="fragment">Record EEG while people listen, including older adults and hearing aid users.</li>
-    <li class="fragment">Test whether the response tracks the property beyond acoustic features.</li>
-    <li class="fragment">Report the generator settings as the dose.</li>
-  </ol>
-  <aside class="notes">Emphasize step 2: the populations where clinical evidence is weakest.</aside>
-</section>
-
-<section>
-  <span class="mark">Close</span>
-  <h2>What I hope you take away, and what I am looking for</h2>
-  <div class="fp">
-    <div class="f" style="width:330px">{{PHOTO:older_adults_choir|Older adults singing together}}<p class="cap">She still sings the hymn. If we could change one thing in it and watch her brain answer, what would we learn?</p></div>
-    <div class="p">
-      <ol class="forecast" style="margin-top:0">
-        <li style="font-size:24px;margin-bottom:14px">Music can be read out of the brain, and music models predict the brain.</li>
-        <li style="font-size:24px;margin-bottom:14px">It is still correlation, and clinical effects are modest.</li>
-        <li style="font-size:24px;margin-bottom:14px">The stimulus is the bottleneck. Generative models make it a variable.</li>
-      </ol>
-      <p class="key" style="font-size:24px;margin-top:6px">Looking for partners</p>
-      <p class="tldr" style="font-size:21px">EEG labs with older adult, hearing loss or dementia cohorts, to run the first controlled stimulus study. We bring the generators and the analysis.</p>
-    </div>
-  </div>
-  <aside class="notes">Return to the opening image and the opening question. Read the three lines. Then the ask, concretely. Stop here, no thank you slide.</aside>
 </section>
 
 </div></div>
