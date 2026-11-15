@@ -37,9 +37,11 @@ BOXES = [  # x, y, w, h, title, sub, fill
     (960, 130, 170, 100, 'Patients', 'therapy outcomes', GROUP),
 ]
 
+MAPN = [0]
 def field_map(at):
+    MAPN[0] += 1; u = MAPN[0]
     s = [f'<svg class="fig map" viewBox="0 0 1152 470" data-id="fieldmap">',
-         '<defs>' + arrowhead('mh-on', ACC) + arrowhead('mh-off', AXIS) + arrowhead('mh-gap', AXIS) + '</defs>']
+         '<defs>' + arrowhead(f'mh-on{u}', ACC) + arrowhead(f'mh-off{u}', AXIS) + '</defs>']
     for x, y, w, h, t, sub, fill in BOXES:
         s.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="3" fill="{fill}"/>')
         s.append(T(x + 20, y + 44, t, 28))
@@ -49,7 +51,7 @@ def field_map(at):
         gap = (k == 'control' and at != 'control')
         col = ACC if on else AXIS
         dash = ' stroke-dasharray="6 6"' if gap else ''
-        mk = 'mh-on' if on else 'mh-off'
+        mk = f'mh-on{u}' if on else f'mh-off{u}'
         s.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{2.5 if on else 1.5}"{dash} marker-end="url(#{mk})"/>')
         anchor = 'middle' if k in ('encode', 'decode') else 'start'
         s.append(T(lx, ly, lab[0], 22 if on else 20, INK if (on or at == 'all') else INK2, anchor, 'font-weight="600"' if on else ''))
