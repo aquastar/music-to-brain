@@ -85,3 +85,5 @@ html,body{background:var(--bg)}
 .reveal .big.plain{border-bottom-color:var(--axis)}
 
 .reveal .photos.tall img{height:340px}
+
+.reveal .fp>.p>svg.fig{width:100% !important;height:auto}

@@ -359,5 +359,60 @@ def mg_dial():
     s.append('</svg>')
     return ''.join(s)
 
-FIGS = {'mg_dial': mg_dial, 'prescription': prescription, 'closed_loop': closed_loop, 'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
+def eran():
+    import math
+    W, H, L = 620, 330, 70
+    sx = lambda ms: L + ms / 600 * (W - L - 20)
+    sy = lambda v: 150 - v * 90
+    reg = [(t, 0.3 * math.exp(-((t - 100) / 40) ** 2) - 0.35 * math.exp(-((t - 300) / 80) ** 2)) for t in range(0, 601, 10)]
+    odd = [(t, v - 1.0 * math.exp(-((t - 180) / 45) ** 2)) for t, v in reg]
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    s.append(f'<rect x="{sx(130):.1f}" y="30" width="{sx(230)-sx(130):.1f}" height="230" fill="{GROUP}"/>')
+    s.append(f'<line x1="{L}" y1="{sy(0)}" x2="{W-20}" y2="{sy(0)}" stroke="{AXIS}"/>')
+    s.append('<polyline fill="none" stroke="%s" stroke-width="2" points="%s"/>' % (LINE, ' '.join(f'{sx(t):.1f},{sy(v):.1f}' for t, v in reg)))
+    s.append('<g data-accent="1"><polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/></g>' % (ACC, ' '.join(f'{sx(t):.1f},{sy(v):.1f}' for t, v in odd)))
+    s.append(T(sx(185), 50, 'ERAN', 22, INK, 'middle'))
+    s.append(T(sx(420), sy(-0.1) - 12, 'regular chord', 19, INK2)); s.append(T(sx(240), sy(-0.95) + 8, 'odd chord', 19, INK))
+    for ms in (0, 200, 400, 600): s.append(T(sx(ms), 290, str(ms), 18, INK2, 'middle'))
+    s.append(T((L + W) / 2, 318, 'ms after the last chord, right frontal', 18, INK2, 'middle'))
+    s.append(T(L - 10, sy(-1) + 5, 'neg', 16, INK2, 'end'))
+    s.append(T(W - 20, 18, 'schematic, not data', 16, INK2, 'end'))
+    s.append('</svg>')
+    return ''.join(s)
+
+def turned_small():
+    rows = [('Koelsch 2000', 'last chord of a cadence', 'ERAN in EEG'),
+            ('Quiroga-Martinez 2019', 'melody uncertainty', 'smaller mismatch response'),
+            ('Rhythmic stimulation', 'tempo of a beat', 'faster walking after stroke'),
+            ('Generators', 'chosen properties, whole pieces', 'the next step')]
+    W, H = 1150, 230
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    s.append(T(0, 20, 'study', 18, INK2)); s.append(T(330, 20, 'the stimulus knob', 18, INK2)); s.append(T(760, 20, 'what moved in the brain', 18, INK2))
+    for i, (a, b, c) in enumerate(rows):
+        y = 32 + i * 48; last = i == 3
+        s.append(f'<rect x="0" y="{y}" width="{W}" height="42" rx="3" fill="{ACCT if last else GROUP}"/>')
+        s.append(T(14, y + 28, a, 21)); s.append(T(330, y + 28, b, 20, INK if last else INK2)); s.append(T(760, y + 28, c, 20, INK if last else INK2))
+    s.append('</svg>')
+    return ''.join(s)
+
+def noz():
+    W, H, L = 700, 420, 160
+    sx = lambda f: L + f / 3.0 * (W - L - 20)
+    rows = [('beat only', [2.4], None), ('imagine a march', [2.4, 1.2], 1.2), ('imagine a waltz', [2.4, 0.8, 1.6], 0.8)]
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    for i, (lab, peaks, new) in enumerate(rows):
+        y0 = 40 + i * 120
+        s.append(T(0, y0 + 60, lab, 22))
+        s.append(f'<line x1="{L}" y1="{y0+80}" x2="{W-20}" y2="{y0+80}" stroke="{AXIS}"/>')
+        for f in peaks:
+            hi = (f == new)
+            col = ACC if (hi and i == 1) else (MUS if hi else LINE)
+            g = '<g data-accent="1">' if (hi and i == 1) else '<g>'
+            s.append(g + f'<line x1="{sx(f):.1f}" y1="{y0+80}" x2="{sx(f):.1f}" y2="{y0+10}" stroke="{col}" stroke-width="4"/>' + T(sx(f), y0 + 4, f'{f} Hz', 17, INK if hi else INK2, 'middle') + '</g>')
+            if f == 1.6 and i == 2: s.append(f'<line x1="{sx(f):.1f}" y1="{y0+80}" x2="{sx(f):.1f}" y2="{y0+30}" stroke="{MUS}" stroke-width="4"/>')
+    s.append(T((L + W) / 2, H - 4, 'EEG frequency, schematic of the paper\'s finding', 18, INK2, 'middle'))
+    s.append('</svg>')
+    return ''.join(s)
+
+FIGS = {'eran': eran, 'turned_small': turned_small, 'noz': noz, 'mg_dial': mg_dial, 'prescription': prescription, 'closed_loop': closed_loop, 'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
         'knob_orders': knob_orders, 'design_strip': design_strip, 'turned': turned}

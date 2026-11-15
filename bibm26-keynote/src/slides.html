@@ -70,7 +70,7 @@
   <span class="mark">Three findings</span>
   <h2>Three steps to get there</h2>
   <ol class="forecast">
-    <li>We can already read music in the brain, and music AI predicts the brain.</li>
+    <li>We can already read music in the brain, and music AI predicts part of its response.</li>
     <li class="fragment">We cannot steer it yet, because natural music does not change on cue.</li>
     <li class="fragment thesis-item">Generative models begin to turn music into a dial.</li>
   </ol>
@@ -101,7 +101,7 @@
   <span class="mark">1 Why music</span>
   <h2>A steady beat can make a person with Parkinson's walk better</h2>
   <div class="fp">
-    <div class="f" style="width:340px">{{PHOTO:metronome|A metronome}}</div>
+    <div class="f" style="width:340px">{{PHOTO:gait_rehab|Gait training session}}</div>
     <div class="p">
       <p class="key">Patients fall into step with the beat</p>
       <p class="tldr">Patients step to the pulse: rhythmic auditory stimulation.</p>
@@ -115,6 +115,8 @@
   <span class="mark">2 What we can see · Running example</span>
   <h2>Your brain predicts every next note, and EEG can see the surprise</h2>
   {{FE_SURPRISE}}
+  <p class="ink2" style="font-size:21px;margin-top:-6px">Di Liberto 2020: in 20 listeners, adding surprise raises EEG prediction from 0.073 to 0.078.</p>
+  <div class="ref"><a href="https://doi.org/10.7554/eLife.51784">Di Liberto et al., Cortical encoding of melodic expectations in human temporal cortex, eLife 2020</a></div>
   <aside class="notes">Audience moment: play the first eight notes in your head or hum them, ask the room which note surprised them. Then reveal the bars. Our running example. Top: the first 18 notes, height is pitch. Fragment: surprise of each note given the previous one, counted on this excerpt. The E, D sharp trill is predictable. The turn to G sharp and the leaps are surprising, only the most surprising note in orange. Question for the room: does the brain track this curve?</aside>
 </section>
 
@@ -122,15 +124,11 @@
   <span class="mark">2 What we can see · Encode</span>
   <h2>Try it: imagine a march. Your cortex now shows a peak the beat does not have</h2>
   <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/nozaradan_spectrum.png" data-evidence style="width:400px"></div>
-    <div class="p">
-      <p class="key">EEG peaks at the imagined meter</p>
-      <p class="tldr">Same beat for everyone, 2.4 Hz. Asked to imagine a march, listeners show a peak at 1.2 Hz. A waltz, at 0.8 and 1.6 Hz.</p>
-      {{PEOPLE:nozaradan|Sylvie Nozaradan|UCLouvain}}
-    </div>
+    <div class="f">{{FIG:noz}}</div>
+    <div class="p">{{PEOPLE:nozaradan|Sylvie Nozaradan|UCLouvain}}</div>
   </div>
   <div class="ref"><a href="https://doi.org/10.1523/JNEUROSCI.0411-11.2011">Nozaradan et al., Tagging the neuronal entrainment to beat and meter, J Neurosci 2011</a></div>
-  <aside class="notes">Audience moment. Play nothing, tap a steady beat on the lectern and ask the room to imagine it as a march: one two, one two. Then reveal: in EEG, listeners who imagine a march show a peak at half the beat frequency, a waltz at a third. The meter exists only in the brain. Nozaradan 2011, J Neurosci. Red: march imagery, green: waltz, blue: beat only.</aside>
+  <aside class="notes">Audience moment. Play nothing, tap a steady beat on the lectern and ask the room to imagine it as a march: one two, one two. Then reveal: in EEG, listeners who imagine a march show a peak at half the beat frequency, a waltz at a third. The meter exists only in the brain. Nozaradan 2011, J Neurosci.</aside>
 </section>
 
 <section data-sec="60">
@@ -150,7 +148,7 @@
 </section>
 
 <section data-sec="55">
-  <span class="mark">2 We can read the musical brain</span>
+  <span class="mark">2 What we can see </span>
   <h2>A music AI's layers line up with the auditory cortex's hierarchy</h2>
   <div class="fp">
     <div class="f">{{FIG:mischler_curves}}</div>
@@ -164,7 +162,7 @@
 </section>
 
 <section data-sec="70">
-  <span class="mark">2 We can read the musical brain · My own data</span>
+  <span class="mark">2 What we can see · My own data</span>
   <h2>Averaged over hundreds of notes, more surprising notes get a bigger brain response <span class="status prog">In progress</span></h2>
   <div class="fp">
     <div class="f">{{EEG_ERP}}</div>
@@ -178,15 +176,15 @@
   <aside class="notes">Orange: notes one SD more surprising, gray: one SD less. 29 listeners in all, 14 to 21 per song. Clear when averaged over hundreds of notes. Not yet run: the group level control with an untrained model, and confirming which nuisance regressors are in the regression. Surprise for every note from MusicGen-large, EEG from an open dataset of people hearing familiar songs. Live demo: aquastar.github.io/music-to-brain/eeg-demo. Not yet tested against the untrained model at group level. Regression over all songs and all 29 listeners, separating overlapping note responses. Cluster permutation p = 0.0028, 11 frontocentral channels, 0.09 to 0.34 s, peak 0.16 s, a P2 like window. Scalp maps: extra response per one SD more surprise. If time allows, switch to the demo for 20 seconds: step to the next surprising note at quarter speed. Fallback is a screen recording. To confirm with Zhiqian: which nuisance regressors (envelope, onsets) the group regression includes. Scalp maps use teal for negative and purple for positive.</aside>
 </section>
 
-<section data-sec="90" class="fullbleed" style="padding:18px 0 0 0 !important">
-  <div style="padding:0 64px"><span class="mark">2 We can read the musical brain · Interactive demo</span>
+<section data-sec="100" class="fullbleed" style="padding:18px 0 0 0 !important">
+  <div style="padding:0 64px"><span class="mark">2 What we can see · Interactive demo</span>
   <h2 style="font-size:30px;margin:0 0 8px 0">Try it: step to the next surprising note and watch the EEG of the 19 listeners who heard this song</h2></div>
   <div style="width:1200px;height:600px;overflow:hidden;margin-left:20px"><iframe class="embed" data-src="../eeg-demo/index.html" width="1500" height="750" style="display:block;transform:scale(0.8);transform-origin:0 0" title="EEG surprise demo"></iframe></div>
-  <aside class="notes">Say before stepping: averaged over hundreds of notes the effect is clear, a single note is too noisy to read. The surprising notes shown are picked by the model, not by me. Live demo, 60 to 90 s. Pick Home on the Range, quarter speed, press next surprising note. Point at the score, the model curve and the EEG bump in the shaded window. Fallback: the 20 s screen recording. Public dataset OpenNeuro ds005876. Fallback if the browser fails: shared/eeg_demo_fallback.webm (20 s screen recording, three surprising notes at quarter speed). End on the EEG bump after a surprising note.</aside>
+  <aside class="notes">Say before stepping: averaged over hundreds of notes the effect is clear, a single note is too noisy to read. The surprising notes shown are picked by the model, not by me. Live demo, 60 to 90 s. Pick Home on the Range, quarter speed, press next surprising note. Point at the score, the model curve and the EEG bump in the shaded window. Fallback: the 20 s screen recording. Public dataset OpenNeuro ds005876. Fallback if the browser fails: shared/eeg_demo_fallback.webm (20 s screen recording, three surprising notes at quarter speed). End by saying: single notes do not separate the two models, the average on the last slide is the claim, and its control is pending. Do NOT tick the random model control live: on Home on the Range the untrained model looks better per note (0.16 vs -0.19).</aside>
 </section>
 
 <section data-sec="75">
-  <span class="mark">3 The catch</span>
+  <span class="mark">3 Seeing is not understanding</span>
   <h2>Past about eight notes, a better music model fits the brain worse</h2>
   {{FIG:kern_context}}
   <div class="ref">Redrawn after <a href="https://doi.org/10.7554/eLife.80935">Kern et al., Cortical activity during naturalistic music listening reflects short range predictions based on long term experience, eLife 2022</a></div>
@@ -194,15 +192,15 @@
 </section>
 
 <section data-sec="60" data-sparse="1">
-  <span class="mark">3 The catch</span>
+  <span class="mark">3 Seeing is not understanding</span>
   <h2>The catch: in every one of these studies, the music was fixed</h2>
   <div class="cols" style="margin-top:20px">
-    <div><p class="big plain">One song</p><p class="ink2" style="font-size:22px">the brain decoder learned only the song it played back</p></div>
-    <div><p class="big plain">Five people</p><p class="ink2" style="font-size:22px">behind the AI composer reading brain scans</p></div>
-    <div><p class="big plain">Note by note</p><p class="ink2" style="font-size:22px">my EEG link: r = {{PERNOTE:r_musicgen}}, an untrained model {{PERNOTE:r_random_model}}, both chance level</p></div>
+    <div><p class="big plain">One song</p><p class="ink2" style="font-size:22px">the decoder never heard another</p></div>
+    <div><p class="big plain">540 clips</p><p class="ink2" style="font-size:22px">chosen in advance, nobody set genre or tempo</p></div>
+    <div><p class="big plain">Fixed songs</p><p class="ink2" style="font-size:22px">note by note my EEG link is at chance: r = {{PERNOTE:r_musicgen}}, untrained model {{PERNOTE:r_random_model}}</p></div>
   </div>
   <p style="font-size:30px;margin-top:40px">We can see the musical brain. With recorded music, nobody can change one property and hold the rest.</p>
-  <aside class="notes">One honest slide. Bellier: one song. Brain2Music: 5 people. My per note check: MusicGen r = 0.083, untrained model 0.155, both inside 2000 shuffles. Also Kern 2022 (backup): past about eight notes a better music model fits the brain worse.</aside>
+  <aside class="notes">One honest slide. Bellier: one song. Brain2Music: 5 people. My per note check: MusicGen r = 0.083, untrained model 0.155, both inside 2000 shuffles. Also Kern 2022 (backup): past about eight notes a better music model fits the brain worse. Say: a dial gives hundreds of notes at each chosen surprise level, fixed songs cannot.</aside>
 </section>
 
 <section data-sec="50">
@@ -238,13 +236,13 @@
   <aside class="notes">The turn of the talk. One breath: we cannot vary real music one factor at a time, so research stays correlational and therapy stays unreportable. Every crack from Acts 2 and 3 is this one. Finding 3 from the forecast. The metronome slide just showed it: the one therapy with a set stimulus is the best understood.</aside>
 </section>
 
-<section data-sec="60">
+<section data-sec="80">
   <span class="mark">4 The clinic · After the turn</span>
   <h2>Where the stimulus had a knob, the brain moved. Generators bring that knob to whole pieces</h2>
   <div class="audio-row"><button class="play" data-audio="../shared/audio/cadence_regular.mp3">play</button><span>a regular cadence</span><button class="play" data-audio="../shared/audio/cadence_odd.mp3">play</button><span>the same with an odd last chord</span></div>
-  {{FIG:turned}}
+  <div class="fp"><div class="f">{{FIG:eran}}</div><div class="p"><p class="key">Your brain just did this</p><p class="tldr">An odd last chord evokes a right frontal negativity within about 200 ms.</p><ul><li>Melody uncertainty shrinks the mismatch response</li><li>A tempo knob speeds walking after stroke</li></ul></div></div>
   <div class="ref"><a href="https://doi.org/10.1162/089892900562183">Koelsch et al. 2000</a><span class="sep"></span><a href="https://doi.org/10.1016/j.cortex.2019.06.010">Quiroga-Martinez et al. 2019</a></div>
-  <aside class="notes">Cadences synthesized for the talk in the style of Koelsch 2000 (odd final chord: a Neapolitan). Play both: everyone hears the odd one, and EEG shows it within 200 ms. Di Liberto and Kern turned the model, not the stimulus, so they are not rows here. Payoff of the Di Liberto setup: memory length was a property of the listener model, here the music itself moves. Koelsch 2000: ERAN to irregular chords. Mismatch negativity to deviant notes is reduced in uncertain melodies (Quiroga-Martinez 2019, Cortex). Those designs use short artificial sequences. The new thing is naturalistic, parametric control at scale. Controlled stimuli complement natural listening.</aside>
+  <aside class="notes">Cadences synthesized for the talk in the style of Koelsch 2000 (odd final chord: a Neapolitan). Play both: everyone hears the odd one, and EEG shows it within 200 ms. Di Liberto and Kern turned the model, not the stimulus, so they are not rows here. Payoff of the Di Liberto setup: memory length was a property of the listener model, here the music itself moves. Koelsch 2000: ERAN to irregular chords. Mismatch negativity to deviant notes is reduced in uncertain melodies (Quiroga-Martinez 2019, Cortex). Those designs use short artificial sequences. The new thing is naturalistic, parametric control at scale. Controlled stimuli complement natural listening. The ERAN drawing is a schematic of the paper's finding, not data. Memory length in Di Liberto 2020 was a setting of the listener model, the generator makes it a setting of the music.</aside>
 </section>
 
 <section data-sec="25" data-auto-animate>
@@ -270,41 +268,48 @@
   <aside class="notes">The graph is Für Elise: each note points to the notes that follow it. Order 0 shuffles, order 1 walks this graph, higher orders approach the piece. The order 1 sample was made with seed 29 by src/fur_elise.py. A controlling three steps: report the generator settings, compute surprise per stimulus with a listener model, include onsets, envelope and interval size as nuisance regressors. Backup: six traditions from one transition table. Intervals and contour change with order too, so surprise is computed per stimulus and onsets, envelope and interval size go in as nuisance regressors. Backup has the style vs copying result: higher orders copy longer spans from training, so stay at low order for new stimuli.</aside>
 </section>
 
-<section data-sec="90">
-  <span class="mark">5 Music you can experiment on · A neural generator</span>
-  <h2>A neural generator plays the same three melodies as real music: shuffled, chained, Beethoven</h2>
-  <div class="audio-row"><button class="play" data-audio="../shared/audio/mgmel_fe_shuffled.mp3">play</button><span>order 0</span><button class="play" data-audio="../shared/audio/mgmel_fe_order1.mp3">play</button><span>order 1</span><button class="play" data-audio="../shared/audio/mgmel_fe_real.mp3">play</button><span>Beethoven</span></div>
-  <div style="display:flex;gap:30px;margin-top:6px">{{FE_STRIP:mm0:shuffled:340}}{{FE_STRIP:mm1:order1:340}}{{FE_STRIP:mm2:melody:340}}</div>
-  <div class="cols" style="margin-top:16px">
-    <div><p style="font-size:30px;margin:0">0.54 to 0.60</p><p class="ink2" style="font-size:22px">how closely each clip follows its own melody (chroma correlation)</p></div>
-    <div><p style="font-size:30px;margin:0">0.14 to 0.22</p><p class="ink2" style="font-size:22px">the same clip against the other two melodies</p></div>
-  </div>
-  <p class="tldr" style="margin-top:28px">Same prompt, same seed. Only the melody we feed in changes, so predictability can become a setting in real sounding music.</p>
-  <div class="ref"><a href="https://arxiv.org/abs/2306.05284">Copet et al., Simple and controllable music generation (MusicGen), NeurIPS 2023</a></div>
-  <aside class="notes">Generated for this talk with MusicGen melody on a laptop CPU: prompt "gentle solo piano, classical, warm room", seed 11, conditioned on the three Für Elise versions from the dial slide. Scripts: src/melody.py and src/gen.py, numbers from src/melody_check.py (melody_check.json). Play four seconds of each. This is the dial only a generator can turn: the predictability of the notes is set by the order, the generator makes it sound like music.</aside>
-</section>
-
-<section data-sec="75">
+<section data-sec="40">
   <span class="mark">5 Music you can experiment on · A neural generator</span>
   <h2>Turn one dial inside a neural music generator: same seed, only the tempo words change</h2>
   <div class="audio-row"><button class="play" data-audio="../shared/audio/mg_tempo_slow.mp3">play</button><span>slow</span><button class="play" data-audio="../shared/audio/mg_tempo_medium.mp3">play</button><span>medium</span><button class="play" data-audio="../shared/audio/mg_tempo_fast.mp3">play</button><span>fast</span></div>
   {{FIG:mg_dial}}
   <div class="ref"><a href="https://arxiv.org/abs/2306.05284">Copet et al., Simple and controllable music generation (MusicGen), NeurIPS 2023</a></div>
-  <aside class="notes">Predictability and style are the harder dials, the next step of our work. Generated for this talk with MusicGen small on a laptop CPU: prompt "solo piano melody, calm and simple" plus the tempo words, seed 7. Tempo estimated from the loudness envelope: 59, 100 and 158 bpm. Tempo is the easy dial. Predictability and style need the steering work (backup slide), which is under review. Play each for five seconds. Say: in our own work under review, a style can be removed cleanly inside MusicGen, adding one does not work yet (backup slide). A one note memory already tells six musical traditions apart (backup). </aside>
+  <aside class="notes">Tempo is the dial a metronome already has. The next slide is one only a generator can turn. MusicGen small, one seed, generated for this talk, measured 59, 100 and 158 bpm.</aside>
+</section>
+
+<section data-sparse="1" data-sec="90">
+  <span class="mark">5 Music you can experiment on · A neural generator</span>
+  <h2>A neural generator plays the same three melodies as real music: shuffled, chained, Beethoven</h2>
+  <div class="audio-row"><button class="play" data-audio="../shared/audio/mgmel_fe_shuffled.mp3">play</button><span>order 0</span><button class="play" data-audio="../shared/audio/mgmel_fe_order1.mp3">play</button><span>order 1</span><button class="play" data-audio="../shared/audio/mgmel_fe_real.mp3">play</button><span>Beethoven</span></div>
+  <div style="display:flex;gap:30px;margin-top:6px">{{FE_STRIP:mm0:shuffled:340}}{{FE_STRIP:mm1:order1:340}}{{FE_STRIP:mm2:melody:340}}</div>
+  
+  <p class="tldr" style="margin-top:28px">One seed, generated for this talk. Same prompt, only the melody we feed in changes.</p>
+  <p class="key" style="margin-top:10px">Predictability can be fed in</p>
+  <div class="ref"><a href="https://arxiv.org/abs/2306.05284">Copet et al., Simple and controllable music generation (MusicGen), NeurIPS 2023</a></div>
+  <aside class="notes">Generated for this talk with MusicGen melody on a laptop CPU: prompt "gentle solo piano, classical, warm room", seed 11, conditioned on the three Für Elise versions from the dial slide. Scripts: src/melody.py and src/gen.py, numbers from src/melody_check.py (melody_check.json). Play four seconds of each. This is the dial only a generator can turn: the predictability of the notes is set by the order, the generator makes it sound like music. Chroma correlation of each clip with its own melody 0.54 to 0.60, with the other two 0.14 to 0.22 (melody_check.json).</aside>
 </section>
 
 <section data-sec="40">
   <span class="mark">5 Music you can experiment on · Running example</span>
   <h2>Prediction: the more natural the order, the more closely EEG should track each note's surprise</h2>
+  <p class="ink2" style="font-size:21px;margin-top:-10px">More structure, sharper expectations, so a broken one costs more.</p>
   {{FIG:knob_orders}}
   <aside class="notes">Surprise here comes from a listener model (as in Kern) computed on each stimulus, not from the generator. If the curve is flat after controlling intervals and onsets, surprise was a proxy for something else. Either outcome is informative.</aside>
 </section>
 
-<section data-sec="55">
+<section data-sec="60">
+  <span class="mark">5 What becomes possible · First step</span>
+  <h2>First step: one EEG study, four dial settings, 48 listeners <span class="status open">Planned</span></h2>
+  <div style="margin-top:30px">{{FIG:design_strip}}</div>
+  <p class="cap" style="margin-top:14px">Planned design, group size to be fixed from the pilot</p>
+  <aside class="notes">Concrete enough for an EEG lab to say yes. The pilot (ds005876, 29 listeners) gives the effect window and size. Group size about 24 per group will be fixed from that pilot, not presented as a power result. Older adults first, because clinical evidence is weakest there, and hearing aid users later because compression changes the acoustic baseline. Group size about 24 per group, fixed from the pilot (my ds005876 analysis), not a power result. Year 2: the same protocol in a hearing loss or dementia cohort. One line from backup: what to measure is alignment that survives an acoustic baseline. To confirm with Zhiqian (options, not on the slide): hearing screening, a linear trend test across orders, z scoring surprise within condition, an attention probe, stimulus counts, the clinical population and outcome. To confirm with Zhiqian (all on the slide under Planned): corpus trained chains instead of Für Elise, unfamiliar held out real melodies with a familiarity rating, hearing screening, the linear trend test and decision rule. Option: also record heart rate and skin conductance for the ECG and wearables part of the room.</aside>
+</section>
+
+<section data-sec="75">
   <span class="mark">5 What becomes possible</span>
   <h2>Close the loop: the brain's response chooses the next phrase of music <span class="status open">Vision</span></h2>
   <div class="audio-row"><button class="play" data-audio="../shared/audio/mg_adapt_mockup.mp3">play</button><span>mock up: the same piece moving through three settings, not yet driven by EEG</span></div>
-  {{FIG:closed_loop}}
+  <div style="position:relative">{{FIG:closed_loop}}<img class="photo" src="../shared/figs/photos/eeg_experiment.jpg" alt="EEG experiment" style="position:absolute;right:0;top:345px;width:260px;height:120px;object-fit:cover;border-radius:3px"></div>
   <aside class="notes">The future picture. Each piece of the loop exists today: generators with settable properties, EEG surprise responses, models of the brain. What is missing is putting them in one loop, with the settings logged as the dose. Vision, not a result. Say: the hard part is reading the brain fast enough, single trials are noisy, so the loop will first work over whole phrases or sessions.</aside>
 </section>
 
@@ -319,27 +324,20 @@
       <p class="ink2" style="font-size:21px">The same dial could be read out with EEG, heart rate, skin conductance or sleep.</p>
     </div>
   </div>
+  <p class="cap">fictional example</p>
   <aside class="notes">Fictional example patient, a vision of reporting, not a treatment claim. The point: each line is a parameter we can set, log and repeat.</aside>
 </section>
 
-<section data-sec="50">
-  <span class="mark">5 What becomes possible</span>
-  <h2>Three things a music dial makes possible <span class="status open">Vision</span></h2>
-  <div class="photos tall">
-    <figure>{{PHOTO:gait_rehab|Rehabilitation session}}<figcaption>A music dose for rehabilitation and dementia<span>settings written down, adapted to the person</span></figcaption></figure>
-    <figure>{{PHOTO:eeg_experiment|EEG experiment}}<figcaption>A standard music probe for EEG<span>like gratings in vision research</span></figcaption></figure>
-    <figure>{{PHOTO:child_piano_lesson|Child at the piano}}<figcaption>Music tuned to a listener<span>hearing, age, taste</span></figcaption></figure>
+<section data-sec="65">
+  <span class="mark">5 What becomes possible · Next month</span>
+  <h2>Three experiments you could run next month with these stimuli</h2>
+  <div class="photos">
+    <figure>{{PHOTO:eeg_cap|EEG cap}}<figcaption>EEG lab<span>the four orders, your own TRF pipeline</span></figcaption></figure>
+    <figure>{{PHOTO:metronome|A metronome}}<figcaption>ECG or wearables lab<span>the three tempo clips, heart rate and skin conductance</span></figcaption></figure>
+    <figure>{{PHOTO:older_adults_choir|Older adults singing}}<figcaption>Clinical cohort<span>log the settings of what is played</span></figcaption></figure>
   </div>
-  <p class="ink2" style="font-size:21px;margin-top:10px">The same dial could be tested with heart rate, skin conductance and sleep EEG.</p>
-  <aside class="notes">Three pictures to take home. Keep each to one sentence. All three are visions, the protocol on the next slide is the first step.</aside>
-</section>
-
-<section data-sec="60">
-  <span class="mark">5 What becomes possible · First step</span>
-  <h2>First step: one EEG study, four dial settings, 48 listeners <span class="status open">Planned</span></h2>
-  <div style="margin-top:30px">{{FIG:design_strip}}</div>
-  <p class="cap" style="margin-top:14px">Planned design, group size to be fixed from the pilot</p>
-  <aside class="notes">Concrete enough for an EEG lab to say yes. The pilot (ds005876, 29 listeners) gives the effect window and size. Group size about 24 per group will be fixed from that pilot, not presented as a power result. Older adults first, because clinical evidence is weakest there, and hearing aid users later because compression changes the acoustic baseline. Group size about 24 per group, fixed from the pilot (my ds005876 analysis), not a power result. Year 2: the same protocol in a hearing loss or dementia cohort. One line from backup: what to measure is alignment that survives an acoustic baseline. To confirm with Zhiqian (options, not on the slide): hearing screening, a linear trend test across orders, z scoring surprise within condition, an attention probe, stimulus counts, the clinical population and outcome. To confirm with Zhiqian (all on the slide under Planned): corpus trained chains instead of Für Elise, unfamiliar held out real melodies with a familiarity rating, hearing screening, the linear trend test and decision rule. Option: also record heart rate and skin conductance for the ECG and wearables part of the room.</aside>
+  <p class="ink2" style="font-size:20px;margin-top:10px">Open questions, no result yet. Stimuli and settings: aquastar.github.io/music-to-brain/stimuli</p>
+  <aside class="notes">Each is open, no result claimed. The QR on the last slide points to the same page.</aside>
 </section>
 
 <section data-sec="60">
@@ -348,6 +346,7 @@
   <div class="fp">
     <div class="f" style="width:520px">{{PHOTO:older_adults_choir|Older adults singing together}}</div>
     <div class="p">
+      <p class="ink2" style="font-size:20px;margin:0 0 10px 0">We can read it. We cannot steer it yet. Generators give us the dial.</p>
       <p class="key accent" style="font-size:24px">We need an EEG or physiology lab with older or hearing impaired listeners</p>
       <div class="audio-row" style="margin-top:14px"><button class="play" data-audio="../shared/audio/bellier_nonlinear.mp3">play</button><span>once more, the song as the brain played it</span></div>
       <div style="display:flex;gap:18px;align-items:center;margin-top:16px"><img class="photo" src="../shared/figs/qr_stimuli.svg" style="width:150px;height:150px"><p class="ink2" style="font-size:20px;margin:0">the stimuli, their settings and the demo<br>aquastar.github.io/music-to-brain/stimuli</p></div>
@@ -360,6 +359,18 @@
 <section data-backup="1">
   <span class="mark">Backup</span>
   <p class="thesis">Backup slides</p>
+</section>
+
+<section data-backup="1" data-sec="50">
+  <span class="mark">5 What becomes possible</span>
+  <h2>Three things a music dial makes possible <span class="status open">Vision</span></h2>
+  <div class="photos tall">
+    <figure>{{PHOTO:gait_rehab|Rehabilitation session}}<figcaption>A music dose for rehabilitation and dementia<span>settings written down, adapted to the person</span></figcaption></figure>
+    <figure>{{PHOTO:eeg_experiment|EEG experiment}}<figcaption>A standard music probe for EEG<span>like gratings in vision research</span></figcaption></figure>
+    <figure>{{PHOTO:child_piano_lesson|Child at the piano}}<figcaption>Music tuned to a listener<span>hearing, age, taste</span></figcaption></figure>
+  </div>
+  <p class="ink2" style="font-size:21px;margin-top:10px">The same dial could be tested with heart rate, skin conductance and sleep EEG.</p>
+  <aside class="notes">Three pictures to take home. Keep each to one sentence. All three are visions, the protocol on the next slide is the first step.</aside>
 </section>
 
 <section data-backup="1" data-sec="40">

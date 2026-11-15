@@ -258,8 +258,11 @@ def build():
         return f'<section{a}>{body}</section>'
     src = re.sub(r'<section([^>]*)>(.*?)</section>', stamp, src, flags=re.S)
     open(os.path.join(ROOT, 'index.html'), 'w').write(src)
-    print(f'ledger: {t} s = {t/60:.1f} min (window 1700 to 2150 s)', 'OVER BUDGET' if (t > 2150 or t < 1700) else 'ok', '| act starts (min):', acts)
+    print(f'ledger: {t} s = {t/60:.1f} min (window 1750 to 2150 s)', 'OVER BUDGET' if (t > 2150 or t < 1750) else 'ok', '| act starts (min):', acts)
     if over: print('gate:', '; '.join(over))
+    for bad in ('the listener model', 'the music model'):
+        k = src.find('Where the stimulus had a knob')
+        if k >= 0 and bad in src[k:src.find('</section>', k)]: over.append(f'knob slide still lists {bad}')
     if MISSING: print('missing images:', ', '.join(sorted(set(MISSING))))
     print('slides:', src.count('<section'), ' style violations:', bad or 'none')
 
