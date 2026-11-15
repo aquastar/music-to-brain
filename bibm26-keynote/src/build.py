@@ -191,6 +191,10 @@ def build():
     src = src.replace('{{FOREST_FULL}}', forest(FOREST))
     src = src.replace('{{FOREST_PREVIEW}}', forest(PREVIEW_ROWS, preview=True))
     src = src.replace('{{COVER_MELODY}}', cover_melody())
+    import redraw
+    src = re.sub(r'\{\{FIG:(\w+)\}\}', lambda m: redraw.FIGS[m.group(1)](), src)
+    PN = redraw.pernote()
+    src = re.sub(r'\{\{PERNOTE:(\w+)\}\}', lambda m: str(PN[m.group(1)]), src)
     if '{{EEG_' in src:
         import eeg_figs
         src = src.replace('{{EEG_ERP}}', eeg_figs.erp_svg()).replace('{{EEG_TOPO}}', eeg_figs.topo_svg())
@@ -203,18 +207,35 @@ def build():
     vis = re.sub(r'<[^>]+>', ' ', vis)
     vis = re.sub(r'&[#\w]+;', ' ', vis)
     bad = [c for c in ('—', '–', ';') if c in vis]
-    # time ledger: data-sec per slide, backup excluded, budget 2250 s
-    t = 0; acts = {}; over = []
-    for m in re.finditer(r'<section([^>]*)>(.*?)</section>', src, flags=re.S):
+    # time ledger (data-sec per slide, backup excluded), minute stamps in notes, word gate
+    t = 0; acts = {}; over = []; words = []; out = []; pos = 0
+    total = sum(int(re.search(r'data-sec="(\d+)"', m.group(1)).group(1)) for m in re.finditer(r'<section([^>]*)>', src) if 'data-backup' not in m.group(1) and 'data-sec' in m.group(1))
+    def stamp(m):
+        nonlocal t
         a, body = m.group(1), m.group(2)
-        if 'data-backup' in a: continue
+        if 'data-backup' in a: return m.group(0)
         sec = re.search(r'data-sec="(\d+)"', a)
-        if not sec: over.append('slide without data-sec'); continue
+        if not sec: over.append('slide without data-sec'); return m.group(0)
         mk = re.search(r'<span class="mark">(\d)', body)
         if mk and mk.group(1) not in acts: acts[mk.group(1)] = round(t / 60, 1)
         if 'class="thesis"' in body and 'stimulus' in body: acts['thesis'] = round(t / 60, 1)
+        body = body.replace('<aside class="notes">', f'<aside class="notes">[minute {t/60:.1f} of {total/60:.0f}] ', 1)
+        # word gate: visible body words outside headline, mark, svg, ref, notes
+        v = re.sub(r'<(svg|aside|h2|script)[^>]*>.*?</\1>', ' ', body, flags=re.S)
+        v = re.sub(r'<div class="ref">.*?</div>', ' ', v, flags=re.S)
+        v = re.sub(r'<span class="(mark|status)[^"]*">.*?</span>', ' ', v, flags=re.S)
+        v = re.sub(r'<button[^>]*>.*?</button>', ' ', v, flags=re.S)
+        v = re.sub(r'<figcaption>.*?</figcaption>', ' ', v, flags=re.S)
+        n = len(re.sub(r'<[^>]+>', ' ', v).split()); nli = len(re.findall(r'<li[ >]', body))
+        idx = len(words)
+        words.append(n)
+        if (n > 30 or nli > 3) and 'data-gate' not in a: over.append(f'slide {idx}: {n} words, {nli} items')
         t += int(sec.group(1))
-    print(f'ledger: {t} s = {t/60:.1f} min (budget 2250 s)', 'OVER BUDGET' if t > 2250 else 'ok', '| act starts (min):', acts, *over)
+        return f'<section{a}>{body}</section>'
+    src = re.sub(r'<section([^>]*)>(.*?)</section>', stamp, src, flags=re.S)
+    open(os.path.join(ROOT, 'index.html'), 'w').write(src)
+    print(f'ledger: {t} s = {t/60:.1f} min (budget 2050 s)', 'OVER BUDGET' if t > 2050 else 'ok', '| act starts (min):', acts)
+    if over: print('gate:', '; '.join(over))
     if MISSING: print('missing images:', ', '.join(sorted(set(MISSING))))
     print('slides:', src.count('<section'), ' style violations:', bad or 'none')
 
