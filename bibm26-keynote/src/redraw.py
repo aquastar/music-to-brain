@@ -155,9 +155,9 @@ def design_strip():
 
 def turned():
     W_, H_ = 1150, 400
-    rows = [('Koelsch 2000', 'one chord in a sequence', 'odd chord vs regular chord'),
-            ('Di Liberto 2020', 'the listener model', 'how many bars it remembers'),
-            ('Kern 2022', 'the music model', 'how many notes of context it sees'),
+    rows = [('Koelsch 2000', 'the last chord of a cadence', 'EEG: an early negativity (ERAN)'),
+            ('Quiroga-Martinez 2019', 'how uncertain a melody is', 'EEG: a smaller mismatch response'),
+            ('Rhythmic stimulation', 'the tempo of a beat', 'gait: faster walking after stroke'),
             ('Generators', 'chosen properties, whole pieces', 'the next step')]
     W, H = 1150, 400
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
