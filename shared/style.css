@@ -46,3 +46,34 @@ html,body{background:var(--bg)}
 .reveal button.play{font-family:"et-book",Georgia,serif;font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:#1F1E1B;
   background:#EFEBE5;border:0;border-radius:3px;padding:6px 14px;cursor:pointer;margin-right:10px;vertical-align:3px}
 .reveal button.play:hover{background:#FAD6BA}
+
+/* v2.1 additions for the BIBM keynote rebuild (2026-11-15) */
+.reveal .fp{display:flex;gap:40px;align-items:flex-start}
+.reveal .fp>.f{flex:0 0 auto}
+.reveal .fp>.f img{display:block;border-bottom:1px solid var(--rule)}
+.reveal .fp>.p{flex:1;min-width:0}
+.reveal .key{font-size:27px;line-height:1.25;color:var(--ink);margin:0 0 14px 0;padding-bottom:6px;border-bottom:3px solid var(--accent);display:inline-block}
+.reveal .tldr{font-size:23px;line-height:1.35;color:var(--ink2);margin:0 0 12px 0}
+.reveal .p ul{margin:0 0 0 1em;padding:0}
+.reveal .p li{font-size:22px;line-height:1.35;margin:.25em 0}
+.reveal .cap{font-size:17px;line-height:1.3;color:var(--ink2);margin:6px 0 0 0}
+.reveal .people{display:flex;gap:18px;margin-top:18px}
+.reveal .people figure{margin:0;width:120px}
+.reveal .people img{width:120px;height:120px;object-fit:cover;border-radius:6px;display:block}
+.reveal .people figcaption{font-size:17px;line-height:1.2;color:var(--ink);margin-top:6px}
+.reveal .people figcaption span{display:block;color:var(--ink2);font-size:15px}
+.reveal .photos{display:flex;gap:20px}
+.reveal .photos figure{margin:0;flex:1}
+.reveal .photos img{width:100%;height:230px;object-fit:cover;border-radius:3px;display:block}
+.reveal .photos figcaption{font-size:22px;color:var(--ink);margin-top:8px}
+.reveal .photos figcaption span{display:block;font-size:18px;color:var(--ink2)}
+.reveal .forecast{counter-reset:f;list-style:none;margin:10px 0 0 0;padding:0}
+.reveal .forecast li{counter-increment:f;font-size:32px;line-height:1.3;margin:0 0 26px 0;padding-left:56px;position:relative}
+.reveal .forecast li::before{content:counter(f);position:absolute;left:0;top:0;font-size:32px;color:var(--ink);border-bottom:3px solid var(--accent);line-height:1.1}
+.reveal .preview-tag{display:block;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin:0 0 6px 0}
+.reveal .audio-row{display:flex;gap:26px;align-items:center;margin:10px 0}
+.reveal .audio-row span{font-size:21px;color:var(--ink2)}
+.reveal section.cover .cover-mel{position:absolute;left:64px;top:430px}
+.reveal section.cover .cover-mel circle{opacity:.25;animation:fe-pulse 5.6s infinite}
+@keyframes fe-pulse{0%{opacity:.25}3%{opacity:1}12%{opacity:.25}100%{opacity:.25}}
+.reveal .illus{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
