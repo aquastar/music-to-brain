@@ -205,7 +205,7 @@ def build():
     src = re.sub(r'\{\{MAP:([^}]+)\}\}', lambda m: field_map(m.group(1)), src)
     src = src.replace('{{FE_SURPRISE}}', fe_surprise())
     src = re.sub(r'\{\{FE_STRIP:(\w+)(?::(\w+))?(?::(\d+))?\}\}', lambda m: fe_strip(m.group(1), m.group(2), w=int(m.group(3) or 1100), h=90 if m.group(3) else 120, r=5 if m.group(3) else 6), src)
-    src = src.replace('{{FOREST_FULL}}', forest(FOREST, foot='Filled: interval excludes zero (orange: moderate certainty). Four weeks after treatment, no clear effect.'))
+    src = src.replace('{{FOREST_FULL}}', forest([FOREST[0], FOREST[2], FOREST[4]], foot='Filled: interval excludes zero (orange: moderate certainty). Four weeks after treatment, no clear effect.'))
     src = src.replace('{{FOREST_PREVIEW}}', forest(PREVIEW_ROWS, preview=True))
     src = src.replace('{{COVER_MELODY}}', cover_melody())
     import redraw
@@ -258,7 +258,7 @@ def build():
         return f'<section{a}>{body}</section>'
     src = re.sub(r'<section([^>]*)>(.*?)</section>', stamp, src, flags=re.S)
     open(os.path.join(ROOT, 'index.html'), 'w').write(src)
-    print(f'ledger: {t} s = {t/60:.1f} min (budget 2200 s)', 'OVER BUDGET' if t > 2200 else 'ok', '| act starts (min):', acts)
+    print(f'ledger: {t} s = {t/60:.1f} min (window 1750 to 2150 s)', 'OVER BUDGET' if (t > 2150 or t < 1750) else 'ok', '| act starts (min):', acts)
     if over: print('gate:', '; '.join(over))
     if MISSING: print('missing images:', ', '.join(sorted(set(MISSING))))
     print('slides:', src.count('<section'), ' style violations:', bad or 'none')
