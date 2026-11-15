@@ -158,17 +158,17 @@ def turned():
     rows = [('Koelsch 2000', 'one chord in a sequence', 'odd chord vs regular chord'),
             ('Di Liberto 2020', 'the listener model', 'how many bars it remembers'),
             ('Kern 2022', 'the music model', 'how many notes of context it sees'),
-            ('Generators', 'the music itself', 'chosen properties, whole pieces')]
+            ('Generators', 'chosen properties, whole pieces', 'the next step')]
     W, H = 1150, 400
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
-    s.append(T(0, 24, 'who', 20, INK2)); s.append(T(260, 24, 'what was turned', 20, INK2)); s.append(T(640, 24, 'which knob', 20, INK2))
+    s.append(T(0, 24, 'study', 20, INK2)); s.append(T(330, 24, 'the stimulus knob', 20, INK2)); s.append(T(720, 24, 'what moved', 20, INK2))
     for i, (a, b, c) in enumerate(rows):
         y = 50 + i * 86
         last = i == 3
         s.append(f'<rect x="0" y="{y}" width="1150" height="70" rx="3" fill="{ACCT if last else GROUP}"/>')
         s.append(T(16, y + 44, a, 26))
-        s.append(T(260, y + 44, b, 26, INK if last else INK2))
-        s.append(T(640, y + 44, c, 26, INK if last else INK2))
+        s.append(T(330, y + 44, b, 24, INK if last else INK2))
+        s.append(T(720, y + 44, c, 24, INK if last else INK2))
     s.append('</svg>')
     return ''.join(s)
 
