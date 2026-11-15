@@ -414,5 +414,25 @@ def noz():
     s.append('</svg>')
     return ''.join(s)
 
-FIGS = {'eran': eran, 'turned_small': turned_small, 'noz': noz, 'mg_dial': mg_dial, 'prescription': prescription, 'closed_loop': closed_loop, 'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
+def dial():
+    import math
+    W, H = 560, 380; cx, cy, r = 280, 300, 220
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    s.append(f'<path d="M{cx-r},{cy} A{r},{r} 0 0 1 {cx+r},{cy}" fill="none" stroke="{AXIS}" stroke-width="10"/>')
+    labs = [('order 0', 160), ('order 1', 90), ('Beethoven', 20)]
+    for lab, deg in labs:
+        a = math.radians(deg); x, y = cx + (r + 34) * math.cos(a), cy - (r + 34) * math.sin(a)
+        s.append(T(x, y, lab, 22, INK, 'middle'))
+    g = ['<g data-accent="1">']
+    for k, (lab, deg) in enumerate(labs):
+        a = math.radians(deg); x, y = cx + (r - 30) * math.cos(a), cy - (r - 30) * math.sin(a)
+        cls = 'fragment fade-in-then-out' if k < 2 else 'fragment'
+        g.append(f'<g class="{cls}" data-fragment-index="{k+1}"><line x1="{cx}" y1="{cy}" x2="{x:.1f}" y2="{y:.1f}" stroke="{ACC}" stroke-width="5"/><circle cx="{cx}" cy="{cy}" r="12" fill="{ACC}"/></g>')
+    g.append('</g>')
+    s += g
+    s.append(T(cx, cy + 50, 'staged mock up: the dial follows a script, not EEG', 18, INK2, 'middle'))
+    s.append('</svg>')
+    return ''.join(s)
+
+FIGS = {'dial': dial, 'eran': eran, 'turned_small': turned_small, 'noz': noz, 'mg_dial': mg_dial, 'prescription': prescription, 'closed_loop': closed_loop, 'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
         'knob_orders': knob_orders, 'design_strip': design_strip, 'turned': turned}
