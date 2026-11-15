@@ -321,5 +321,36 @@ def closed_loop():
     s.append('</svg>')
     return ''.join(s)
 
-FIGS = {'closed_loop': closed_loop, 'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
+def prescription():
+    W, H = 760, 400
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    s.append(f'<rect x="0" y="0" width="{W}" height="{H}" rx="6" fill="#FFFFFF" stroke="{AXIS}"/>')
+    s.append(T(30, 56, 'Rx', 44, INK, 'start', 'font-style="italic"'))
+    s.append(T(110, 52, 'Music dose, week 3', 26)); s.append(T(110, 80, 'example: a listener, 81, moderate dementia', 19, INK2))
+    s.append(f'<line x1="30" y1="104" x2="{W-30}" y2="104" stroke="{RULE}"/>')
+    rows = [('length', '20 min, after lunch'), ('predictability', 'order 2, familiar contour'), ('tempo', '72 bpm, steady beat'), ('timbre', 'piano and voice'), ('adjust', 'by her EEG response, weekly')]
+    for i, (a, b) in enumerate(rows):
+        y = 146 + i * 46
+        s.append(T(30, y, a, 22, INK2)); s.append(T(260, y, b, 24))
+    s.append('<g data-accent="1">' + f'<line x1="260" y1="{146 + 4*46 + 10}" x2="560" y2="{146 + 4*46 + 10}" stroke="{ACC}" stroke-width="3"/></g>')
+    s.append('</svg>')
+    return ''.join(s)
+
+def mg_dial():
+    E = json.load(open(os.path.join(HERE, 'mg_env.json')))
+    rows = [('slow', '60 bpm asked', 59), ('medium', '100 bpm asked', 100), ('fast', '160 bpm asked', 158)]
+    W, H, L = 1150, 360, 260
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    for i, (k, lab, bpm) in enumerate(rows):
+        y = 20 + i * 110; e = E[k]; n = len(e)
+        pts = ' '.join(f'{L + j * (W - L - 10) / (n - 1):.1f},{y + 80 - v * 70:.1f}' for j, v in enumerate(e))
+        col = ACC if k == 'fast' else MUS
+        g = '<g data-accent="1">' if k == 'fast' else '<g>'
+        s.append(g + f'<polyline fill="none" stroke="{col}" stroke-width="1.6" points="{pts}"/></g>')
+        s.append(T(0, y + 44, lab, 23)); s.append(T(0, y + 72, f'measured {bpm} bpm', 19, INK2))
+    s.append(T(L, H - 4, 'loudness over 8 seconds', 18, INK2))
+    s.append('</svg>')
+    return ''.join(s)
+
+FIGS = {'mg_dial': mg_dial, 'prescription': prescription, 'closed_loop': closed_loop, 'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
         'knob_orders': knob_orders, 'design_strip': design_strip, 'turned': turned}

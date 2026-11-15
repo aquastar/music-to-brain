@@ -130,7 +130,7 @@ FOREST = [
 def forest(rows, preview=False, foot=''):
     W = 1152; X0, X1, V0, V1 = 420, 860, -0.4, 0.8
     sx = lambda v: X0 + (v - V0) / (V1 - V0) * (X1 - X0)
-    rh = 70 if not preview else 140
+    rh = 66 if not preview else 140
     H = 80 + rh * len(rows) + (50 if foot else 10)
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}">']
     s.append(f'<line x1="{sx(0)}" y1="44" x2="{sx(0)}" y2="{80 + rh*len(rows) - rh//2}" stroke="{AXIS}"/>')
@@ -205,7 +205,7 @@ def build():
     src = re.sub(r'\{\{MAP:([^}]+)\}\}', lambda m: field_map(m.group(1)), src)
     src = src.replace('{{FE_SURPRISE}}', fe_surprise())
     src = re.sub(r'\{\{FE_STRIP:(\w+)(?::(\w+))?(?::(\d+))?\}\}', lambda m: fe_strip(m.group(1), m.group(2), w=int(m.group(3) or 1100), h=90 if m.group(3) else 120, r=5 if m.group(3) else 6), src)
-    src = src.replace('{{FOREST_FULL}}', forest(FOREST, foot='Four weeks after treatment ends, no outcome shows a clear effect.'))
+    src = src.replace('{{FOREST_FULL}}', forest(FOREST, foot='Filled: interval excludes zero (orange: moderate certainty). Four weeks after treatment, no clear effect.'))
     src = src.replace('{{FOREST_PREVIEW}}', forest(PREVIEW_ROWS, preview=True))
     src = src.replace('{{COVER_MELODY}}', cover_melody())
     import redraw
