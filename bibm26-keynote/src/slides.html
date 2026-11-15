@@ -20,7 +20,7 @@
 
 <section data-sec="60">
   <span class="mark">Listen</span>
-  <h2>This song was played back from the brain activity of 29 patients</h2>
+  <h2>This song was played back from electrodes on the brains of 29 patients</h2>
   <div class="fp">
     <div class="f"><img src="../shared/figs/papers/bellier_spec_orig.png" data-evidence style="width:720px"><img src="../shared/figs/papers/bellier_spec_recon.png" data-evidence style="width:720px;margin-top:6px"></div>
     <div class="p">
@@ -36,7 +36,7 @@
 
 <section data-sec="75">
   <span class="mark">The question</span>
-  <h2>People with advanced dementia who no longer know their children can still sing every verse of a hymn</h2>
+  <h2>Many people with advanced dementia can still sing the hymns of their youth</h2>
   <div class="fp">
     <div class="f" style="width:620px">{{PHOTO:older_adults_choir|Older adults singing together}}<p class="cap">A choir at a Dutch care home</p></div>
     <div class="p" style="max-width:520px">
@@ -73,7 +73,7 @@
   <h2>Three steps to get there</h2>
   <ol class="forecast">
     <li>We can already read music in the brain, and music AI predicts the brain.</li>
-    <li class="fragment">We cannot steer it yet, because the music never changes.</li>
+    <li class="fragment">We cannot steer it yet, because natural music does not change on cue.</li>
     <li class="fragment thesis-item">Generative models can turn music into a dial.</li>
   </ol>
   <aside class="notes">Read them slowly. Finding 3 is the thesis, stated fully only in Act 4. These three lines return as the contributions on the last slide.</aside>
@@ -81,7 +81,7 @@
 
 <section data-sec="60" data-auto-animate>
   <span class="mark">The map</span>
-  <h2>Four arrows the field works on, and a fifth with only short, artificial stimuli so far</h2>
+  <h2>Four ways the field studies music and the brain, and a missing fifth</h2>
   {{MAP:all}}
   <aside class="notes">Say in one line: EEG and MEG give the when, fMRI the where, intracranial both (backup slide). This map returns before every study. Arrows 1 and 2 are Act 2. Arrow 3 is Act 3. Arrow 4 is Act 4. Arrow 5, dashed, is the gap and Act 5.</aside>
 </section>
@@ -110,14 +110,6 @@
   </div>
   <div class="ref"><a href="https://doi.org/10.3389/fneur.2022.940419">Ye et al., Front Neurol 2022</a></div>
   <aside class="notes">Say: remember this one, it comes back in the clinic. Beat and meter show up in EEG as peaks at the beat frequency, even when the meter is only imagined (Nozaradan 2011, in Act 2). Plant for Act 4: the best understood music therapy is the one where the stimulus has a knob, the tempo.</aside>
-</section>
-
-<section data-sec="60">
-  <span class="mark">2 What we can see</span>
-  <h2>Your auditory cortex has a population that cares about song, and little else</h2>
-  <div class="fp"><div class="f">{{FIG:nh_schematic}}</div><div class="p">{{PEOPLE:norman|Sam Norman-Haignere|U Rochester}}</div></div>
-  <div class="ref">Redrawn after <a href="https://doi.org/10.1016/j.neuron.2015.11.035">Norman-Haignere et al. 2015</a><span class="sep"></span><a href="https://doi.org/10.1016/j.cub.2022.01.069">Norman-Haignere et al. 2022</a></div>
-  <aside class="notes">Schematic of Fig 2A in Norman-Haignere 2022: bar lengths show which sound categories drive each component, not measured values. Rows are the 165 sounds, red means strong response. C1 and C15 prefer speech, C10 music, C11 song. Seen with ECoG, confirmed with fMRI, not explained by acoustic features. Norman-Haignere is at the University of Rochester, a neighbor of RIT.</aside>
 </section>
 
 <section data-sec="60">
@@ -177,7 +169,7 @@
     <div class="f">{{FIG:mischler_curves}}</div>
     <div class="p">
       <img data-evidence src="../shared/figs/papers/mischler_brain.png" style="width:560px">
-      <p class="cap">teal line = blue sites (early), purple = magenta (late), dashed = yellow (in between)</p>
+      <p class="cap">blue dots: early sites, magenta: far sites</p>
       {{PEOPLE:mesgarani|Nima Mesgarani|Columbia}}
     </div>
   </div>
@@ -192,14 +184,12 @@
     <div class="f">{{EEG_ERP}}</div>
     <div class="p">
       <p class="key">MusicGen surprise, public EEG</p>
-            <p class="tldr">Orange: notes one SD more surprising. Gray: one SD less. 29 listeners in all, 14 to 21 per song.</p>
-      <p class="ink2" style="font-size:20px">Clear when averaged over hundreds of notes. The control against an untrained model is still to run.</p>
-      <p class="cap" style="margin-top:14px">extra response per SD of surprise, seen from above</p>
+                        <p class="cap" style="margin-top:14px">extra response per SD of surprise, seen from above</p>
       {{EEG_TOPO}}
     </div>
   </div>
   <div class="ref"><a href="https://openneuro.org/datasets/ds005876">OpenNeuro ds005876</a><span class="sep"></span>Chen, unpublished analysis</div>
-  <aside class="notes">Surprise for every note from MusicGen-large, EEG from an open dataset of people hearing familiar songs. Live demo: aquastar.github.io/music-to-brain/eeg-demo. Not yet tested against the untrained model at group level. Regression over all songs and all 29 listeners, separating overlapping note responses. Cluster permutation p = 0.0028, 11 frontocentral channels, 0.09 to 0.34 s, peak 0.16 s, a P2 like window. Scalp maps: extra response per one SD more surprise. If time allows, switch to the demo for 20 seconds: step to the next surprising note at quarter speed. Fallback is a screen recording. To confirm with Zhiqian: which nuisance regressors (envelope, onsets) the group regression includes. Scalp maps use teal for negative and purple for positive.</aside>
+  <aside class="notes">Orange: notes one SD more surprising, gray: one SD less. 29 listeners in all, 14 to 21 per song. Clear when averaged over hundreds of notes. Not yet run: the group level control with an untrained model, and confirming which nuisance regressors are in the regression. Surprise for every note from MusicGen-large, EEG from an open dataset of people hearing familiar songs. Live demo: aquastar.github.io/music-to-brain/eeg-demo. Not yet tested against the untrained model at group level. Regression over all songs and all 29 listeners, separating overlapping note responses. Cluster permutation p = 0.0028, 11 frontocentral channels, 0.09 to 0.34 s, peak 0.16 s, a P2 like window. Scalp maps: extra response per one SD more surprise. If time allows, switch to the demo for 20 seconds: step to the next surprising note at quarter speed. Fallback is a screen recording. To confirm with Zhiqian: which nuisance regressors (envelope, onsets) the group regression includes. Scalp maps use teal for negative and purple for positive.</aside>
 </section>
 
 <section data-sec="90">
@@ -317,31 +307,11 @@
 </section>
 
 <section data-sec="55">
-  <span class="mark">5 What becomes possible · First step</span>
-  <h2>First step: one EEG study, four dial settings, 48 listeners <span class="status open">Planned</span></h2>
-  <div style="margin-top:30px">{{FIG:design_strip}}</div>
-  <p class="cap" style="margin-top:14px">Planned design, group size to be fixed from the pilot</p>
-  <aside class="notes">Concrete enough for an EEG lab to say yes. The pilot (ds005876, 29 listeners) gives the effect window and size. Group size about 24 per group will be fixed from that pilot, not presented as a power result. Older adults first, because clinical evidence is weakest there, and hearing aid users later because compression changes the acoustic baseline. Group size about 24 per group, fixed from the pilot (my ds005876 analysis), not a power result. Year 2: the same protocol in a hearing loss or dementia cohort. One line from backup: what to measure is alignment that survives an acoustic baseline. To confirm with Zhiqian (options, not on the slide): hearing screening, a linear trend test across orders, z scoring surprise within condition, an attention probe, stimulus counts, the clinical population and outcome. To confirm with Zhiqian (all on the slide under Planned): corpus trained chains instead of Für Elise, unfamiliar held out real melodies with a familiarity rating, hearing screening, the linear trend test and decision rule. Option: also record heart rate and skin conductance for the ECG and wearables part of the room.</aside>
-</section>
-
-<section data-sec="55">
   <span class="mark">5 What becomes possible</span>
   <h2>Close the loop: the brain's response chooses the next bar of music <span class="status open">Vision</span></h2>
   <div class="audio-row"><button class="play" data-audio="../shared/audio/mg_adapt_mockup.mp3">play</button><span>mock up: the same piece moving through three settings, not yet driven by EEG</span></div>
   {{FIG:closed_loop}}
   <aside class="notes">The future picture. Each piece of the loop exists today: generators with settable properties, EEG surprise responses, models of the brain. What is missing is putting them in one loop, with the settings logged as the dose. Vision, not a result. Say: the hard part is reading the brain fast enough, single trials are noisy, so the loop will first work over whole phrases or sessions.</aside>
-</section>
-
-<section data-sec="60">
-  <span class="mark">5 What becomes possible</span>
-  <h2>Three things a music dial makes possible <span class="status open">Vision</span></h2>
-  <div class="photos tall">
-    <figure>{{PHOTO:gait_rehab|Rehabilitation session}}<figcaption>A music dose for rehabilitation and dementia<span>settings written down, adapted to the person</span></figcaption></figure>
-    <figure>{{PHOTO:eeg_experiment|EEG experiment}}<figcaption>A standard music probe for EEG<span>like gratings in vision research</span></figcaption></figure>
-    <figure>{{PHOTO:child_piano_lesson|Child at the piano}}<figcaption>Music tuned to a listener<span>hearing, age, taste</span></figcaption></figure>
-  </div>
-  <p class="ink2" style="font-size:21px;margin-top:10px">The same dial works for heart rate, skin conductance and sleep EEG.</p>
-  <aside class="notes">Three pictures to take home. Keep each to one sentence. All three are visions, the protocol on the next slide is the first step.</aside>
 </section>
 
 <section data-sec="50">
@@ -352,6 +322,7 @@
     <div class="p">
       <p class="key">Every line is a setting a generator can hold</p>
       <p class="tldr">Today a trial reports a playlist. A dial lets it report a dose, and change one line at a time.</p>
+      <p class="ink2" style="font-size:21px">The same dial can be read out with EEG, heart rate, skin conductance or sleep.</p>
     </div>
   </div>
   <aside class="notes">Fictional example patient, a vision of reporting, not a treatment claim. The point: each line is a parameter we can set, log and repeat.</aside>
@@ -359,10 +330,12 @@
 
 <section data-sec="60">
   <span class="mark">Close</span>
-  <h2>Next time she sings, we choose the song, and her brain tells us why</h2>
+  <h2>Next time she sings, we choose the song, and her brain shows us what works</h2>
   <div class="fp">
     <div class="f" style="width:520px">{{PHOTO:older_adults_choir|Older adults singing together}}</div>
     <div class="p">
+      <p style="font-size:22px;margin:0" class="ink2">First step</p>
+      <p style="font-size:24px;margin:2px 0 14px 0">one EEG study, four dial settings, 48 listeners (backup has the design)</p>
       <p style="font-size:22px;margin:0" class="ink2">We bring</p>
       <p style="font-size:24px;margin:2px 0 14px 0">stimuli with logged settings, analysis code, the pilot window</p>
       <p style="font-size:22px;margin:0" class="ink2">We need</p>
@@ -378,6 +351,34 @@
 <section data-backup="1">
   <span class="mark">Backup</span>
   <p class="thesis">Backup slides</p>
+</section>
+
+<section data-backup="1" data-sec="60">
+  <span class="mark">2 What we can see</span>
+  <h2>Your auditory cortex has a population that cares about song, and little else</h2>
+  <div class="fp"><div class="f">{{FIG:nh_schematic}}</div><div class="p">{{PEOPLE:norman|Sam Norman-Haignere|U Rochester}}</div></div>
+  <div class="ref">Redrawn after <a href="https://doi.org/10.1016/j.neuron.2015.11.035">Norman-Haignere et al. 2015</a><span class="sep"></span><a href="https://doi.org/10.1016/j.cub.2022.01.069">Norman-Haignere et al. 2022</a></div>
+  <aside class="notes">Schematic of Fig 2A in Norman-Haignere 2022: bar lengths show which sound categories drive each component, not measured values. Rows are the 165 sounds, red means strong response. C1 and C15 prefer speech, C10 music, C11 song. Seen with ECoG, confirmed with fMRI, not explained by acoustic features. Norman-Haignere is at the University of Rochester, a neighbor of RIT.</aside>
+</section>
+
+<section data-backup="1" data-sec="55">
+  <span class="mark">5 What becomes possible · First step</span>
+  <h2>First step: one EEG study, four dial settings, 48 listeners <span class="status open">Planned</span></h2>
+  <div style="margin-top:30px">{{FIG:design_strip}}</div>
+  <p class="cap" style="margin-top:14px">Planned design, group size to be fixed from the pilot</p>
+  <aside class="notes">Concrete enough for an EEG lab to say yes. The pilot (ds005876, 29 listeners) gives the effect window and size. Group size about 24 per group will be fixed from that pilot, not presented as a power result. Older adults first, because clinical evidence is weakest there, and hearing aid users later because compression changes the acoustic baseline. Group size about 24 per group, fixed from the pilot (my ds005876 analysis), not a power result. Year 2: the same protocol in a hearing loss or dementia cohort. One line from backup: what to measure is alignment that survives an acoustic baseline. To confirm with Zhiqian (options, not on the slide): hearing screening, a linear trend test across orders, z scoring surprise within condition, an attention probe, stimulus counts, the clinical population and outcome. To confirm with Zhiqian (all on the slide under Planned): corpus trained chains instead of Für Elise, unfamiliar held out real melodies with a familiarity rating, hearing screening, the linear trend test and decision rule. Option: also record heart rate and skin conductance for the ECG and wearables part of the room.</aside>
+</section>
+
+<section data-backup="1" data-sec="60">
+  <span class="mark">5 What becomes possible</span>
+  <h2>Three things a music dial makes possible <span class="status open">Vision</span></h2>
+  <div class="photos tall">
+    <figure>{{PHOTO:gait_rehab|Rehabilitation session}}<figcaption>A music dose for rehabilitation and dementia<span>settings written down, adapted to the person</span></figcaption></figure>
+    <figure>{{PHOTO:eeg_experiment|EEG experiment}}<figcaption>A standard music probe for EEG<span>like gratings in vision research</span></figcaption></figure>
+    <figure>{{PHOTO:child_piano_lesson|Child at the piano}}<figcaption>Music tuned to a listener<span>hearing, age, taste</span></figcaption></figure>
+  </div>
+  <p class="ink2" style="font-size:21px;margin-top:10px">The same dial works for heart rate, skin conductance and sleep EEG.</p>
+  <aside class="notes">Three pictures to take home. Keep each to one sentence. All three are visions, the protocol on the next slide is the first step.</aside>
 </section>
 
 <section data-backup="1" data-sec="50">

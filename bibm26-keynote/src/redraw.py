@@ -192,7 +192,7 @@ def mischler_curves():
     s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (LANG, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(early))))
     s.append('<polyline fill="none" stroke="%s" stroke-width="1.8" stroke-dasharray="6 5" points="%s"/>' % (AXIS, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(mid))))
     s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (MUS, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(late))))
-    s.append(T(sx(12) + 8, sy(late[-1]) + 6, 'far sites', 20, INK)); s.append(T(sx(12) + 8, sy(early[-1]) + 6, 'primary', 20, INK2)); s.append(T(sx(12) + 8, sy(early[-1]) + 28, 'cortex', 20, INK2))
+    s.append(T(sx(12) + 8, sy(late[-1]) + 6, 'far sites', 20, INK)); s.append(T(sx(12) + 8, sy(early[-1]) + 6, 'early sites', 20, INK2))
     s.append(T(L + 10, 14, 'fit, normalized', 18, INK2))
     s.append('</svg>')
     return ''.join(s)
@@ -330,7 +330,7 @@ def prescription():
     s.append(T(30, 56, 'Rx', 44, INK, 'start', 'font-style="italic"'))
     s.append(T(110, 52, 'Music dose, week 3', 26)); s.append(T(110, 80, 'example: a listener, 81, moderate dementia', 19, INK2))
     s.append(f'<line x1="30" y1="104" x2="{W-30}" y2="104" stroke="{RULE}"/>')
-    rows = [('length', '20 min, after lunch'), ('predictability', 'order 2, familiar contour'), ('tempo', '72 bpm, steady beat'), ('timbre', 'piano and voice'), ('adjust', 'by her EEG response, weekly')]
+    rows = [('length', '20 min, after lunch'), ('predictability', 'order 2, familiar contour'), ('tempo', '72 bpm, steady beat'), ('timbre', 'piano and voice'), ('adjust', 'by her response, weekly')]
     for i, (a, b) in enumerate(rows):
         y = 146 + i * 46
         s.append(T(30, y, a, 22, INK2)); s.append(T(260, y, b, 24))
