@@ -7,7 +7,8 @@ Placeholders in slides.html:
   {{COVER_MELODY}}        animated melody dots for the cover
 Run: python3 -I src/build.py
 """
-import json, os, re
+import json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 INK, INK2, LINE, AXIS, RULE, GROUP = '#1F1E1B', '#5F5D50', '#7C878E', '#ACA39A', '#D7D2CB', '#EFEBE5'
@@ -190,6 +191,9 @@ def build():
     src = src.replace('{{FOREST_FULL}}', forest(FOREST))
     src = src.replace('{{FOREST_PREVIEW}}', forest(PREVIEW_ROWS, preview=True))
     src = src.replace('{{COVER_MELODY}}', cover_melody())
+    if '{{EEG_' in src:
+        import eeg_figs
+        src = src.replace('{{EEG_ERP}}', eeg_figs.erp_svg()).replace('{{EEG_TOPO}}', eeg_figs.topo_svg())
     left = re.findall(r'\{\{[^}]*\}\}', src)
     assert not left, left
     open(os.path.join(ROOT, 'index.html'), 'w').write(src)
