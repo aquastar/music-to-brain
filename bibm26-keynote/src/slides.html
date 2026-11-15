@@ -11,11 +11,10 @@
 <div class="reveal"><div class="slides">
 
 <section data-sec="20" class="cover" data-background-color="#FBFAF7">
-  <h1>Music That <span>Plays</span> the Brain</h1>
-  <p class="sub">Generative AI turns songs into controllable brain stimuli</p>
+  <h1>The Music That <span>Plays</span> the Brain</h1>
   {{COVER_MELODY}}
   <div class="who">Zhiqian Chen<br><span>Department of Computer Science, Rochester Institute of Technology</span></div>
-  <aside class="notes">Title confirmed by Zhiqian 2026-11-15: Music That Plays the Brain (no subtitle). The italic line is a tagline, not part of the title. The dots are the opening of Für Elise. Say nothing. Go straight to the sound.</aside>
+  <aside class="notes">Title as sent to the organizers: The Music That Plays the Brain (no subtitle). The dots are the opening of Für Elise. Say nothing. Go straight to the sound.</aside>
 </section>
 
 <section data-sec="60">
@@ -193,10 +192,10 @@
   <aside class="notes">Orange: notes one SD more surprising, gray: one SD less. 29 listeners in all, 14 to 21 per song. Clear when averaged over hundreds of notes. Not yet run: the group level control with an untrained model, and confirming which nuisance regressors are in the regression. Surprise for every note from MusicGen-large, EEG from an open dataset of people hearing familiar songs. Live demo: aquastar.github.io/music-to-brain/eeg-demo. Not yet tested against the untrained model at group level. Regression over all songs and all 29 listeners, separating overlapping note responses. Cluster permutation p = 0.0028, 11 frontocentral channels, 0.09 to 0.34 s, peak 0.16 s, a P2 like window. Scalp maps: extra response per one SD more surprise. If time allows, switch to the demo for 20 seconds: step to the next surprising note at quarter speed. Fallback is a screen recording. To confirm with Zhiqian: which nuisance regressors (envelope, onsets) the group regression includes. Scalp maps use teal for negative and purple for positive.</aside>
 </section>
 
-<section data-sec="90">
-  <span class="mark">2 We can read the musical brain · Demo</span>
-  <h2>Interactive: recorded public EEG, 19 listeners hearing this song</h2>
-  <div style="width:1152px;height:545px;overflow:hidden;border-bottom:1px solid #D7D2CB"><iframe class="embed" data-src="../eeg-demo/index.html" width="1440" height="680" style="transform:scale(0.78);transform-origin:0 0" title="EEG surprise demo"></iframe></div>
+<section data-sec="90" class="fullbleed" style="padding:18px 0 0 0 !important">
+  <div style="padding:0 64px"><span class="mark">2 We can read the musical brain · Interactive demo</span>
+  <h2 style="font-size:30px;margin:0 0 8px 0">Try it: step to the next surprising note and watch 19 listeners' EEG answer</h2></div>
+  <div style="width:1280px;height:618px;overflow:hidden"><iframe class="embed" data-src="../eeg-demo/index.html" width="1455" height="702" style="display:block;transform:scale(0.88);transform-origin:0 0" title="EEG surprise demo"></iframe></div>
   <aside class="notes">Say before stepping: averaged over hundreds of notes the effect is clear, a single note is too noisy to read. The surprising notes shown are picked by the model, not by me. Live demo, 60 to 90 s. Pick Home on the Range, quarter speed, press next surprising note. Point at the score, the model curve and the EEG bump in the shaded window. Fallback: the 20 s screen recording. Public dataset OpenNeuro ds005876. Fallback if the browser fails: shared/eeg_demo_fallback.webm (20 s screen recording, three surprising notes at quarter speed). Honest turn: tick "Control: random model" at the end. Per note an untrained model does as well (0.155 vs 0.083), which leads straight into the catch slide.</aside>
 </section>
 
@@ -299,6 +298,20 @@
   {{FIG:mg_dial}}
   <div class="ref"><a href="https://arxiv.org/abs/2306.05284">Copet et al., Simple and controllable music generation (MusicGen), NeurIPS 2023</a></div>
   <aside class="notes">Say: tempo is the easiest dial, a metronome can do it. Predictability and style are the harder dials, the next step of our work. Generated for this talk with MusicGen small on a laptop CPU: prompt "solo piano melody, calm and simple" plus the tempo words, seed 7. Tempo estimated from the loudness envelope: 59, 100 and 158 bpm. Tempo is the easy dial. Predictability and style need the steering work (backup slide), which is under review. Play each for five seconds. Say: in our own work under review, a style can be removed cleanly inside MusicGen, adding one does not work yet (backup slide). A one note memory already tells six musical traditions apart (backup). </aside>
+</section>
+
+<section data-sec="90">
+  <span class="mark">5 Music you can experiment on · A neural generator</span>
+  <h2>A neural generator plays the same three melodies as real music: shuffled, chained, Beethoven</h2>
+  <div class="audio-row"><button class="play" data-audio="../shared/audio/mgmel_fe_shuffled.mp3">play</button><span>order 0</span><button class="play" data-audio="../shared/audio/mgmel_fe_order1.mp3">play</button><span>order 1</span><button class="play" data-audio="../shared/audio/mgmel_fe_real.mp3">play</button><span>Beethoven</span></div>
+  <div style="display:flex;gap:30px;margin-top:6px">{{FE_STRIP:mm0:shuffled:340}}{{FE_STRIP:mm1:order1:340}}{{FE_STRIP:mm2:melody:340}}</div>
+  <div class="cols" style="margin-top:16px">
+    <div><p class="big">0.54 to 0.60</p><p class="ink2" style="font-size:22px">how closely each clip follows its own melody (chroma correlation)</p></div>
+    <div><p class="big plain">0.14 to 0.22</p><p class="ink2" style="font-size:22px">the same clip against the other two melodies</p></div>
+  </div>
+  <p class="tldr" style="margin-top:28px">Same prompt, same seed. Only the melody we feed in changes, so predictability becomes a setting in real sounding music.</p>
+  <div class="ref"><a href="https://arxiv.org/abs/2306.05284">Copet et al., Simple and controllable music generation (MusicGen), NeurIPS 2023</a></div>
+  <aside class="notes">Generated for this talk with MusicGen melody on a laptop CPU: prompt "gentle solo piano, classical, warm room", seed 11, conditioned on the three Für Elise versions from the dial slide. Scripts: src/melody.py and src/gen.py. Play four seconds of each. This is the dial only a generator can turn: the predictability of the notes is set by the order, the generator makes it sound like music.</aside>
 </section>
 
 <section data-sec="40">

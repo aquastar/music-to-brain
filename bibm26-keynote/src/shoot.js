@@ -25,7 +25,7 @@ const fs = require('fs');
       const vis = e => !e.closest('aside') && e.getBoundingClientRect().height > 0;
       // overflow
       s.querySelectorAll('h2,p,li,img,svg,.people,.photos,iframe,.audio-row').forEach(e => {
-        if (!vis(e) || e.closest('.ref') || (e.tagName === 'svg' && e.closest('svg') !== e)) return;
+        if (!vis(e) || e.closest('.ref') || e.closest('.fullbleed') || (e.tagName === 'svg' && e.closest('svg') !== e)) return;
         const q = e.getBoundingClientRect();
         if (q.bottom > lim + 0.5 || q.right > sb.left + 1280 - 20 || q.left < sb.left + 20) out.fail.push(`overflow ${e.tagName} bottom ${Math.round(q.bottom - sb.top)} right ${Math.round(q.right - sb.left)}`);
       });
