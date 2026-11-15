@@ -1,0 +1,39 @@
+# Handoff: BIBM 2026 keynote (start here)
+
+Updated 2026-11-14. For a new session continuing this talk.
+
+## The talk
+- Keynote at the 1st AI4BioSig Workshop, IEEE BIBM 2026, Dallas, Dec 1 to 4 (workshop day and slot length still TBD on the site, ask organizers Haoteng Tang or Li Zhang at UTRGV). Plan for about 45 to 60 minutes.
+- Audience: biomedical signal people (EEG, ECG, MRI). They know EEG well, not generative models.
+- Form chosen: a viewpoint keynote, not a tutorial or a survey dump. He has not given a keynote before.
+
+## Throughline (agreed)
+"The bottleneck in music and brain research is not the measurement but the stimulus. Generative models make music an experimental variable."
+Title: Music You Can Experiment On. Five acts: 1 why music, 2 what we can see, 3 seeing is not understanding, 4 the clinic (thesis stated here, two thirds in), 5 music you can experiment on, close returns to the opening AD hymn image.
+The five acts are my own blend (Freytag frame, Duarte what is vs what could be, information gap openers, callback ending). Alternative: three part Problem, Insight, Path forward.
+
+## Files
+- docs/survey-music-and-brain.md: the full Chinese survey he was very happy with (also in Claude Docs artifact https://claude.ai/artifact/8muKCT3rAJGMXFVSY94e6r and in the knowledge base at research/music-brain-survey.md). Evidence grades A, B, C, items marked 未本次核验 still need checking.
+- bibm26-keynote/index.html: current deck, 38 slides, Reveal.js, local reveal in shared/reveal.
+- shared/: style.css (house style v2), fonts, fe-chain.html (Für Elise Markov animation), figs, audio.
+
+## Status: he judged the deck too rough (2026-11-14). Rebuild the details, keep the structure.
+What was wrong (my fault, I did not load the presentation-craft skill or his slide memos first):
+1. Mostly hand drawn text boxes, almost no real images. He requires real images: paper figures, author photos, journal covers, experiment photos.
+2. Missing from his rules: results previews right after the cover and a forecast of three findings in the first 5 minutes, a recurring map of the field shown before each work, one running example, about 5 slides per work with figure plus key message plus short TL;DR, end on contributions plus a collaboration ask (not Thank you), overlap checks.
+Before any edit: load the presentation-craft skill, read claude/memory/slides-house-style.md, feedback-talk-structure.md, feedback-slides-figure-first.md and claude/skills/presentation-craft/visual-style.md in aquastar/zhiqian-knowledge-base.
+
+## Blocker: images
+The old session's workspace could not download from arxiv.org, journals.plos.org, elifesciences.org, europepmc.org, ncbi.nlm.nih.gov, upload.wikimedia.org, github.io (proxy refused). He is opening a new session, ideally with those domains allowed in claude.ai Settings, Capabilities. First check with curl that they are reachable. If not, ask him to drop PDFs or screenshots into the repo.
+
+## Placeholders and checks on the slides
+- Bellier 2023: original vs reconstructed audio and electrode map (CC BY).
+- Pepino 2025: performance vs alignment scatter.
+- Mischler 2025: replace my simplified layer to region slide with the paper figure if readable.
+- Steered layer bars are illustration only, no data.
+- 70.2% Markov accuracy comes from the CS talk deck, an older note said 70.9%, confirm with his latest run.
+- Verify: Koelsch 2014, Nozaradan 2011, MusicLM training data wording, Cochrane dementia cognition certainty (low to very low).
+
+## Related
+- RIT CS department talk (Nov 19): aquastar/graph-inside-generative-models, same house style, shares the music material.
+- Repo is public, GitHub Pages must be enabled by him (main, root). I cannot change repo settings from a session.
