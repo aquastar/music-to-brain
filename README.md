@@ -4,6 +4,7 @@ Talk slides by Zhiqian Chen (RIT) on music and the brain. One folder per deliver
 
 | Folder | Talk | Venue |
 |---|---|---|
+| `eeg-demo/` | Interactive demo: model surprise vs EEG (public domain songs) | Research demo |
 | `bibm26-keynote/` | Music You Can Experiment On | AI4BioSig Workshop at IEEE BIBM 2026, Dallas |
 
 Online: https://aquastar.github.io/music-to-brain/
