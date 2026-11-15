@@ -1,0 +1,12 @@
+{
+ "n_notes": 105,
+ "songs": [
+  "Home On The Range",
+  "On Top Of Old Smokey",
+  "Over The River And Through The Woods"
+ ],
+ "r_musicgen": 0.083,
+ "perm_musicgen_of_2000": 786,
+ "r_random_model": 0.155,
+ "perm_random_of_2000": 215
+}
