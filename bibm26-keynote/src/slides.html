@@ -56,7 +56,7 @@
     {{FE_STRIP:prevreal}}
   </div>
   <img class="photo" src="../shared/figs/photos/fur_elise_opening.png" style="width:640px;margin-top:6px;display:block">
-  <p class="key" style="margin-top:12px">One setting separates them, and it can be written down</p>
+  <p class="key" style="margin-top:12px">Same notes. Only the rule that picks each next note differs</p>
   <aside class="notes">Play A then B, five seconds each. Ask the room which is Beethoven (B). A is a first order chain built from the same notes: each note depends only on the one before. The full knob comes in Act 5.</aside>
 </section>
 
@@ -81,7 +81,7 @@
 
 <section data-sec="60" data-auto-animate>
   <span class="mark">The map</span>
-  <h2>Four arrows the field works on, and a fifth that is mostly empty</h2>
+  <h2>Four arrows the field works on, and a fifth with only short, artificial stimuli so far</h2>
   {{MAP:all}}
   <aside class="notes">Say in one line: EEG and MEG give the when, fMRI the where, intracranial both (backup slide). This map returns before every study. Arrows 1 and 2 are Act 2. Arrow 3 is Act 3. Arrow 4 is Act 4. Arrow 5, dashed, is the gap and Act 5.</aside>
 </section>
@@ -163,7 +163,7 @@
   <span class="mark">2 What we can see · Decode</span>
   <h2>From brain scans, an AI composer makes music that matches what people heard in genre and mood</h2>
   
-  <div class="audio-row"><button class="play" data-audio="../shared/audio/b2m_heard1.mp3">play</button><span>heard</span><button class="play" data-audio="../shared/audio/b2m_recon1.mp3">play</button><span>made from the scan</span><button class="play" data-audio="../shared/audio/b2m_heard2.mp3">play</button><span>heard</span><button class="play" data-audio="../shared/audio/b2m_recon2.mp3">play</button><span>made from the scan</span></div>
+  <div class="audio-row"><span>authors' best examples:</span><button class="play" data-audio="../shared/audio/b2m_heard1.mp3">play</button><span>heard</span><button class="play" data-audio="../shared/audio/b2m_recon1.mp3">play</button><span>made from the scan</span><button class="play" data-audio="../shared/audio/b2m_heard2.mp3">play</button><span>heard</span><button class="play" data-audio="../shared/audio/b2m_recon2.mp3">play</button><span>made from the scan</span></div>
   {{FIG:denk_acc}}
   <p class="tldr" style="margin-top:10px">Genre, instruments and mood carry over. Timing and tempo often do not.</p>
   <div class="ref"><a href="https://doi.org/10.1038/s41467-025-66731-7">Denk, Takagi et al., Text to music generation models capture musical semantic representations in the human brain, Nat Commun 2025</a></div>
@@ -177,7 +177,7 @@
     <div class="f">{{FIG:mischler_curves}}</div>
     <div class="p">
       <img data-evidence src="../shared/figs/papers/mischler_brain.png" style="width:560px">
-      <p class="cap">blue: early layers, magenta: late layers, yellow: in between</p>
+      <p class="cap">teal line = blue sites (early), purple = magenta (late), dashed = yellow (in between)</p>
       {{PEOPLE:mesgarani|Nima Mesgarani|Columbia}}
     </div>
   </div>
@@ -192,7 +192,7 @@
     <div class="f">{{EEG_ERP}}</div>
     <div class="p">
       <p class="key">MusicGen surprise, public EEG</p>
-            <p class="tldr">Orange: notes one SD more surprising. Gray: one SD less.</p>
+            <p class="tldr">Orange: notes one SD more surprising. Gray: one SD less. 29 listeners in all, 14 to 21 per song.</p>
       <p class="ink2" style="font-size:20px">Clear when averaged over hundreds of notes. The control against an untrained model is still to run.</p>
       <p class="cap" style="margin-top:14px">extra response per SD of surprise, seen from above</p>
       {{EEG_TOPO}}
@@ -203,10 +203,10 @@
 </section>
 
 <section data-sec="90">
-  <span class="mark">2 We can read the musical brain · Live</span>
-  <h2>Live: watch 19 listeners' brains react to the next note</h2>
-  <div style="width:1152px;height:545px;overflow:hidden;border-bottom:1px solid #D7D2CB"><iframe class="embed" data-src="../eeg-demo/index.html" width="1440" height="680" style="transform:scale(0.8);transform-origin:0 0" title="EEG surprise demo"></iframe></div>
-  <aside class="notes">Say before stepping: averaged over hundreds of notes the effect is clear, a single note is too noisy to read. The surprising notes shown are picked by the model, not by me. Live demo, 60 to 90 s. Pick Home on the Range, quarter speed, press next surprising note. Point at the score, the model curve and the EEG bump in the shaded window. Fallback: the 20 s screen recording. Public dataset OpenNeuro ds005876.</aside>
+  <span class="mark">2 We can read the musical brain · Demo</span>
+  <h2>Interactive: recorded public EEG, 19 listeners hearing this song</h2>
+  <div style="width:1152px;height:545px;overflow:hidden;border-bottom:1px solid #D7D2CB"><iframe class="embed" data-src="../eeg-demo/index.html" width="1440" height="680" style="transform:scale(0.78);transform-origin:0 0" title="EEG surprise demo"></iframe></div>
+  <aside class="notes">Say before stepping: averaged over hundreds of notes the effect is clear, a single note is too noisy to read. The surprising notes shown are picked by the model, not by me. Live demo, 60 to 90 s. Pick Home on the Range, quarter speed, press next surprising note. Point at the score, the model curve and the EEG bump in the shaded window. Fallback: the 20 s screen recording. Public dataset OpenNeuro ds005876. Fallback if the browser fails: shared/eeg_demo_fallback.webm (20 s screen recording, three surprising notes at quarter speed).</aside>
 </section>
 
 <section data-sec="60" data-sparse="1">
@@ -239,11 +239,12 @@
       <p class="ink2" style="font-size:22px">walking speed after stroke with rhythmic auditory stimulation, 9 trials, moderate certainty</p>
       <p class="ink2" style="font-size:22px">In Parkinson's, 18 trials: stride length and walking speed improve.</p>
       <p class="tldr" style="margin-top:20px">The beat is a parameter that can be set and repeated.</p>
+      <div class="audio-row"><button class="play" data-audio="../shared/audio/metronome_72bpm.mp3">play</button><span>tap along: 72 bpm</span></div>
       {{PEOPLE:thaut|Michael Thaut|U Toronto}}
     </div>
   </div>
   <div class="ref"><a href="https://doi.org/10.1002/14651858.CD006787.pub3">Magee et al. 2017</a><span class="sep"></span><a href="https://doi.org/10.3389/fneur.2022.940419">Ye et al. 2022</a></div>
-  <aside class="notes">Magee 2017: gait velocity +11.34 m per min (9 trials, 268 people, moderate), cadence +10.77 steps per min (7 trials, low). Ye 2022: in Parkinson's, stride length, velocity and UPDRS III improve across 18 RCTs, cadence does not. Payoff of the Act 1 plant. Magee 2017: +10.77 steps per minute after stroke, 7 trials, 223 people, low quality. Ye 2022: in Parkinson's, stride length, velocity and UPDRS III improve across 18 RCTs, no significant effect on cadence. The mechanism is clearest where the stimulus is a parameter.</aside>
+  <aside class="notes">Room moment: play the click and ask everyone to tap their foot. That is the dose a gait therapist sets. Magee 2017: gait velocity +11.34 m per min (9 trials, 268 people, moderate), cadence +10.77 steps per min (7 trials, low). Ye 2022: in Parkinson's, stride length, velocity and UPDRS III improve across 18 RCTs, cadence does not. Payoff of the Act 1 plant. Magee 2017: +10.77 steps per minute after stroke, 7 trials, 223 people, low quality. Ye 2022: in Parkinson's, stride length, velocity and UPDRS III improve across 18 RCTs, no significant effect on cadence. The mechanism is clearest where the stimulus is a parameter.</aside>
 </section>
 
 <section data-sec="30">
@@ -257,15 +258,7 @@
   <span class="mark">The map</span>
   <h2>Arrow 5: set the music, one knob at a time</h2>
   {{MAP:control|Now the stimulus becomes the variable.}}
-  <aside class="notes">The dashed arrow becomes solid. Models were used in arrows 2 and 3 to explain the brain. Here they are used to make the stimulus.</aside>
-</section>
-
-<section data-sec="50">
-  <span class="mark">5 Music you can experiment on</span>
-  <h2>Each study turned one knob. A generator turns the music itself</h2>
-  {{FIG:turned}}
-  <div class="ref"><a href="https://doi.org/10.1162/089892900562183">Koelsch et al. 2000</a><span class="sep"></span><a href="https://doi.org/10.1016/j.cortex.2019.06.010">Quiroga-Martinez et al. 2019</a></div>
-  <aside class="notes">Payoff of the Di Liberto setup: memory length was a property of the listener model, here the music itself moves. Koelsch 2000: ERAN to irregular chords. Mismatch negativity to deviant notes is reduced in uncertain melodies (Quiroga-Martinez 2019, Cortex). Those designs use short artificial sequences. The new thing is naturalistic, parametric control at scale. Controlled stimuli complement natural listening.</aside>
+  <aside class="notes">The dashed arrow becomes solid. Models were used in arrows 2 and 3 to explain the brain. Here they are used to make the stimulus. Say: oddballs and odd chords already turned one knob on short sequences (Koelsch 2000, backup). A generator turns the whole piece.</aside>
 </section>
 
 <section data-sec="75">
@@ -284,13 +277,36 @@
   <aside class="notes">The graph is Für Elise: each note points to the notes that follow it. Order 0 shuffles, order 1 walks this graph, higher orders approach the piece. The order 1 sample was made with seed 29 by src/fur_elise.py. A controlling three steps: report the generator settings, compute surprise per stimulus with a listener model, include onsets, envelope and interval size as nuisance regressors. Backup: six traditions from one transition table. Intervals and contour change with order too, so surprise is computed per stimulus and onsets, envelope and interval size go in as nuisance regressors. Backup has the style vs copying result: higher orders copy longer spans from training, so stay at low order for new stimuli.</aside>
 </section>
 
+<section data-sec="50">
+  <span class="mark">5 Music you can experiment on · Own work</span>
+  <h2>Remembering a single note already tells six traditions apart <span class="status prog">In progress</span></h2>
+  <div class="fp">
+    <div class="f">{{FIG:order_accuracy}}</div>
+    <div class="p">
+      <p class="ink2" style="font-size:22px">style identified from a 12 by 12 transition table, majority class 21%</p>
+      <p class="tldr" style="margin-top:20px">Order 0 knows only which notes occur. Order 1 knows which note follows which. That one step is the big jump.</p>
+    </div>
+  </div>
+  <div class="ref">Chen et al., in preparation</div>
+  <aside class="notes">992 pieces, six styles, five fold cross validation. Blue: likelihood classifier. Orange: table features with logistic regression. Check 70.2 against the latest run before the talk (an older note said 70.9). Redrawn from his accuracy_by_order figure (pitch class panel), values approximate. 70.2 still to confirm against the latest run.</aside>
+</section>
+
 <section data-sec="75">
   <span class="mark">5 Music you can experiment on · A neural generator</span>
-  <h2>Turn one dial inside a neural music generator: same prompt, same seed, only the tempo changes</h2>
+  <h2>Turn one dial inside a neural music generator: same seed, only the tempo words change</h2>
   <div class="audio-row"><button class="play" data-audio="../shared/audio/mg_tempo_slow.mp3">play</button><span>slow</span><button class="play" data-audio="../shared/audio/mg_tempo_medium.mp3">play</button><span>medium</span><button class="play" data-audio="../shared/audio/mg_tempo_fast.mp3">play</button><span>fast</span></div>
   {{FIG:mg_dial}}
   <div class="ref"><a href="https://arxiv.org/abs/2306.05284">Copet et al., Simple and controllable music generation (MusicGen), NeurIPS 2023</a></div>
   <aside class="notes">Say: tempo is the easiest dial, a metronome can do it. The point is that a neural generator holds it while everything else stays the same. Predictability and style are the harder dials, the next step of our work. Generated for this talk with MusicGen small on a laptop CPU: prompt "solo piano melody, calm and simple" plus the tempo words, seed 7. Tempo estimated from the loudness envelope: 59, 100 and 158 bpm. Tempo is the easy dial. Predictability and style need the steering work (backup slide), which is under review. Play each for five seconds.</aside>
+</section>
+
+<section data-sec="50">
+  <span class="mark">5 Music you can experiment on</span>
+  <h2>Inside a large music generator, a style can be removed cleanly. Adding one does not work yet <span class="status rev">Under review</span></h2>
+  {{OLD:Steering a style inside}}
+  <p class="illus" style="margin-top:4px">Schematic, not data</p>
+  <div class="ref">Co authored work under review, MusicGen small and medium<span class="sep"></span><a href="https://arxiv.org/abs/2306.05284">Copet et al. 2023</a></div>
+  <aside class="notes">A style is a thin set of trajectories, not a direction. For brain experiments: removal gives a clean control condition, addition does not yet. To confirm with Zhiqian: the two plain sentences in the headline against the under review paper. For brain studies, removal gives a clean control condition.</aside>
 </section>
 
 <section data-sec="40">
@@ -301,7 +317,7 @@
 </section>
 
 <section data-sec="55">
-  <span class="mark">6 What becomes possible · First step</span>
+  <span class="mark">5 What becomes possible · First step</span>
   <h2>First step: one EEG study, four dial settings, 48 listeners <span class="status open">Planned</span></h2>
   <div style="margin-top:30px">{{FIG:design_strip}}</div>
   <p class="cap" style="margin-top:14px">Planned design, group size to be fixed from the pilot</p>
@@ -309,25 +325,27 @@
 </section>
 
 <section data-sec="55">
-  <span class="mark">6 What becomes possible</span>
+  <span class="mark">5 What becomes possible</span>
   <h2>Close the loop: the brain's response chooses the next bar of music <span class="status open">Vision</span></h2>
+  <div class="audio-row"><button class="play" data-audio="../shared/audio/mg_adapt_mockup.mp3">play</button><span>mock up: the same piece moving through three settings, not yet driven by EEG</span></div>
   {{FIG:closed_loop}}
   <aside class="notes">The future picture. Each piece of the loop exists today: generators with settable properties, EEG surprise responses, models of the brain. What is missing is putting them in one loop, with the settings logged as the dose. Vision, not a result. Say: the hard part is reading the brain fast enough, single trials are noisy, so the loop will first work over whole phrases or sessions.</aside>
 </section>
 
 <section data-sec="60">
-  <span class="mark">6 What becomes possible</span>
+  <span class="mark">5 What becomes possible</span>
   <h2>Three things a music dial makes possible <span class="status open">Vision</span></h2>
   <div class="photos tall">
     <figure>{{PHOTO:gait_rehab|Rehabilitation session}}<figcaption>A music dose for rehabilitation and dementia<span>settings written down, adapted to the person</span></figcaption></figure>
     <figure>{{PHOTO:eeg_experiment|EEG experiment}}<figcaption>A standard music probe for EEG<span>like gratings in vision research</span></figcaption></figure>
     <figure>{{PHOTO:child_piano_lesson|Child at the piano}}<figcaption>Music tuned to a listener<span>hearing, age, taste</span></figcaption></figure>
   </div>
+  <p class="ink2" style="font-size:21px;margin-top:10px">The same dial works for heart rate, skin conductance and sleep EEG.</p>
   <aside class="notes">Three pictures to take home. Keep each to one sentence. All three are visions, the protocol on the next slide is the first step.</aside>
 </section>
 
 <section data-sec="50">
-  <span class="mark">6 What becomes possible</span>
+  <span class="mark">5 What becomes possible</span>
   <h2>One day a music therapy could read like a prescription <span class="status open">Vision</span></h2>
   <div class="fp">
     <div class="f">{{FIG:prescription}}</div>
@@ -360,6 +378,14 @@
 <section data-backup="1">
   <span class="mark">Backup</span>
   <p class="thesis">Backup slides</p>
+</section>
+
+<section data-backup="1" data-sec="50">
+  <span class="mark">5 Music you can experiment on</span>
+  <h2>Each study turned one knob. A generator turns the music itself</h2>
+  {{FIG:turned}}
+  <div class="ref"><a href="https://doi.org/10.1162/089892900562183">Koelsch et al. 2000</a><span class="sep"></span><a href="https://doi.org/10.1016/j.cortex.2019.06.010">Quiroga-Martinez et al. 2019</a></div>
+  <aside class="notes">Payoff of the Di Liberto setup: memory length was a property of the listener model, here the music itself moves. Koelsch 2000: ERAN to irregular chords. Mismatch negativity to deviant notes is reduced in uncertain melodies (Quiroga-Martinez 2019, Cortex). Those designs use short artificial sequences. The new thing is naturalistic, parametric control at scale. Controlled stimuli complement natural listening.</aside>
 </section>
 
 <section data-backup="1" data-sec="60">
@@ -460,15 +486,6 @@
   {{FIG:downgrade}}
   <div class="ref"><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers et al. 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen et al. 2025</a></div>
   <aside class="notes">Backup has the music lessons meta analysis (Sala and Gobet 2020) if asked about transfer. Real recorded music confounds everything at once: tempo, timbre, familiarity, lyrics, emotion. You cannot vary one and hold the others. The order follows how often the reviews name each reason (risk of bias and imprecision most). The therapist and the group matter too, the music is the part we could specify, and rarely do.</aside>
-</section>
-
-<section data-backup="1" data-sec="50">
-  <span class="mark">5 Music you can experiment on</span>
-  <h2>Inside a large music generator, a style can be removed cleanly. Adding one does not work yet <span class="status rev">Under review</span></h2>
-  {{OLD:Steering a style inside}}
-  <p class="illus" style="margin-top:4px">Schematic, not data</p>
-  <div class="ref">Co authored work under review, MusicGen small and medium<span class="sep"></span><a href="https://arxiv.org/abs/2306.05284">Copet et al. 2023</a></div>
-  <aside class="notes">A style is a thin set of trajectories, not a direction. For brain experiments: removal gives a clean control condition, addition does not yet. To confirm with Zhiqian: the two plain sentences in the headline against the under review paper. For brain studies, removal gives a clean control condition.</aside>
 </section>
 
 <section data-backup="1" data-sec="50">
@@ -597,20 +614,6 @@
   </svg>
   <div class="ref"><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen 2025</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004381.pub4">Geretsegger 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD010459.pub3">Jespersen 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD006787.pub3">Magee 2017</a></div>
   <aside class="notes">Effect sizes vary: large in depression (Aalbers 2017) and autism (Geretsegger 2022), about one SD in self rated sleep (Jespersen 2022), small in dementia. What holds across reviews: no outcome reaches high certainty, and effects are short term. Stroke: gait velocity +11.3 m per min, 9 trials, moderate (cadence is low certainty). GRADE certainty from Cochrane reviews. No outcome reaches high certainty.</aside>
-</section>
-
-<section data-backup="1" data-sec="50">
-  <span class="mark">Backup · own work</span>
-  <h2>Remembering a single note already tells six traditions apart <span class="status prog">In progress</span></h2>
-  <div class="fp">
-    <div class="f">{{FIG:order_accuracy}}</div>
-    <div class="p">
-      <p class="ink2" style="font-size:22px">style identified from a 12 by 12 transition table, majority class 21%</p>
-      <p class="tldr" style="margin-top:20px">Order 0 knows only which notes occur. Order 1 knows which note follows which. That one step is the big jump.</p>
-    </div>
-  </div>
-  <div class="ref">Chen et al., in preparation</div>
-  <aside class="notes">992 pieces, six styles, five fold cross validation. Blue: likelihood classifier. Orange: table features with logistic regression. Check 70.2 against the latest run before the talk (an older note said 70.9). Redrawn from his accuracy_by_order figure (pitch class panel), values approximate. 70.2 still to confirm against the latest run.</aside>
 </section>
 
 <section data-backup="1">

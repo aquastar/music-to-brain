@@ -180,6 +180,7 @@ def mischler_curves():
     # Mischler et al. 2025 Fig 3a, normalized iEEG prediction correlation by layer, two of three clusters, APPROX
     early = [0.42, 0.63, 0.69, 0.73, 0.57, 0.50, 0.37, 0.28, 0.25, 0.26, 0.32, 0.27, 0.37]
     late = [0.08, 0.23, 0.20, 0.23, 0.32, 0.45, 0.66, 0.69, 0.81, 0.86, 0.91, 0.88, 0.87]
+    mid = [0.02, 0.23, 0.57, 0.63, 0.66, 0.75, 0.75, 0.79, 0.84, 0.86, 0.92, 0.89, 0.87]
     W, H, L, B = 560, 420, 70, 60
     sx = lambda i: L + i * (W - L - 130) / 12
     sy = lambda v: 34 + (1 - v) * (H - B - 40)
@@ -189,6 +190,7 @@ def mischler_curves():
     for i in (0, 4, 8, 12): s.append(T(sx(i), sy(0) + 26, str(i), 18, INK2, 'middle'))
     s.append(T((L + W - 120) / 2, H - 10, 'model layer', 20, INK2, 'middle'))
     s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (LANG, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(early))))
+    s.append('<polyline fill="none" stroke="%s" stroke-width="1.8" stroke-dasharray="6 5" points="%s"/>' % (AXIS, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(mid))))
     s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (MUS, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(late))))
     s.append(T(sx(12) + 8, sy(late[-1]) + 6, 'far sites', 20, INK)); s.append(T(sx(12) + 8, sy(early[-1]) + 6, 'primary', 20, INK2)); s.append(T(sx(12) + 8, sy(early[-1]) + 28, 'cortex', 20, INK2))
     s.append(T(L + 10, 14, 'fit, normalized', 18, INK2))
