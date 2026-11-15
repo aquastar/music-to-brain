@@ -1,6 +1,17 @@
 # Handoff: BIBM 2026 keynote (start here)
 
-Updated 2026-11-15. For a new session continuing this talk.
+Updated 2026-11-15 (evening). Title chosen by him: "Music That Plays the Brain" (no subtitle).
+
+## Current state (v9, after 10 RSI rounds)
+- Build: python3 -I bibm26-keynote/src/build.py, full check: bibm26-keynote/src/measure.sh OUTDIR (fails on overlap, more than one orange item, underfilled slides, small text, wrong act order, over the time budget).
+- Spine: cold open with the song decoded from the brain, hymn story, "which one is Beethoven" quiz, bold claim (Vision), three steps, Acts 1 to 5, interactive EEG demo (eeg-demo, fallback shared/eeg_demo_fallback.webm), one honest catch slide, clinic with a metronome tap along, thesis as "my view", Für Elise dial, MusicGen tempo dial (generated for the talk, 59, 100, 158 bpm), his steering and style results, prediction, closed loop with a sound mock up, prescription card, close that replays the brain song. About 26 min of slides, 32 to 35 with audio, demo and room moments. Rigor slides in Backup.
+- RSI run, scores and final report: aquastar/zhiqian-knowledge-base claude/skills/rsi/runs/2026-11-15_bibm-keynote (report_final.md).
+
+## Open for him
+- Steering audio (same piece with a style removed vs intact) for the strongest Act 5 moment.
+- His EEG result: run the group level control with an untrained model, confirm nuisance regressors.
+- Items marked "To confirm with Zhiqian" in the speaker notes. 70.2 vs 70.9 Markov accuracy.
+- A timed rehearsal.
 
 ## 2026-11-15 rebuild (latest)
 - Deck rebuilt from source: edit bibm26-keynote/src/slides.html, then run `python3 -I bibm26-keynote/src/build.py` (writes index.html, checks for dashes and semicolons, lists missing images). src/original.html is the 2026-11-14 deck, reused SVG slides are pulled from it with {{OLD:headline words}}.
