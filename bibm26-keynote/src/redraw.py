@@ -133,23 +133,23 @@ def knob_orders():
     return ''.join(s)
 
 def design_strip():
-    W, H = 1150, 340
+    W, H = 1150, 316
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
-    conds = [('order 0', FE['shuffled']), ('order 1', FE['order1']), ('order 4', chain_sample(4)), ('real', FE['melody'])]
-    s.append(T(0, 26, 'Stimuli, 20 s each, same notes and timbre, settings logged', 20, INK2))
+    conds = [('order 0', FE['shuffled']), ('order 1', FE['order1']), ('order 4', chain_sample(4)), ('real, unfamiliar', None)]
+    s.append(T(0, 24, 'Stimuli: chains trained on a melody corpus, 20 s each, same timbre, settings logged', 20, INK2))
     for i, (lab, mel) in enumerate(conds):
         x = i * 200
-        s.append(f'<rect x="{x}" y="40" width="185" height="110" rx="3" fill="{MUST if lab == "real" else GROUP}"/>')
-        s.append(T(x + 12, 66, lab, 21))
-        if mel: s.append(_dots(mel, x + 16, 82, 150, 50))
-        else: s.append(T(x + 12, 112, 'from the generator', 17, INK2))
-    s.append(f'<path d="M810,95 L860,95" stroke="{LINE}" stroke-width="1.5"/><path d="M860,89 L870,95 L860,101 z" fill="{LINE}"/>')
-    s.append(f'<rect x="880" y="40" width="270" height="110" rx="3" fill="{GROUP}"/>')
-    s.append(T(895, 70, '24 young, 24 older', 21)); s.append(T(895, 98, '64 channel EEG', 19, INK2)); s.append(T(895, 124, 'about 40 min', 19, INK2))
-    s.append(T(0, 200, 'Outcome', 20, INK2))
-    s.append(T(0, 232, 'gain of surprise over envelope and onsets, frontocentral, 0.1 to 0.35 s', 23))
-    s.append(T(0, 282, 'Decision rule, set before recording', 20, INK2))
-    s.append('<g data-accent="1">' + f'<text x="0" y="314" font-size="24" fill="{INK}">the gain rises with order in both groups</text>' + f'<line x1="0" y1="324" x2="420" y2="324" stroke="{ACC}" stroke-width="3"/></g>')
+        s.append(f'<rect x="{x}" y="38" width="185" height="100" rx="3" fill="{MUST if mel is None else GROUP}"/>')
+        s.append(T(x + 12, 64, lab, 21))
+        if mel: s.append(_dots(mel, x + 16, 78, 150, 46))
+        else: s.append(T(x + 12, 104, 'held out melodies,', 18, INK2)); s.append(T(x + 12, 126, 'familiarity rated', 18, INK2))
+    s.append(f'<path d="M810,88 L860,88" stroke="{LINE}" stroke-width="1.5"/><path d="M860,82 L870,88 L860,94 z" fill="{LINE}"/>')
+    s.append(f'<rect x="880" y="38" width="270" height="100" rx="3" fill="{GROUP}"/>')
+    s.append(T(895, 66, '24 young, 24 older', 21)); s.append(T(895, 94, 'hearing screened', 19, INK2)); s.append(T(895, 120, '64 channel EEG, 40 min', 19, INK2))
+    s.append(T(0, 186, 'Outcome', 19, INK2))
+    s.append(T(0, 216, 'surprise gain in a TRF over envelope, onsets and interval size', 23))
+    s.append(T(0, 260, 'Test and decision rule, set before recording', 19, INK2))
+    s.append('<g data-accent="1">' + f'<text x="0" y="292" font-size="23" fill="{INK}">a linear trend across order 0, 1, 4 in both groups</text>' + f'<line x1="0" y1="302" x2="520" y2="302" stroke="{ACC}" stroke-width="3"/></g>')
     s.append('</svg>')
     return ''.join(s)
 
@@ -259,5 +259,46 @@ def null_hist():
     s.append('</svg>')
     return ''.join(s)
 
-FIGS = {'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
+def kern_context(brain_only=False):
+    # Kern et al. 2022 Fig 3C, Music Transformer context length: MEG fit gain and next note accuracy, APPROX
+    xs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 150, 200, 250, 300, 400]
+    meg = [1.35, 2.7, 2.9, 3.2, 3.3, 3.4, 3.5, 3.6, 3.55, 3.5, 3.1, 3.0, 2.9, 2.7, 2.5, 2.1, 2.1, 2.1]
+    acc = [10, 18, 21, 24, 26, 27, 28, 29, 28, 30, 33, 43, 43, 42, 44, 53, 54, 54]
+    W = 1000; L = 150; PH = 150 if not brain_only else 260
+    H = (PH + 70) * (1 if brain_only else 2) + 40
+    px = lambda i: L + i * (W - L - 40) / (len(xs) - 1)
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    def panel(y0, vals, lo, hi, title, col, peak):
+        sy = lambda v: y0 + (hi - v) / (hi - lo) * PH
+        out = [T(0, y0 + 20, title[0], 21, INK), T(0, y0 + 44, title[1], 18, INK2)]
+        out.append(f'<line x1="{L}" y1="{y0+PH}" x2="{W-40}" y2="{y0+PH}" stroke="{AXIS}"/>')
+        out.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (col, ' '.join(f'{px(i):.1f},{sy(v):.1f}' for i, v in enumerate(vals))))
+        if peak:
+            k = vals.index(max(vals))
+            out.append('<g data-accent="1">' + f'<circle cx="{px(k):.1f}" cy="{sy(vals[k]):.1f}" r="8" fill="{ACC}"/>' + T(px(k) + 12, sy(vals[k]) - 10, 'peak at 8 notes', 20, INK) + '</g>')
+        return out
+    s += panel(30, meg, 1.0, 3.8, ('fit to the brain', 'MEG, gain from surprise'), MUS, True)
+    if not brain_only:
+        s += panel(30 + PH + 70, acc, 5, 58, ('model at music', 'next note accuracy'), LINE, False)
+    yb = H - 14
+    for i, x in enumerate(xs):
+        if x in (1, 5, 10, 25, 100, 400): s.append(T(px(i), yb - 14, str(x), 18, INK2, 'middle'))
+    s.append(T((L + W) / 2, yb + 10, 'notes of context the model may use', 19, INK2, 'middle'))
+    s.append('</svg>')
+    return ''.join(s)
+
+def downgrade():
+    rows = [('risk of bias', 'no blinding, open allocation'), ('imprecision', 'small samples'), ('inconsistency', 'different controls and outcomes'), ('the intervention is poorly described', 'which music, how loud, how long')]
+    W, H = 1100, 360
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    s.append(T(0, 22, 'reasons Cochrane reviews give for lowering certainty', 20, INK2))
+    for i, (a, b) in enumerate(rows):
+        y = 44 + i * 76; last = i == 3
+        s.append(f'<rect x="0" y="{y}" width="{W}" height="62" rx="3" fill="{GROUP}"/>')
+        s.append(T(20, y + 40, a, 26)); s.append(T(560, y + 40, b, 22, INK2))
+        if last: s.append('<g data-accent="1">' + f'<rect x="0" y="{y}" width="6" height="62" fill="{ACC}"/>' + '</g>' + T(W - 20, y + 40, 'the one a lab can fix', 22, INK, 'end'))
+    s.append('</svg>')
+    return ''.join(s)
+
+FIGS = {'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
         'knob_orders': knob_orders, 'design_strip': design_strip, 'turned': turned}

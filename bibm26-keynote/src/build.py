@@ -225,7 +225,7 @@ def build():
     vis = re.sub(r'&[#\w]+;', ' ', vis)
     bad = [c for c in ('—', '–', ';') if c in vis]
     # time ledger (data-sec per slide, backup excluded), minute stamps in notes, word gate
-    t = 0; acts = {}; over = []; words = []; out = []; pos = 0
+    t = 0; acts = {}; over = []; words = []; out = []; pos = 0; LASTACT = ['0']
     total = sum(int(re.search(r'data-sec="(\d+)"', m.group(1)).group(1)) for m in re.finditer(r'<section([^>]*)>', src) if 'data-backup' not in m.group(1) and 'data-sec' in m.group(1))
     def stamp(m):
         nonlocal t
@@ -235,6 +235,13 @@ def build():
         if not sec: over.append('slide without data-sec'); return m.group(0)
         mk = re.search(r'<span class="mark">(\d)', body)
         if mk and mk.group(1) not in acts: acts[mk.group(1)] = round(t / 60, 1)
+        if mk:
+            if mk.group(1) < LASTACT[0]: over.append(f'act order: act {mk.group(1)} after act {LASTACT[0]} at slide {len(words)}')
+            LASTACT[0] = max(LASTACT[0], mk.group(1))
+        nt = re.search(r'<aside class="notes">(.*?)</aside>', body, flags=re.S)
+        if nt:
+            sents = [x.strip() for x in re.split(r'(?<=[.])\s+', nt.group(1)) if len(x.strip()) > 30]
+            if len(sents) != len(set(sents)): over.append(f'repeated sentence in notes at slide {len(words)}')
         if 'class="thesis"' in body and 'stimulus' in body: acts['thesis'] = round(t / 60, 1)
         body = body.replace('<aside class="notes">', f'<aside class="notes">[minute {t/60:.1f} of {total/60:.0f}] ', 1)
         # word gate: visible body words outside headline, mark, svg, ref, notes

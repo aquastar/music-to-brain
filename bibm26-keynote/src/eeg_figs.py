@@ -49,7 +49,7 @@ def _interp(vals, pos, x, y, p=2):
 def _col(v, lim):
     # diverging teal (negative) to orange (positive) through warm white
     x = max(-1, min(1, v / lim))
-    a, n, b = (0, 156, 189), (251, 250, 247), (247, 105, 2)
+    a, n, b = (0, 156, 189), (251, 250, 247), (125, 85, 199)
     c = b if x > 0 else a; x = abs(x)
     return '#%02x%02x%02x' % tuple(int(n[k] + (c[k] - n[k]) * x) for k in range(3))
 

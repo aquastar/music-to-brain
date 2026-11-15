@@ -50,16 +50,9 @@
 <section data-sec="50">
   <span class="mark">Preview 2 of 4 · Seeing is not understanding</span>
   <h2>The best music model looks hundreds of notes back. The brain fits best at about eight</h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/kern_context.png" data-evidence style="width:820px"></div>
-    <div class="p">
-      <p class="key">Agreement is not identity</p>
-      <p class="tldr">Dark line: how well a model's surprise predicts MEG. Light line: how well the model predicts music.</p>
-      
-    </div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.7554/eLife.80935">Kern et al., Cortical activity during naturalistic music listening reflects short range predictions based on long term experience, eLife 2022</a></div>
-  <aside class="notes">Horizontal axis: how many previous notes the Music Transformer may use. The model keeps getting better at music up to 400 notes. Its fit to the brain peaks around 8 and falls. A better model is not automatically a more brain like model.</aside>
+  {{FIG:kern_brain}}
+  <div class="ref">Redrawn after <a href="https://doi.org/10.7554/eLife.80935">Kern et al., Cortical activity during naturalistic music listening reflects short range predictions based on long term experience, eLife 2022</a></div>
+  <aside class="notes">Horizontal axis: how many previous notes the Music Transformer may use. The model keeps getting better at music up to 400 notes. Its fit to the brain peaks around 8 and falls. A better model is not automatically a more brain like model. Redrawn approximately from Kern 2022 Fig 3C. The body slide after Pepino shows the model curve too.</aside>
 </section>
 
 <section data-sec="25">
@@ -123,7 +116,7 @@
     <div class="p">{{PEOPLE:zatorre|Robert Zatorre|McGill, senior author}}</div>
   </div>
   <div class="ref"><a href="https://doi.org/10.1038/nn.2726">Salimpoor et al., Anatomically distinct dopamine release during anticipation and experience of peak emotion to music, Nat Neurosci 2011</a></div>
-  <aside class="notes">One line from the backup slide: music recruits motor, reward, memory and emotion systems at once (Koelsch 2014). PET gives the chemistry, fMRI the timing, same listeners, same music. Last line plants a seed: expectation is part of the reward, and a generator can shape expectation.</aside>
+  <aside class="notes">One line from the backup slide: music recruits motor, reward, memory and emotion systems at once (Koelsch 2014). PET gives the chemistry, fMRI the timing, same listeners, same music. Last line plants a seed: expectation is part of the reward, and a generator can shape expectation. Check against the paper before saying it: chills were confirmed with psychophysiological recordings (heart rate, respiration, skin conductance), a hook for the ECG and wearables people in the room.</aside>
 </section>
 
 <section data-sec="35">
@@ -153,19 +146,6 @@
   <aside class="notes">Say in one line: EEG and MEG give the when, fMRI the where, intracranial both (next slide). This map returns before every study. Arrows 1 and 2 are Act 2. Arrow 3 is Act 3. Arrow 4 is Act 4. Arrow 5, dashed, is the gap and Act 5.</aside>
 </section>
 
-<section data-sec="45">
-  <span class="mark">2 What we can see</span>
-  <h2>Every recording method trades time against space</h2>
-  <div class="photos">
-    <figure>{{PHOTO:eeg_cap|EEG cap}}<figcaption>EEG<span>milliseconds, centimeters</span></figcaption></figure>
-    <figure>{{PHOTO:meg_system|MEG system}}<figcaption>MEG<span>milliseconds, better localization</span></figcaption></figure>
-    <figure>{{PHOTO:mri_scanner|MRI scanner}}<figcaption>fMRI<span>seconds, millimeters</span></figcaption></figure>
-    <figure>{{PHOTO:ecog_grid_illustration|ECoG grid}}<figcaption>Intracranial<span>both, only in surgery patients</span></figcaption></figure>
-  </div>
-  <p style="font-size:26px;margin-top:22px">Music changes in milliseconds. Ask <i>where</i> with fMRI, <i>when</i> with EEG.</p>
-  <aside class="notes">The audience knows these tools. The point is only that music forces the choice. Intracranial recordings give both, rarely.</aside>
-</section>
-
 <section data-sec="60">
   <span class="mark">2 What we can see</span>
   <h2>Auditory cortex holds a population that responds selectively to song</h2>
@@ -180,6 +160,21 @@
   <h2>Arrow 1: predict the brain from the music</h2>
   {{MAP:encode|We can predict the brain from music. The stimulus was a fixed recording.}}
   <aside class="notes">Encoding models. Feed features of the music in, predict EEG out. The test is always the gain over an acoustic baseline.</aside>
+</section>
+
+<section data-sec="50">
+  <span class="mark">2 What we can see · Encode</span>
+  <h2>The cortex locks to the beat, even when the meter is only imagined</h2>
+  <div class="fp">
+    <div class="f"><img src="../shared/figs/papers/nozaradan_spectrum.png" data-evidence style="width:400px"></div>
+    <div class="p">
+      <p class="key">EEG peaks at the imagined meter</p>
+      <p class="tldr">Same beat for everyone, 2.4 Hz. Asked to imagine a march, listeners show a peak at 1.2 Hz. A waltz, at 0.8 and 1.6 Hz.</p>
+      {{PEOPLE:nozaradan|Sylvie Nozaradan|UCLouvain}}
+    </div>
+  </div>
+  <div class="ref"><a href="https://doi.org/10.1523/JNEUROSCI.0411-11.2011">Nozaradan et al., Tagging the neuronal entrainment to beat and meter, J Neurosci 2011</a></div>
+  <aside class="notes">Frequency tagging of steady state evoked potentials. Blue: beat only. Red: binary meter imagery. Green: ternary. This links to rhythmic auditory stimulation in Act 4.</aside>
 </section>
 
 <section data-sec="60">
@@ -239,21 +234,6 @@
   <aside class="notes">First small crack. Say it lightly and move on.</aside>
 </section>
 
-<section data-sec="50">
-  <span class="mark">2 What we can see · Encode</span>
-  <h2>The cortex locks to the beat, even when the meter is only imagined</h2>
-  <div class="fp">
-    <div class="f"><img src="../shared/figs/papers/nozaradan_spectrum.png" data-evidence style="width:400px"></div>
-    <div class="p">
-      <p class="key">EEG peaks at the imagined meter</p>
-      <p class="tldr">Same beat for everyone, 2.4 Hz. Asked to imagine a march, listeners show a peak at 1.2 Hz. A waltz, at 0.8 and 1.6 Hz.</p>
-      {{PEOPLE:nozaradan|Sylvie Nozaradan|UCLouvain}}
-    </div>
-  </div>
-  <div class="ref"><a href="https://doi.org/10.1523/JNEUROSCI.0411-11.2011">Nozaradan et al., Tagging the neuronal entrainment to beat and meter, J Neurosci 2011</a></div>
-  <aside class="notes">Frequency tagging of steady state evoked potentials. Blue: beat only. Red: binary meter imagery. Green: ternary. This links to rhythmic auditory stimulation in Act 4.</aside>
-</section>
-
 <section data-sec="15" data-auto-animate>
   <span class="mark">The map</span>
   <h2>Arrow 2: play the music back from the brain</h2>
@@ -303,6 +283,13 @@
   <aside class="notes">Values read approximately from Fig 1a (MuLan identification, medians over 5 listeners). Five listeners, 540 clips. fMRI is mapped to a 128 number music embedding, MusicLM turns it into sound. Chance is 50 percent. Identification: is the generated clip closer to the true clip than to a random other clip, judged in the MuLan embedding space. 0.5 is chance. Green boxes, right group: generated by MusicLM. Remember the 128 numbers, they return in Act 3. MuLan is the space the decoder is trained to hit, so 85 percent there is the generous measure. In the low level w2v-BERT space it is about 66 percent. The 5 is the number of people scanned, not judges.</aside>
 </section>
 
+<section data-sec="25">
+  <span class="mark">2 What we can see</span>
+  <h2>Every one of these studies shares one design</h2>
+  {{OLD:Every one of these studies shares}}
+  <aside class="notes">In these studies the music is fixed. The second crack. Say it lightly and move on.</aside>
+</section>
+
 <section data-sec="20" data-auto-animate>
   <span class="mark">The map</span>
   <h2>Arrow 3: does a model of music resemble the brain?</h2>
@@ -323,13 +310,6 @@
   </div>
   <div class="ref"><a href="https://doi.org/10.1038/s41467-025-63961-7">Mischler, Li, Bickel, Mehta, Mesgarani, Nat Commun 2025</a></div>
   <aside class="notes">Three electrode clusters: blue prefers early layers and sits in primary auditory cortex, yellow peaks in middle to late layers, magenta prefers late layers and sits farthest out. Bach pieces, 20 EEG listeners and 6 iEEG patients. The first time a generative music model, not a hand built feature set, is the encoding model. Expertise changes how strongly context is encoded. Curves redrawn approximately from Fig 3a: teal is the early layer cluster (blue in the brain image) near primary auditory cortex, purple the late layer cluster farthest out. A third, middle cluster (yellow in the paper) peaks in middle to late layers.</aside>
-</section>
-
-<section data-sec="25">
-  <span class="mark">3 Seeing is not understanding</span>
-  <h2>Every one of these studies shares one design</h2>
-  {{OLD:Every one of these studies shares}}
-  <aside class="notes">In these studies the music is fixed. The second crack. Say it lightly and move on.</aside>
 </section>
 
 <section data-sec="45">
@@ -353,7 +333,15 @@
     </div>
   </div>
   <div class="ref"><a href="https://arxiv.org/abs/2511.16849">Pepino et al., Better audio representations are more brain like, arXiv preprint 2025</a></div>
-  <aside class="notes">Pepino, Fig 6 and p. 12: r = 0.90 and 0.89 on two fMRI datasets, and r = 0.71 and 0.70 after excluding the weakest models (DCASE2020, MetricGAN, DeepSpeech, SepFormer). Kern: 35 MEG and 20 EEG listeners, neural surprise reflects mostly contexts of fewer than ten notes. Both are true at once, so alignment is a filter, not a mechanism. Keep the under ten notes number in mind for Act 5. Say: and from the preview, past about eight notes a better music model fits the brain worse (Kern 2022). Both are true at once. Dots: labeled models read approximately from Fig 6 (NH2015 voxel regression), the top cluster summarized as one dot. The line is the paper's fit, r = 0.90.</aside>
+  <aside class="notes">Say: and from the preview, past about eight notes a better music model fits the brain worse (Kern 2022).</aside>
+</section>
+
+<section data-sec="45">
+  <span class="mark">3 Seeing is not understanding · Compare</span>
+  <h2>Past about eight notes, a better music model fits the brain worse</h2>
+  {{FIG:kern_context}}
+  <div class="ref">Redrawn after <a href="https://doi.org/10.7554/eLife.80935">Kern et al., Cortical activity during naturalistic music listening reflects short range predictions based on long term experience, eLife 2022</a></div>
+  <aside class="notes">Values read approximately from Fig 3C. Top: how much the Music Transformer's surprise adds to MEG prediction, 35 listeners. Bottom: how well the same model predicts the next note. The model keeps improving with context, the fit to the brain peaks near eight notes and falls. A fit is a filter, not a mechanism.</aside>
 </section>
 
 <section data-sec="70">
@@ -370,12 +358,12 @@
     </div>
   </div>
   <div class="ref"><a href="https://openneuro.org/datasets/ds005876">OpenNeuro ds005876</a><span class="sep"></span>Chen, unpublished analysis</div>
-  <aside class="notes">Surprise for every note from MusicGen-large, EEG from an open dataset of people hearing familiar songs. Live demo: aquastar.github.io/music-to-brain/eeg-demo. Not yet tested against the untrained model at group level. Regression over all songs and all 29 listeners, separating overlapping note responses. Cluster permutation p = 0.0028, 11 frontocentral channels, 0.09 to 0.34 s, peak 0.16 s, a P2 like window. Scalp maps: extra response per one SD more surprise. If time allows, switch to the demo for 20 seconds: step to the next surprising note at quarter speed. Fallback is a screen recording.</aside>
+  <aside class="notes">Surprise for every note from MusicGen-large, EEG from an open dataset of people hearing familiar songs. Live demo: aquastar.github.io/music-to-brain/eeg-demo. Not yet tested against the untrained model at group level. Regression over all songs and all 29 listeners, separating overlapping note responses. Cluster permutation p = 0.0028, 11 frontocentral channels, 0.09 to 0.34 s, peak 0.16 s, a P2 like window. Scalp maps: extra response per one SD more surprise. If time allows, switch to the demo for 20 seconds: step to the next surprising note at quarter speed. Fallback is a screen recording. To confirm with Zhiqian: which nuisance regressors (envelope, onsets) the group regression includes. Scalp maps use teal for negative and purple for positive.</aside>
 </section>
 
 <section data-sec="45">
   <span class="mark">3 Seeing is not understanding · My own data</span>
-  <h2>Note by note, neither MusicGen nor an untrained model predicts the response</h2>
+  <h2>The cleanest crack is my own: note by note, neither MusicGen nor an untrained model predicts the response</h2>
   {{FIG:null_hist}}
   <p style="font-size:24px;margin-top:10px">Both sit inside the shuffles: MusicGen {{PERNOTE:perm_musicgen_of_2000}} of 2000, untrained {{PERNOTE:perm_random_of_2000}} of 2000. {{PERNOTE:n_notes}} notes, 3 fixed songs.</p>
   <aside class="notes">Numbers come from src/eeg_pernote.py, the same rule as the demo scatter. Neither r is outside the shuffle distribution. Single note responses are noisy: a new note every 0.2 to 0.4 s. Decoding as a whole rests on few listeners and few songs: 5 for the fMRI reconstructions, one song for Bellier, 10 to 20 in public music EEG sets. Last crack before the clinic.</aside>
@@ -391,25 +379,7 @@
   <span class="mark">The map</span>
   <h2>Arrow 4: does music help patients?</h2>
   {{MAP:treat|We can see the musical brain. The stimulus is still fixed.}}
-  <aside class="notes">The clinic is where music is actually changed and given to people. What does the evidence say?</aside>
-</section>
-
-<section data-sec="50">
-  <span class="mark">4 The clinic</span>
-  <h2>Across five reviews, no music therapy outcome reaches high certainty</h2>
-  <svg class="fig" viewBox="0 0 1152 430">
-    <g font-size="20" fill="#5F5D50"><text x="420" y="30">very low</text><text x="620" y="30">low</text><text x="820" y="30">moderate</text><text x="1020" y="30">high</text></g>
-    <g stroke="#D7D2CB"><line x1="450" y1="45" x2="450" y2="405"/><line x1="640" y1="45" x2="640" y2="405"/><line x1="850" y1="45" x2="850" y2="405"/><line x1="1040" y1="45" x2="1040" y2="405"/></g>
-    <g font-size="22" fill="#1F1E1B">
-      <text x="0" y="135">Depression, clinician rated</text><circle cx="850" cy="128" r="8" fill="#7D55C7"/>
-      <text x="0" y="190">Autism, global improvement</text><circle cx="850" cy="183" r="8" fill="#7D55C7"/>
-      <text x="0" y="245">Insomnia, subjective sleep</text><circle cx="850" cy="238" r="8" fill="#7D55C7"/>
-      <text x="0" y="300">Stroke, gait velocity</text><circle cx="850" cy="293" r="8" fill="#7D55C7"/>
-      <text x="0" y="355">Dementia, cognition</text><circle cx="535" cy="348" r="8" fill="none" stroke="#7D55C7" stroke-width="2"/>
-    </g>
-  </svg>
-  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen 2025</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004381.pub4">Geretsegger 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD010459.pub3">Jespersen 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD006787.pub3">Magee 2017</a></div>
-  <aside class="notes">Effect sizes vary: large in depression (Aalbers 2017) and autism (Geretsegger 2022), about one SD in self rated sleep (Jespersen 2022), small in dementia. What holds across reviews: no outcome reaches high certainty, and effects are short term. Stroke: gait velocity +11.3 m per min, 9 trials, moderate (cadence is low certainty). GRADE certainty from Cochrane reviews. No outcome reaches high certainty.</aside>
+  <aside class="notes">Say: across five Cochrane reviews (backup slide), no outcome reaches high certainty, and follow up is short. The clinic is where music is actually changed and given to people. What does the evidence say?</aside>
 </section>
 
 <section data-sec="50">
@@ -422,7 +392,7 @@
 
 <section data-sec="50">
   <span class="mark">4 The clinic</span>
-  <h2>The best understood music therapy is the one with a knob</h2>
+  <h2>The best understood music therapy is the one where the stimulus is a parameter</h2>
   <div class="fp">
     <div class="f" style="width:240px">{{PHOTO:metronome|A metronome}}</div>
     <div class="p">
@@ -437,16 +407,12 @@
   <aside class="notes">Magee 2017: gait velocity +11.34 m per min (9 trials, 268 people, moderate), cadence +10.77 steps per min (7 trials, low). Ye 2022: in Parkinson's, stride length, velocity and UPDRS III improve across 18 RCTs, cadence does not. Payoff of the Act 1 plant. Magee 2017: +10.77 steps per minute after stroke, 7 trials, 223 people, low quality. Ye 2022: in Parkinson's, stride length, velocity and UPDRS III improve across 18 RCTs, no significant effect on cadence. The mechanism is clearest where the stimulus is a parameter.</aside>
 </section>
 
-<section class="breath" data-sec="45">
+<section data-sec="45">
   <span class="mark">4 The clinic</span>
-  <h2>Across reviews, the same complaint: nobody can say exactly what the intervention was</h2>
-  <div class="cols">
-    <div><p>Which music? How loud, how fast? Chosen by whom?</p></div>
-    <div><p style="font-size:26px">The therapist and the group matter. The music is the part we could specify, and rarely do.</p></div>
-  </div>
-  <p class="ink2" style="font-size:21px;margin-top:18px">Small samples and no blinding also lower certainty.</p>
+  <h2>Reviews lower certainty for four reasons. One of them a lab can fix</h2>
+  {{FIG:downgrade}}
   <div class="ref"><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers et al. 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen et al. 2025</a></div>
-  <aside class="notes">Backup has the music lessons meta analysis (Sala and Gobet 2020) if asked about transfer. Real recorded music confounds everything at once: tempo, timbre, familiarity, lyrics, emotion. You cannot vary one and hold the others.</aside>
+  <aside class="notes">Backup has the music lessons meta analysis (Sala and Gobet 2020) if asked about transfer. Real recorded music confounds everything at once: tempo, timbre, familiarity, lyrics, emotion. You cannot vary one and hold the others. The order follows how often the reviews name each reason (risk of bias and imprecision most). The therapist and the group matter too, the music is the part we could specify, and rarely do.</aside>
 </section>
 
 <section data-sec="30">
@@ -496,18 +462,19 @@
 
 <section data-sec="50">
   <span class="mark">5 Music you can experiment on</span>
-  <h2>Richer knobs live inside large music generators <span class="status rev">Under review</span></h2>
+  <h2>Inside a large music generator, a style can be removed cleanly. Adding one does not work yet <span class="status rev">Under review</span></h2>
   {{OLD:Steering a style inside}}
   <p class="illus" style="margin-top:4px">Schematic, not data</p>
   <div class="ref">Co authored work under review, MusicGen small and medium<span class="sep"></span><a href="https://arxiv.org/abs/2306.05284">Copet et al. 2023</a></div>
-  <aside class="notes">A style is a thin set of trajectories, not a direction. For brain experiments: removal gives a clean control condition, addition does not yet.</aside>
+  <aside class="notes">A style is a thin set of trajectories, not a direction. For brain experiments: removal gives a clean control condition, addition does not yet. To confirm with Zhiqian: the two plain sentences in the headline against the under review paper. For brain studies, removal gives a clean control condition.</aside>
 </section>
 
 <section data-sec="55">
   <span class="mark">5 Music you can experiment on</span>
   <h2>One study a biosignal lab could run within a year <span class="status open">Planned</span></h2>
-  {{FIG:design_strip}}
-  <aside class="notes">Concrete enough for an EEG lab to say yes. The pilot (ds005876, 29 listeners) gives the effect window and size. Group size about 24 per group will be fixed from that pilot, not presented as a power result. Older adults first, because clinical evidence is weakest there, and hearing aid users later because compression changes the acoustic baseline. Group size about 24 per group, fixed from the pilot (my ds005876 analysis), not a power result. Year 2: the same protocol in a hearing loss or dementia cohort. One line from backup: what to measure is alignment that survives an acoustic baseline. To confirm with Zhiqian (options, not on the slide): hearing screening, a linear trend test across orders, z scoring surprise within condition, an attention probe, stimulus counts, the clinical population and outcome.</aside>
+  <div style="margin-top:30px">{{FIG:design_strip}}</div>
+  <p class="cap" style="margin-top:14px">Planned design, group size to be fixed from the pilot</p>
+  <aside class="notes">Concrete enough for an EEG lab to say yes. The pilot (ds005876, 29 listeners) gives the effect window and size. Group size about 24 per group will be fixed from that pilot, not presented as a power result. Older adults first, because clinical evidence is weakest there, and hearing aid users later because compression changes the acoustic baseline. Group size about 24 per group, fixed from the pilot (my ds005876 analysis), not a power result. Year 2: the same protocol in a hearing loss or dementia cohort. One line from backup: what to measure is alignment that survives an acoustic baseline. To confirm with Zhiqian (options, not on the slide): hearing screening, a linear trend test across orders, z scoring surprise within condition, an attention probe, stimulus counts, the clinical population and outcome. To confirm with Zhiqian (all on the slide under Planned): corpus trained chains instead of Für Elise, unfamiliar held out real melodies with a familiarity rating, hearing screening, the linear trend test and decision rule. Option: also record heart rate and skin conductance for the ECG and wearables part of the room.</aside>
 </section>
 
 <section data-sec="60">
@@ -516,19 +483,51 @@
   <div class="fp">
     <div class="f" style="width:520px">{{PHOTO:older_adults_choir|Older adults singing together}}</div>
     <div class="p">
-      <p style="font-size:24px;margin:0 0 8px 0">Music can be read from the brain, and models predict it.</p>
-      <p style="font-size:24px;margin:0 0 8px 0">It is still correlation, and clinical effects are modest.</p>
-      <p style="font-size:24px;margin:0 0 18px 0">Generative models make the stimulus a variable.</p>
-      <p class="key" style="font-size:24px">Looking for: one EEG lab and one clinical partner</p>
+      <p style="font-size:22px;margin:0" class="ink2">We bring</p>
+      <p style="font-size:24px;margin:2px 0 14px 0">stimuli with logged settings, analysis code, the pilot window</p>
+      <p style="font-size:22px;margin:0" class="ink2">We need</p>
+      <p style="font-size:24px;margin:2px 0 14px 0">an EEG or physiology lab with older or hearing impaired listeners</p>
+      <p class="key accent" style="font-size:24px">The stimulus settings become the reported dose</p>
     </div>
   </div>
-  <aside class="notes">Return to the opening image and question. Three lines, then the ask with numbers. Stop. No thank you slide. To confirm with Zhiqian: the clinical partner request. Rule conflict to settle with him: his 11-02 note says the last slide lists open territory, the brief and SKILL.md say contributions plus ask.</aside>
+  <aside class="notes">Say the three findings aloud: music can be read from the brain and models predict it, it is still correlation and clinical certainty is low, generative models make the stimulus a variable. To confirm with Zhiqian: the partner request and the physiology option.</aside>
 </section>
 
 <!-- ================= BACKUP -->
 <section data-backup="1">
   <span class="mark">Backup</span>
   <p class="thesis">Backup slides</p>
+</section>
+
+<section data-backup="1" data-sec="45">
+  <span class="mark">2 What we can see</span>
+  <h2>Every recording method trades time against space</h2>
+  <div class="photos">
+    <figure>{{PHOTO:eeg_cap|EEG cap}}<figcaption>EEG<span>milliseconds, centimeters</span></figcaption></figure>
+    <figure>{{PHOTO:meg_system|MEG system}}<figcaption>MEG<span>milliseconds, better localization</span></figcaption></figure>
+    <figure>{{PHOTO:mri_scanner|MRI scanner}}<figcaption>fMRI<span>seconds, millimeters</span></figcaption></figure>
+    <figure>{{PHOTO:ecog_grid_illustration|ECoG grid}}<figcaption>Intracranial<span>both, only in surgery patients</span></figcaption></figure>
+  </div>
+  <p style="font-size:26px;margin-top:22px">Music changes in milliseconds. Ask <i>where</i> with fMRI, <i>when</i> with EEG.</p>
+  <aside class="notes">The audience knows these tools. The point is only that music forces the choice. Intracranial recordings give both, rarely.</aside>
+</section>
+
+<section data-backup="1" data-sec="50">
+  <span class="mark">4 The clinic</span>
+  <h2>Across five reviews, no music therapy outcome reaches high certainty</h2>
+  <svg class="fig" viewBox="0 0 1152 430">
+    <g font-size="20" fill="#5F5D50"><text x="420" y="30">very low</text><text x="620" y="30">low</text><text x="820" y="30">moderate</text><text x="1020" y="30">high</text></g>
+    <g stroke="#D7D2CB"><line x1="450" y1="45" x2="450" y2="405"/><line x1="640" y1="45" x2="640" y2="405"/><line x1="850" y1="45" x2="850" y2="405"/><line x1="1040" y1="45" x2="1040" y2="405"/></g>
+    <g font-size="22" fill="#1F1E1B">
+      <text x="0" y="135">Depression, clinician rated</text><circle cx="850" cy="128" r="8" fill="#7D55C7"/>
+      <text x="0" y="190">Autism, global improvement</text><circle cx="850" cy="183" r="8" fill="#7D55C7"/>
+      <text x="0" y="245">Insomnia, subjective sleep</text><circle cx="850" cy="238" r="8" fill="#7D55C7"/>
+      <text x="0" y="300">Stroke, gait velocity</text><circle cx="850" cy="293" r="8" fill="#7D55C7"/>
+      <text x="0" y="355">Dementia, cognition</text><circle cx="535" cy="348" r="8" fill="none" stroke="#7D55C7" stroke-width="2"/>
+    </g>
+  </svg>
+  <div class="ref"><a href="https://doi.org/10.1002/14651858.CD003477.pub5">van der Steen 2025</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004517.pub3">Aalbers 2017</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD004381.pub4">Geretsegger 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD010459.pub3">Jespersen 2022</a><span class="sep"></span><a href="https://doi.org/10.1002/14651858.CD006787.pub3">Magee 2017</a></div>
+  <aside class="notes">Effect sizes vary: large in depression (Aalbers 2017) and autism (Geretsegger 2022), about one SD in self rated sleep (Jespersen 2022), small in dementia. What holds across reviews: no outcome reaches high certainty, and effects are short term. Stroke: gait velocity +11.3 m per min, 9 trials, moderate (cadence is low certainty). GRADE certainty from Cochrane reviews. No outcome reaches high certainty.</aside>
 </section>
 
 <section data-backup="1" data-sec="50">
