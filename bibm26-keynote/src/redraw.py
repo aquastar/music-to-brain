@@ -288,10 +288,10 @@ def kern_context(brain_only=False):
     return ''.join(s)
 
 def downgrade():
-    rows = [('risk of bias', 'no blinding, open allocation'), ('imprecision', 'small samples'), ('inconsistency', 'different controls and outcomes'), ('the intervention is poorly described', 'which music, how loud, how long')]
+    rows = [('risk of bias', 'no blinding, open allocation'), ('imprecision', 'small samples'), ('inconsistency', 'different controls and outcomes'), ('and the music is rarely described', 'which piece, how loud, how long')]
     W, H = 1100, 360
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
-    s.append(T(0, 22, 'reasons Cochrane reviews give for lowering certainty', 20, INK2))
+    s.append(T(0, 22, 'GRADE reasons for lower certainty (rows 1 to 3) and a reporting gap reviews name (row 4)', 20, INK2))
     for i, (a, b) in enumerate(rows):
         y = 44 + i * 76; last = i == 3
         s.append(f'<rect x="0" y="{y}" width="{W}" height="62" rx="3" fill="{GROUP}"/>')
@@ -300,5 +300,26 @@ def downgrade():
     s.append('</svg>')
     return ''.join(s)
 
-FIGS = {'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
+def closed_loop():
+    W, H = 1150, 430
+    s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
+    box = lambda x, y, w, h, t, sub, fill: [f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="3" fill="{fill}"/>', T(x + 20, y + 44, t, 28), T(x + 20, y + 76, sub, 19, INK2)]
+    s += box(0, 40, 300, 110, 'Generator', 'sets predictability, style, tempo', MUST)
+    s += box(425, 40, 300, 110, 'Listener', 'hears this piece, now', GROUP)
+    s += box(850, 40, 300, 110, 'EEG', 'surprise response, 0.1 to 0.35 s', GROUP)
+    s += box(425, 270, 300, 110, 'Model of the brain', 'which setting to try next', GROUP)
+    def arr(d, col=LINE, w=1.5):
+        nums = [float(v) for v in __import__('re').findall(r'-?\d+\.?\d*', d)]
+        import math
+        x1, y1, x0, y0 = nums[-2], nums[-1], nums[-4], nums[-3]
+        a = math.atan2(y1 - y0, x1 - x0); bx, by = x1 - 13 * math.cos(a), y1 - 13 * math.sin(a); px, py = -math.sin(a) * 6, math.cos(a) * 6
+        return f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{w}"/><path d="M{x1:.1f},{y1:.1f} L{bx+px:.1f},{by+py:.1f} L{bx-px:.1f},{by-py:.1f} z" fill="{col}"/>'
+    s.append(arr('M305,95 L420,95')); s.append(arr('M730,95 L845,95'))
+    s.append(arr('M1000,155 C1000,300 900,325 730,325'))
+    s.append('<g data-accent="1">' + arr('M420,325 C200,325 150,290 150,155', ACC, 2.5) + '</g>')
+    s.append(T(190, 372, 'the next bar adapts', 22, INK))
+    s.append('</svg>')
+    return ''.join(s)
+
+FIGS = {'closed_loop': closed_loop, 'kern_context': kern_context, 'kern_brain': lambda: kern_context(True), 'downgrade': downgrade, 'mischler_curves': mischler_curves, 'pepino_subset': pepino_subset, 'order_accuracy': order_accuracy, 'null_hist': null_hist, 'dl_gain': dl_gain, 'dl_memory': dl_memory, 'denk_acc': denk_acc, 'nh_schematic': nh_schematic,
         'knob_orders': knob_orders, 'design_strip': design_strip, 'turned': turned}
