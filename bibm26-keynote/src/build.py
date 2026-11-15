@@ -177,7 +177,7 @@ def people(spec):
 def photo(spec):
     key, alt = [x.strip() for x in spec.split('|')]
     f = find('photos', key)
-    return f'<img src="{f}" alt="{alt}">' if f else f'<div style="height:230px;background:#EFEBE5"></div>'
+    return f'<img class="ph" src="{f}" alt="{alt}">' if f else f'<div style="height:230px;background:#EFEBE5"></div>'
 
 def build():
     src = open(os.path.join(HERE, 'slides.html')).read()

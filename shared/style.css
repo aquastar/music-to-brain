@@ -77,3 +77,5 @@ html,body{background:var(--bg)}
 .reveal section.cover .cover-mel circle{opacity:.25;animation:fe-pulse 5.6s infinite}
 @keyframes fe-pulse{0%{opacity:.25}3%{opacity:1}12%{opacity:.25}100%{opacity:.25}}
 .reveal .illus{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.reveal .fp>.f>img.ph{width:100%;height:auto;max-height:440px;object-fit:cover;border-radius:3px;border:0}
+.reveal .fp>.f>svg.fig{width:100%}
