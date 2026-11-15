@@ -192,7 +192,7 @@ def mischler_curves():
     s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (LANG, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(early))))
     s.append('<polyline fill="none" stroke="%s" stroke-width="1.8" stroke-dasharray="6 5" points="%s"/>' % (AXIS, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(mid))))
     s.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (MUS, ' '.join(f'{sx(i):.1f},{sy(v):.1f}' for i, v in enumerate(late))))
-    s.append(T(sx(12) + 8, sy(late[-1]) + 6, 'far sites', 20, INK)); s.append(T(sx(12) + 8, sy(early[-1]) + 6, 'early sites', 20, INK2))
+    s.append(T(sx(12) + 8, sy(late[-1]) + 6, 'far sites', 20, INK)); s.append(T(sx(12) + 8, sy(early[-1]) + 6, 'early sites', 20, INK2)); s.append(T(W - 10, 14, 'redrawn, approximate', 16, INK2, 'end'))
     s.append(T(L + 10, 14, 'fit, normalized', 18, INK2))
     s.append('</svg>')
     return ''.join(s)
@@ -268,13 +268,18 @@ def kern_context(brain_only=False):
     acc = [10, 18, 21, 24, 26, 27, 28, 29, 28, 30, 33, 43, 43, 42, 44, 53, 54, 54]
     W = 1000; L = 150; PH = 150 if not brain_only else 260
     H = (PH + 70) * (1 if brain_only else 2) + 40
-    px = lambda i: L + i * (W - L - 40) / (len(xs) - 1)
+    GAP = 40
+    px = lambda i: L + i * (W - L - 40 - GAP) / (len(xs) - 1) + (GAP if i >= 10 else 0)
     s = [f'<svg class="fig" viewBox="0 0 {W} {H}" style="width:{W}px">']
     def panel(y0, vals, lo, hi, title, col, peak):
         sy = lambda v: y0 + (hi - v) / (hi - lo) * PH
         out = [T(0, y0 + 20, title[0], 21, INK), T(0, y0 + 44, title[1], 18, INK2)]
-        out.append(f'<line x1="{L}" y1="{y0+PH}" x2="{W-40}" y2="{y0+PH}" stroke="{AXIS}"/>')
-        out.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (col, ' '.join(f'{px(i):.1f},{sy(v):.1f}' for i, v in enumerate(vals))))
+        bx = (px(9) + px(10)) / 2
+        out.append(f'<line x1="{L}" y1="{y0+PH}" x2="{bx-8}" y2="{y0+PH}" stroke="{AXIS}"/><line x1="{bx+8}" y1="{y0+PH}" x2="{W-40}" y2="{y0+PH}" stroke="{AXIS}"/>')
+        out.append(f'<path d="M{bx-12},{y0+PH+6} L{bx-4},{y0+PH-6} M{bx+4},{y0+PH+6} L{bx+12},{y0+PH-6}" stroke="{INK2}" stroke-width="1.5"/>')
+        out.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (col, ' '.join(f'{px(i):.1f},{sy(v):.1f}' for i, v in enumerate(vals[:10]))))
+        out.append('<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (col, ' '.join(f'{px(i):.1f},{sy(v):.1f}' for i, v in enumerate(vals) if i >= 10)))
+        out.append(f'<line x1="{px(9):.1f}" y1="{sy(vals[9]):.1f}" x2="{px(10):.1f}" y2="{sy(vals[10]):.1f}" stroke="{col}" stroke-width="1.5" stroke-dasharray="4 4"/>')
         if peak:
             k = vals.index(max(vals))
             out.append('<g data-accent="1">' + f'<circle cx="{px(k):.1f}" cy="{sy(vals[k]):.1f}" r="8" fill="{ACC}"/>' + T(px(k) + 12, sy(vals[k]) - 10, 'peak at 8 notes', 20, INK) + '</g>')
